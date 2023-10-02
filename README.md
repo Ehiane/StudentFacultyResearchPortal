@@ -1,8 +1,8 @@
 # CptS 322 Term Project
 ### Project Title: 
-### Team Name :  <enter your team name here> 
+### Team Name :  Team Sioux 
 ### Team Members 
-* member 1
+* Will Rae
 * member 2
 * member 3
 * member 4
