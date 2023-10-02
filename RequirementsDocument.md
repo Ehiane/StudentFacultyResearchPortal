@@ -4,7 +4,7 @@
 --------
 Prepared by:
 
-* `<author1>`,`<organization>`
+* `William Rae`,`Team Sioux`
 * `<author1>`,`<organization>`
 * `<author1>`,`<organization>`
 * `<author1>`,`<organization>`
