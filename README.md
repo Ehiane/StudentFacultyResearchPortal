@@ -4,5 +4,5 @@
 ### Team Members 
 * Will Rae
 * member 2
-* member 3
+* Ehiane Oigiagbe
 * member 4
