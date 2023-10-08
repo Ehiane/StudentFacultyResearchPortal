@@ -1,0 +1,61 @@
+<table class = "posttable" style = "width:100%" valign="top">
+    <tr> 
+        <td colspan="3"><div class="posttitle"> {{position.title}} </div>
+        </td>
+    </tr>
+    <tr>
+        <td width="80%" >
+            <div class="postbody">
+              {{position.description}}    
+           </div>
+        </td> 
+
+        <td width = "5%"> 
+            <div>
+                <!-- (milestone1)  TODO: add "like" button
+                                   Define an HTML `post` form with a submit button. The form action should redirect to `routes.like` route.
+                                   Style the submit button using `likebtn` CCS class selector. -->
+                                   
+                <br>
+                <!-- (milestone1) TODO: include the likes count-->
+                
+            </div>
+            <br> 
+             <!-- (milestone3) TODO: if the post is posted by the logged in user, include the "delete" button.  
+                               Define an HTML `post` form with a submit button. The form action should redirect to `routes.deletepost` route.
+                               Style the submit button using `button` CCS class selector. -->
+
+        </td>
+    </tr>
+    
+    <tr>
+        <td colspan="3" style = "text-align:center" valign="bottom">  
+            Research Fields:
+            <br>
+            {% for field in position.get_fields().all() %}
+                    <span class="tagitem">
+                        {{field}}
+                    </span>
+                {% endfor %}
+        </td>
+        <td colspan="3" style = "text-align:center" valign="bottom">  
+            Preferred Experience:
+            <br>
+            {% for experience in position.get_experiences().all() %}
+                    <span class="tagitem">
+                        {{experience}}
+                    </span>
+                {% endfor %}
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="3" style = "text-align:center" valign="bottom">  
+                Start: {{position.startDate}} End: {{position.endDate}}
+            <br>
+                Contact: {{position.facultyName}} ({{position.facultyContact}})
+
+          </td>
+        </tr>
+    </tr>
+</table>
