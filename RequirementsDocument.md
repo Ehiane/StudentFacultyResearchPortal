@@ -5,7 +5,7 @@
 Prepared by:
 
 * `William Rae`,`Team Sioux`
-* `<author1>`,`<organization>`
+* `Ehiane Oigiagbe`,`Team Sioux`
 * `<author1>`,`<organization>`
 * `<author1>`,`<organization>`
 
