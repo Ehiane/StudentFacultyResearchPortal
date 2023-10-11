@@ -48,21 +48,43 @@ Prepared by:
 ----
 # 1. Introduction
 
-This section should provide an overview of the entire document
+This section serves as the documentation to the Software Requirement Specification (SRS) document for the "Online Faculty Research Connection Platform"
 
 ## 1.1 Document Purpose
-
-Describe the purpose of the Software Requirement Specification (SRS) document and its intended audience.
-
+The purpose of this SRS document is to clearly define the requirements and specifications for the development of the "Online Faculty-Student Research Connection Platform." It outlines the non-functional requirements that the software solution must meet. This document serves as a critical reference for the project's stakeholders, including the development team, quality assurance, and all relevant parties involved in the platform's creation and operation.
 ## 1.2 Product Scope
+### 1.2.1 Product Description
+The "Online Faculty-Student Research Connection Platform" is designed to address the need for a centralized online platform where faculty members can post research positions and seamlessly connect with qualified undergraduate students. This platform will facilitate efficient communication between faculty and students, promoting collaborative research opportunities within the academic community.
 
-Identify the product whose software requirements are specified in this document. Explain what the product that is covered by this SRS will do. Provide a short description of the software being specified and its purpose, including relevant benefits, objectives, and goals.
+### 1.2.2 Purpose and Goals
+The main purpose of this software product is to offer an intuitive and user-friendly online interface that enables students to submit their contact information, academic coursework details, research interests, and prior research experience. Faculty members will have the ability to advertise research opportunities, receive student applications, and select candidates for interviews. 
+
+The key objectives and goals of the platform include:
+- Enhancing the accessibility of research opportunities for undergraduate students.
+- Streamlining the faculty's ability to find and select qualified student researchers.
+- Improving the overall efficiency and transparency of the research matching process.
+
+### 1.2.3 Benefits
+The "Online Faculty-Student Research Connection Platform" offers several benefits, including:
+- Facilitating collaboration and networking between faculty and students.
+- Simplifying the application and selection process for research positions.
+- Enhancing the academic and research experience for all users.
 
 ## 1.3 Document Overview
+The remainder of this document is organized into the following sections:
 
-Describe what the rest of the document contains and how it is organized.
 
-----
+- Section 2: Non-Functional Requirements - Outlines performance, security, and usability criteria.
+- Section 3: User Interface (UI) Design - Details the design and user interface guidelines.
+- Section 4: Data Management - Specifies data storage and management requirements.
+- Section 5: System Architecture - Provides a high-level overview of the platform's architecture.
+- Section 6: Use Cases and User Scenarios - Presents detailed use cases to illustrate real-world interactions.
+- Section 7: Assumptions and Constraints - Lists any assumptions and constraints that guide the development.
+- Section 8: Traceability Matrix - Links requirements to their sources and provides a history of revisions.
+- Section 9: Change Control and Version History - Explains the process for managing changes and document revisions.
+
+This document will serve as a comprehensive reference for the development team, ensuring that the "Online Faculty-Student Research Connection Platform" is successfully designed, built, and meets the needs of all stakeholders.
+
 # 2. Requirements Specification
 
 This section specifies the software product's requirements. Specify all of the software requirements to a level of detail sufficient to enable designers to design a software system to satisfy those requirements, and to enable testers to test that the software system satisfies those requirements.
@@ -121,11 +143,11 @@ Here you should include the sketches or mockups for the main parts of the interf
 
 ----
 # 4. Product Backlog
+> To view the Product Backlog/ Issues Page click [here🔗](https://github.com/WSU-CptS-322-Fall-2023/termproject-teamsioux/issues)
 
-Here you should include a link to your GitHub repo issues page, i.e., your product backlog. Make sure to create an issue for each use case. You should also create issues for the initial development tasks that you plan to work on during iteration1. 
 
 ----
-# 4. References
+# 5. References
 
 Cite your references here.
 
