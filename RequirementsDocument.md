@@ -32,7 +32,7 @@ Prepared by:
   - [2.3 Non-Functional Requirements](#23-non-functional-requirements)
 - [3. User Interface](#3-user-interface)
 - [4. Product Backlog](#4-product-backlog)
-- [4. References](#4-references)
+- [5. References](#5-references)
 - [Appendix: Grading Rubric](#appendix-grading-rubric)
 
 <a name="revision-history"> </a>
@@ -74,14 +74,13 @@ The "Online Faculty-Student Research Connection Platform" offers several benefit
 The remainder of this document is organized into the following sections:
 
 
-- Section 2: Non-Functional Requirements - Outlines performance, security, and usability criteria.
-- Section 3: User Interface (UI) Design - Details the design and user interface guidelines.
-- Section 4: Data Management - Specifies data storage and management requirements.
-- Section 5: System Architecture - Provides a high-level overview of the platform's architecture.
-- Section 6: Use Cases and User Scenarios - Presents detailed use cases to illustrate real-world interactions.
-- Section 7: Assumptions and Constraints - Lists any assumptions and constraints that guide the development.
-- Section 8: Traceability Matrix - Links requirements to their sources and provides a history of revisions.
-- Section 9: Change Control and Version History - Explains the process for managing changes and document revisions.
+- Section 2: Requirments Specification - Outlines design, the audience, Use cases and Non-Functional Requirements.
+
+- Section 3: User Interface (UI) Design - Details the design(with sketches included) and user interface guidelines.
+
+- Section 4: Product Backlog - Guides the Development team through out the project by listing tasks and issues to handle as the development of the project carries on.
+
+- Section 5: References - Contains all the external references or links that were used in the creation of the requirement document. 
 
 This document will serve as a comprehensive reference for the development team, ensuring that the "Online Faculty-Student Research Connection Platform" is successfully designed, built, and meets the needs of all stakeholders.
 
