@@ -3,6 +3,5 @@
 ### Team Name :  Team Sioux 
 ### Team Members 
 * Will Rae
-* member 2
-* member 3
-* member 4
+* Cole Logan
+* Ehiane Oigiagbe
