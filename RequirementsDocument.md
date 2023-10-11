@@ -126,6 +126,267 @@ You may use the following table template for your use cases. Copy-paste this tab
 | Acceptance tests  | "enter your reponse here"  |
 | Iteration         | "enter your reponse here"  |
 
+
+Regular User:
+8. On the student page, a student user can: Create a student account and enter the profile information:
+1. Set the account username and password (username should be the WSU email)
+2. Enter contact information (name, last name, WSU ID, email, phone)
+3. Enter additional information (major, cumulative GPA, expected graduation date, etc. )
+4. Select the research topics they are interested in. You can assume a predetermined list of research fields and have the student choose among those.
+5. Choose the programming languages with which they are familiar. You can assume a predetermined list of programming languages and have the instructor choose among those.
+6. Describe their prior research experience if there is any.
+| Name | Add Review |
+|--------|--------|
+| Users | Student |
+| Rationale | When a student user wants to apply to a research position, they can create an account with information about themselves. |
+| Triggers | The user intends to register as a student |
+| Preconditions | The user is not already registered as a student. |
+| Actions | 1. The user indicates to register themselves as a new student in the application. 2. The System will display the "Register Student Page" page 3. The user will then enter all the of the relevant information as requested by the form. The user then submits the form. 4. The system validates the entered entered information, checks that data is appropriate for each segment of form, (i.e., no GPA of 13.6) 5. The system will save the students login and information, acknowledging that the student is registered. 6. The system will navigate to the "View Positions" page. |
+| Postconditions | The users login and information is saved to the system and can be used on the student "login" page. |
+| Acceptance Tests | Check that the (1) users login is valid, and (2) the saved information is the same as what was submitted. |
+| Milestone | Milestone 2 |
+
+Regular User (Student):
+9. On the student page, a student user can: Login with username and password:
+| Name | Add Review |
+|--------|--------|
+| Users | Student |
+| Rationale | When a student user wants to apply to a research position, they can login with an existing username and password. |
+| Triggers | The user intends to sign in as a previously registered student |
+| Preconditions | The user has already registered as a student. |
+| Actions | 1. The user indicates to log themselves in as a student in the application. 2. The System will display the "Student Login Page" page 3. The user will then enters their username and password as requested by the form. The user then submits the form. 4. The system validates the entered entered information (no space is left blank, or incorrect information entered). 5. The system will assign the information of the current user to the information of the account registered to that users sign in information. 6. The system will navigate to the "View Positions" page. |
+| Postconditions | The users information will be taken from the system and applied to the current user. |
+| Acceptance Tests | Check that the (1) users login is valid, (2) information is applied to current user |
+| Milestone | Milestone 2 |
+
+Regular User (Student):
+10. On the student page, a student user can: View the open research positions (Milestone 1)
+For Milestone 1:
+1. Your app should list all open research positions.
+| Name | Add Review |
+|--------|--------|
+| Users | Student |
+| Rationale | When a registered and logged in student wants to view open research positions. |
+| Triggers | The user intends to view research positions, or logs in and is redirected to the home page. |
+| Preconditions | The user has already registered and signed in as a student. |
+| Actions | 1. The user indicates to view open research positions in the application. 2. The System will display the "View Positions Page" |
+| Postconditions | The system will display all currently open research positions on the "View Positions" page. |
+| Acceptance Tests | Check that the (1) user is logged in, (2) all open positions are displayed properly. |
+| Milestone | Milestone 1 |
+
+Regular User (Student):
+11. On the student page, a student user can: View the open research positions (Milestone 3)
+For Milestone 3:
+1. In addition, it should identify the research positions that match the student’s “research interests” and list them separately under the “Recommended Research Positions”. You can implement a simple recommendation algorithm to find the matching positions. For example: If the student’s research interests include “Machine Learning”, the positions in that field should be recommended to the student. Similarly, if the position requires Python experience and if the student chose Python in their profile, the position should be recommended to the student. 
+| Name | Add Review |
+|--------|--------|
+| Users | Student |
+| Rationale | When a registered and logged in student wants to view open research positions that align with their own interests. |
+| Triggers | The user intends to view research positions that align with their interests. |
+| Preconditions | The user has already registered and signed in as a student, also has interests. |
+| Actions | 1. The user indicates to view open research positions in the application that contain a tag that they are interested in. 2. The tags are checked by the system and posts are filtered by those tags. 3. The System will display the filtered "View Positions Page" |
+| Postconditions | The system will display all currently open research positions on the "View Positions" page that contain the tags the user is interested in. |
+| Acceptance Tests | Check that the (1) user is logged in, (2) all open positions are displayed properly, (3) they have been filtered properly. |
+| Milestone | Milestone 3 |
+
+Regular User (Student):
+12. On the student page, a student user can view various displayed information:
+1. Research project title
+2. A brief description of the project goals and objectives
+3. Start date and end date
+4. Required time commitment (e.g., 10 hours per week)
+5. Research field(s) (e.g., “Machine Learning, High Performance Computing, etc.)
+6. Required programming language experience (e.g., “C++”, “Java”, “Python”, etc.)
+7. A brief description of other required qualifications
+8. Faculty’s name and contact information1. Research project title
+2. A brief description of the project goals and objectives
+3. Start date and end date
+4. Required time commitment (e.g., 10 hours per week)
+5. Research field(s) (e.g., “Machine Learning, High Performance Computing, etc.)
+6. Required programming language experience (e.g., “C++”, “Java”, “Python”, etc.)
+7. A brief description of other required qualifications
+8. Faculty’s name and contact information
+| Name | Add Review |
+|--------|--------|
+| Users | Student |
+| Rationale | When a registered and logged in student wants to view information about a specific research position. |
+| Triggers | The user intends to view research positions, or logs in and is redirected to the home page. |
+| Preconditions | The user has already registered and signed in as a student. |
+| Actions | 1. The user indicates to view open research positions in the application. 2. The System will display the "View Positions Page". 3. Each individual position will display the information listed above. |
+| Postconditions | The system will display all the information listed above for a given research positions on the "View Positions" page. |
+| Acceptance Tests | Check that the (1) user is logged in, (2) all open positions are displayed properly. |
+| Milestone | Milestone 1 |
+
+Regular User (Student):
+13. On the student page, a student user can: Apply for research positions. A student can apply for more than one research position
+For each position they apply to:
+1. They should submit a brief statement describing why they are interested in this research topic and what they hope to gain by participating in that project.
+2. They should provide the name and email of one faculty who can provide them a reference for the position. 
+| Name | Add Review |
+|--------|--------|
+| Users | Student |
+| Rationale | When a registered and logged in student wants to view open research positions and apply to any number of them. |
+| Triggers | The user intends to apply to a research position. |
+| Preconditions | The user has already registered and signed in as a student. |
+| Actions | 1. The user indicates wanting to apply to an open research position in the application. 2. The System will use a many to many relationship to assign the user the the position they applied for. 3. The position will update for the user displaying they have applied. |
+| Postconditions | The system will display that the user has applied for the position, allowing the faculty that posted it to view the students application. |
+| Acceptance Tests | Check that the position has the user as an applicant through the relationship. |
+| Milestone | Milestone 1 |
+
+Regular User (Student):
+14. On the student page, a student user can: View the research positions they already applied to and check the statuses of their applications
+1. When the application is submitted, its status will appear as “Pending”.
+2. After a faculty accept this application, the status should be updated as “Approved for Interview”. Student would do the interview in person.
+3. After the interview, the faculty should update the status as either “Hired” or “Not hired”. Once updated, the changed status should be displayed on the student page.
+| Name | Add Review |
+|--------|--------|
+| Users | Student |
+| Rationale | When a registered and logged in student wants to view positions they have applied for and the status of their application. |
+| Triggers | The user intends to view research positions they've applied for, and their application status. |
+| Preconditions | The user has already registered, signed in as a student, and applied to positions. |
+| Actions | 1. The user indicates to view research positions they've applied for in the application. 2. The System will display the "My Applications" page, and the status of each application. |
+| Postconditions | The system will display all the users currently applied research positions on the "My Applications" page. |
+| Acceptance Tests | Check that the (1) user is logged in, (2) all open applications are displayed properly. |
+| Milestone | Milestone 3 |
+
+Regular User (Student):
+15. On the student page, a student user can: Withdraw their pending applications.
+If the student is no longer interested in a research position, they can withdraw their application.
+| Name | Add Review |
+|--------|--------|
+| Users | Student |
+| Rationale | When a registered and logged in student wants to view positions they have applied for and rescind their application. |
+| Triggers | The user intends to view research positions they've applied for and rescind their application. |
+| Preconditions | The user has already registered, signed in as a student, and applied to positions. |
+| Actions | 1. The user indicates to view research positions they've applied for in the application. 2. The System will display the "My Applications" page. 3. The user indicates they wish to rescind an application. 4. The relationship between the position and user will be deleted, rescinding their application. |
+| Postconditions | The system will no longer display rescinded research position on the "My Applications" page. |
+| Acceptance Tests | Check that the application the user wished to delete no longer exists. |
+| Milestone | Milestone 3 |
+
+Admin (Faculty):
+16. On the faculty page, a faculty user can: Create a faculty account and enter profile information
+1. Set the account username and password (user name should be the WSU email)
+2. Enter contact information (name, last name, WSU ID, email, phone)
+| Name | Add Review |
+|--------|--------|
+| Users | Faculty |
+| Rationale | When a faculty user wants to create to a research position, they can create an account with relevant university information. |
+| Triggers | The user intends to register as faculty |
+| Preconditions | The user is not already registered as faculty. |
+| Actions | 1. The user indicates to register themselves as a new faculty member in the application. 2. The System will display the "Register Faculty Page" page 3. The user will then enter all the of the relevant information as requested by the form. The user then submits the form. 4. The system validates the entered entered information, checks that data is appropriate for each segment of form, (i.e., actual WSU ID, not 3) 5. The system will save the faculty login and information, acknowledging that the faculty member is registered. 6. The system will navigate to the faculty home page. |
+| Postconditions | The users login and information is saved to the system and can be used on the faculty "login" page. |
+| Acceptance Tests | Check that the (1) users login is valid, and (2) the saved information is the same as what was submitted. |
+| Milestone | Milestone 2 |
+
+Admin (Faculty):
+17. On the faculty page, a faculty user can: Login with username and password
+| Name | Add Review |
+|--------|--------|
+| Users | Faculty |
+| Rationale | When a faculty user wants to create a research position, they can login with an existing username and password. |
+| Triggers | The user intends to sign in as a previously registered faculty member |
+| Preconditions | The user has already registered as faculty. |
+| Actions | 1. The user indicates to log themselves in as faculty in the application. 2. The System will display the "Faculty Login Page" page 3. The user will then enters their username and password as requested by the form. The user then submits the form. 4. The system validates the entered entered information (no space is left blank, or incorrect information entered). 5. The system will assign the information of the current user to the information of the account registered to that users sign in information. 6. The system will navigate to the "Faculty Home" page. |
+| Postconditions | The users information will be taken from the system and applied to the current user. |
+| Acceptance Tests | Check that the (1) users login is valid, (2) information is applied to current user |
+| Milestone | Milestone 2 |
+
+Admin (Faculty):
+18. On the faculty page, a faculty user can: Create undergraduate research positions
+Faculty should enter the details of the position and qualifications needed, i.e.,: 
+1. Research project title
+2. A brief description of the project goals and objectives
+3. Start date and end date
+4. Required time commitment (e.g., 10 hours per week)
+5. Research field(s) (e.g., “Machine Learning”, “High Performance Computing”, etc.). You can assume a predetermined list of research fields and have the instructor choose among those.
+6. Required experience with programming languages (e.g., “C++”, “Java”, “Python”, etc.) You can assume a predetermined list of programming languages and have the instructor choose among those.
+7. A brief description of other required qualifications.
+**Of course, a faculty can create more than one positions.**
+| Name | Add Review |
+|--------|--------|
+| Users | Faculty |
+| Rationale | When a faculty user wants to create to a research position. |
+| Triggers | The user intends to create a new research position. |
+| Preconditions | The user is currently registered and logged in as a faculty member. |
+| Actions | 1. The user indicates to create a new research position in the application. 2. The System will display the "Create Research Position Page" page 3. The user will then enter all the of the relevant information as requested by the form. The user then submits the form. 4. The system validates the entered entered information, checks that data is appropriate for each segment of form, (i.e., no hour commitment of "egg") 5. The system will save created research position, acknowledging that the position was created. 6. The system will navigate to the "Faculty Home" page. |
+| Postconditions | The users research position is saved and displayed for students to apply to. |
+| Acceptance Tests | Check that the (1) the position has been saved, and (2) the position can be applied for my students. |
+| Milestone | Milestone 1 |
+
+Admin (Faculty):
+19. On the faculty page, a faculty user can: See the list of the students who applied for their positions
+A faculty should be informed about the other offers students get. If a student was “Approved for Interview” or was “Hired” for another position, those information should also be displayed. 
+| Name | Add Review |
+|--------|--------|
+| Users | Faculty |
+| Rationale | When a registered and logged in faculty member wants to view positions they've created and students that have applied to them. |
+| Triggers | The user intends to view research positions they've created and the positions applicants. |
+| Preconditions | The user has already registered, signed in as faculty, and created positions that have been applied to. |
+| Actions | 1. The user indicates to view research positions they've created in the application. 2. The System will display the "My Positions" page, and the applicants of each position. |
+| Postconditions | The system will display all the users currently created research positions on the "My Positions" page, as well as the applicants of each position. |
+| Acceptance Tests | Check that (1) all created positions are displayed, (2) all applicants for each position is displayed. |
+| Milestone | Milestone 2 |
+
+Admin (Faculty):
+20. On the faculty page, a faculty user can: View the qualifications of each student
+1. their GPAs
+2. the technical elective courses they have taken
+3. the research topics they are interested in
+4. the programming languages they have experience with
+5. prior research experience.
+| Name | Add Review |
+|--------|--------|
+| Users | Faculty |
+| Rationale | When a registered and logged in faculty member wants to view positions they've created and the qualifications of the students that have applied to them. |
+| Triggers | The user intends to view research positions they've created and the positions applicants qualifications. |
+| Preconditions | The user has already registered, signed in as faculty, and created positions that have been applied to. |
+| Actions | 1. The user indicates to view research positions they've created in the application. 2. The System will display the "My Positions" page, and the applicants of each position. 3. The user can view information about each applicant as listed above. |
+| Postconditions | The system will display all the users currently created research positions on the "My Positions" page, as well as the applicants of each position and their qualifications.. |
+| Acceptance Tests | Check that (1) all created positions are displayed, (2) all applicants qualifications for each position is displayed. |
+| Milestone | Milestone 2 |
+
+Admin (Faculty):
+21. On the faculty page, a faculty user can: Approve the application of one or more students
+The faculty can approve the application of one or more students and the status of those applications should be updated as “Approved for Interview”. 
+| Name | Add Review |
+|--------|--------|
+| Users | Faculty |
+| Rationale | When a registered and logged in faculty member wants to view positions they've created, the students that have applied to them, and approve the application of one or more of them. |
+| Triggers | The user intends to accept the application of one or more applicants. |
+| Preconditions | The user has already registered, signed in as faculty, and created positions that have been applied to. |
+| Actions | 1. The user indicates to view research positions they've created in the application. 2. The System will display the "My Positions" page, and the applicants of each position. 3. The user indicates wether they would like to approve the application of a user. 4. The user is notified of acceptance. |
+| Postconditions | The system will display that the users application has been accepted on both the faculty and student side. |
+| Acceptance Tests | Check that (1) the position has been accepted on student side, (2) the position has been accepted on faculty side. |
+| Milestone | Milestone 3 |
+
+Admin (Faculty):
+22. On the faculty page, a faculty user can: Update the status of applications
+After interviewing with the student, the faculty can update the status of applications as either “Hired” or “Not hired”
+| Name | Add Review |
+|--------|--------|
+| Users | Faculty |
+| Rationale | When a registered and logged in faculty member wants to view positions they've created, the students that have been accepted, and indicate whether or not they've been hired. |
+| Triggers | The user intends to hire or not hire one of the applicants. |
+| Preconditions | The user has already registered, signed in as faculty, and created positions that have been applied to with accepted users. |
+| Actions | 1. The user indicates to view research positions they've created in the application. 2. The System will display the "My Positions" page, and the applicants of each position. 3. The user indicates wether they would like to hired or not hire a student who was previously been accepted. 4. The user is notified of their status as either "hired" or "not hired". |
+| Postconditions | The system will display that the users  has been either hired or not hired on both the faculty and student side. |
+| Acceptance Tests | Check that (1) the status is correct on student side, (2) the status is correct on faculty side. |
+| Milestone | Milestone 3 |
+
+Admin (Faculty):
+23. On the faculty page, a faculty user can: Delete the existing research positions
+The faculty may delete the existing research positions. Once deleted, the status of all applications should be updated as “Position is not available”. 
+| Name | Add Review |
+|--------|--------|
+| Users | Faculty |
+| Rationale | When a registered and logged in faculty member wants to view positions they have created and delete one or more of them. |
+| Triggers | The user intends to view research positions they've created and delete one or more. |
+| Preconditions | The user has already registered, signed in as a student, and created positions. |
+| Actions | 1. The user indicates to view research positions they've created in the application. 2. The System will display the "My Positions" page. 3. The user indicates they wish to delete a position. 4. The position will be deleted by the system. |
+| Postconditions | The system will no longer display the research position on the "My Positions" page. |
+| Acceptance Tests | Check that the positions the user wished to delete no longer exists. |
+| Milestone | Milestone 3 |
+
 ----
 ## 2.3 Non-Functional Requirements
 
