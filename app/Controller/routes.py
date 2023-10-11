@@ -6,7 +6,7 @@ from config import Config
 
 from app import db
 from app.Model.models import Position, Experience, Field
-from app.Controller.forms import PositionForm
+from app.Controller.forms import PositionForm, ExperienceForm, FieldForm
 
 bp_routes = Blueprint('routes', __name__)
 bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
@@ -34,3 +34,25 @@ def postposition():
         flash('New post "' + newPosition.title + '" created.')
         return redirect(url_for('routes.index'))
     return render_template('create.html', form = pform)
+
+@bp_routes.route('/addexperience', methods=['GET','POST'])
+def addexperience():
+    eform = ExperienceForm()
+    if eform.validate_on_submit():
+        e = eform.newExperience.data
+        db.session.add(Experience(name=e))
+        db.session.commit()
+        flash('New experience: "' + e + '" added.')
+        return redirect(url_for('routes.index'))
+    return render_template('addexperience.html', form = eform)
+
+@bp_routes.route('/addfield', methods=['GET','POST'])
+def addfield():
+    fform = FieldForm()
+    if fform.validate_on_submit():
+        f = fform.newField.data
+        db.session.add(Field(name=f))
+        db.session.commit()
+        flash('New research field: "' + f + '" added.')
+        return redirect(url_for('routes.index'))
+    return render_template('addfield.html', form = fform)

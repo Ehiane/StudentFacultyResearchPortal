@@ -18,3 +18,11 @@ class PositionForm(FlaskForm):
     facultyName = StringField('Faculty Name', validators=[DataRequired()])
     facultyContact = StringField('Faculty Contact', validators=[DataRequired()])
     submit = SubmitField('Submit')
+    
+class FieldForm(FlaskForm):
+    newField = StringField('New Research Field', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+    
+class ExperienceForm(FlaskForm):
+    newExperience = StringField('New Experience', validators=[DataRequired()])
+    submit = SubmitField('Submit')

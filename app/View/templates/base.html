@@ -6,7 +6,6 @@
           <title> Welcome to Project Portal! </title>
        {% endif %}
        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-       <!--TODO: (milestone 3)  Include `moment` library -->
     </head>
 
     <body>
@@ -14,8 +13,9 @@
         <table>
             <tr>
                 <td><a href="{{ url_for('routes.index') }}" class = "button">Open Positions</a></td>
-                <!-- TODO: (milestone 1) add the URL for the "Post Smile". --> 
                 <td><a href="{{ url_for('routes.postposition') }}" class = "button"> Post Position </a></td>
+                <td><a href="{{ url_for('routes.addexperience') }}" class = "button">Add New Experience</a></td>
+                <td><a href="{{ url_for('routes.addfield') }}" class = "button">Add New Research Field</a></td>
                 <!--<td><a href="" class = "button"> Login </a></td>-->
                 <!--<td><a href="" class = "button"> Logout </a></td>-->
                 <td> Current user is: <span class="useritem">________ </span> </td>  
