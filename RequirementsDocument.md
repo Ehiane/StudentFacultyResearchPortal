@@ -407,7 +407,13 @@ The faculty may delete the existing research positions. Once deleted, the status
 ----
 # 3. User Interface
 
-Here you should include the sketches or mockups for the main parts of the interface.
+### Student main page & faculty main page:
+![IMG-0171](https://github.com/WSU-CptS-322-Fall-2023/termproject-teamsioux/assets/79903725/a32ca2f8-090f-4f2a-aae2-39e6d7aaa225)
+
+
+### Login page & Registration page:
+![IMG-0172](https://github.com/WSU-CptS-322-Fall-2023/termproject-teamsioux/assets/79903725/e2d942cd-ce24-49ba-8f45-ca6a7cc24baa)
+
 
 ----
 # 4. Product Backlog
