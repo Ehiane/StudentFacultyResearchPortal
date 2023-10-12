@@ -6,8 +6,7 @@ Prepared by:
 
 * `William Rae`,`Team Sioux`
 * `Ehiane Oigiagbe`,`Team Sioux`
-* `<author1>`,`<organization>`
-* `<author1>`,`<organization>`
+* `Cole Logan`,`Team Sioux`
 
 ---
 
@@ -90,8 +89,15 @@ This section specifies the software product's requirements. Specify all of the s
 
 ## 2.1 Customer, Users, and Stakeholders
 
-A brief description of the customer, stakeholders, and users of your software.
+Our customer will be WSU itself. We intend to make this software for WSU to use in order to advertise research positions to undergraduate students.
 
+There will be two distinct users of our software: students and faculty.
+
+Students will be any individual enrolled at WSU who is in undergrad. It is likely the student will be interested in research if they are to use our software. Students stand to benefit from our software because of the research opportunities that will be made available to them.
+
+Faculty consists of any professors or graduate students who have a potential research opportunity for any interested undergrad students. Faculty must be employed by WSU and involved with research on campus. Faculty stands to benefit from our software because of the undergraduate students who will be able to assist with their research.
+
+The stakeholders of this project will be WSU, students, faculty, and us, the programmers. Given this project is a success, WSU will have successfully funded a site that is able to connect undergraduate students with research positions that will prepare them for their future careers. Students will be able to boost their resume with their research experience and will have gained valuable skills from the experience. Faculty will recieve much needed help with their research, will connect with their undergrad students, and will be able to pass on their knowledge and skills to the students. We programmers will have created a successful site that many people will benefit from and use in the extended future, and will be able to add it to our resume.
 
 ----
 ## 2.2 Use Cases
@@ -128,7 +134,7 @@ You may use the following table template for your use cases. Copy-paste this tab
 
 
 Regular User:
-8. On the student page, a student user can: Create a student account and enter the profile information:
+8. On the student page, a student user can: Create a student account and enter their profile information
 1. Set the account username and password (username should be the WSU email)
 2. Enter contact information (name, last name, WSU ID, email, phone)
 3. Enter additional information (major, cumulative GPA, expected graduation date, etc. )
@@ -147,7 +153,7 @@ Regular User:
 | Milestone | Milestone 2 |
 
 Regular User (Student):
-9. On the student page, a student user can: Login with username and password:
+9. On the student page, a student user can: Login with username and password
 | Name | Add Review |
 |--------|--------|
 | Users | Student |
@@ -390,11 +396,13 @@ The faculty may delete the existing research positions. Once deleted, the status
 ----
 ## 2.3 Non-Functional Requirements
 
-List the non-functional requirements in this section.
-
-You may use the following template for non-functional requirements.
-
-1. [Enter a Concise Requirement Name]:  [provide a concise description, in clear and easily understandable language to specify the requirement]
+1. Students should only be able to access student functionality: Students should not be able to access faculty member exclusive functionality. This includes creating research opportunities, reviewing students qualifications, updating application statuses, etc.
+2. Faculty should only be able to access faculty functionality: Faculty should not be able to access student exclusive functionality. This includes applying for research opportunities, updating student qualifications, etc.
+3. Users must be logged in in order to access the site: Users should not be able to see research opportunities, apply for research positions, create research positions, etc without being logged in as a student/faculty member. Users must log in as a student to see the student view, and must log in as a faculty member to see the faculty view.
+4. Our site should not take long to load different pages: When submitting a get or post request, our page should not take longer than a brief moment to load the next page. 
+5. Our site should be easily readable and understood: We must keep all text in a clean, readable font that is easy to read and understand. The language included should be clear and to the point, leaving no room for confusion at any point. 
+6. Our site should be well organized and easy to navigate: We must make sure all buttons are easy to see and that their purpose be easily understood. The layout should be clean and organized.
+7. Students should only be able to create one account: Using their WSU email/ID, students should be able to create just a single account for themselves. If they are to try to create another account with the same ID, they should be stopped and directed to use a different ID.
 
 ----
 # 3. User Interface
