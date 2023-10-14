@@ -1,9 +1,32 @@
+/* Google Fonts Imports */
+/* roboto slab font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+/* Lora font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+
+/*------------------------------------------- COLOR PALLETTE --------------------------------------------------------------------------------  */
+:root{
+    /* Project color pallete */
+    --light-gray-- : #EEEEEE;
+    --dark-gray-- : #DEDEDE;
+    --mild-red-- : #FF4949;
+    --crimson-red--: #C10000;
+    --anthracite--: #414141;
+    --light-anthracite: #525252;
+    --deep-anthracite: #313131;
+    --salmon--: #BD4B4B;
+    --dull-pink--: #EFB7B7;
+    --orange-red--: #FF0000;
+    --deep-crimson-red--: #AF0404;
+}
+/*---------------------------------------------------------------------------------------------------------------------------------------------  */
+
 body {
     margin: 1px 1px 1px 15px;
     padding: 1px;
     font-family: Tahoma;
     text-align: left;
-  
 }
 .nav-container {
     background:#f6f6f6;
@@ -31,19 +54,105 @@ a:hover {
     cursor:pointer;
 }
 
-.posttable { 
+/* ---------------------------------------------------------------------------------POST SECTION ----------------------------------------------------------*/
+.posttable {     
+    color: var(--light-gray--);
     width : 100%;
     margin: 0px;
 }
 
+
 .posttitle {
+    font-family: 'Roboto Slab', serif;
     text-align: center;
     font-weight: bold;
 }
 
 .postbody {
+    font-family: 'Roboto Slab', serif;
+    margin-left: 10%;
+    padding: 0.2rem;
     text-align: left;
+    min-height: fit-content;
+    max-height: 12vh;
 }
+
+
+#post-text-section-1,#post-text-section-2{
+    padding: 0.05rem;
+}
+#post-text-section-1 span{
+    color: black;
+}
+
+.tagarea{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.post-experience-section{
+    text-align: center;
+}
+
+.post-experience-section p{
+    font-weight: bold;
+}
+
+.post-experience-tag-area{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.post-experience-tag-item {
+    flex: 1;
+    flex-basis: 0;
+    margin-left:5px;
+    /* flex-basis: 35%; */
+    text-align: center;
+    background-color: var(--light-anthracite);
+    border: 2px solid black;
+    border-radius: 2px;
+    margin: 4px;
+    padding: 5px;
+    color: var(--dull-pink--);
+}
+
+.research-field-section{
+    height: 5vh;
+}
+
+.research-field-section p{
+    text-align: center;
+    font-weight: bold;
+}
+
+.post-footer-section{
+    text-align: center;
+}
+
+.research-horizontal-tag-area{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+
+.research-horizontal-tag-item{
+    border: 2px solid black;
+    border-radius: 2px;
+    background-color: var(--dull-pink--);
+    text-align:center;
+    flex: 1;
+    flex-basis: 0;
+    padding: 2px;
+    width: fit-content;
+    height: 4.5vh;
+    color: var(--deep-crimson-red--);
+    
+}
+
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 .useritem{
     text-align: center;
@@ -51,6 +160,12 @@ a:hover {
     margin: 4px 3px 4px 3px;
     color: crimson; 
     text-transform: uppercase;
+}
+
+
+.research-field-title{
+    top: 10px;
+    padding: .1rem;
 }
 
 .likebtn {
@@ -105,43 +220,70 @@ a:hover {
     margin: 4px 3px 4px 3px;
 }
 
-.tagitem {
-    text-align: center;
-    background-color: #ffffff;
-    outline: solid;
-    margin: 4px;
-    padding: 1px;
-}
+
+/* ------------------------------------------------------------------------------SCREEN RESOLUTIONS ------------------------------------------------------------------- */
 
 @media screen and (min-width: 1200px){
     .post-box {
+        border: 2px solid black;
+        border-radius: 50px;
         display: flex;
         vertical-align: middle;
         background:#efefef;
         width: 32%;
         margin: 5 auto;
         padding: 3px;
+        transition: 0.5s ease-in-out;
+        background:var(--salmon--);
+    }
+    
+    .post-box:hover {
+        cursor: pointer;
+        box-shadow: 0 0 20px 0px black;
+        transform: translateY(-0.5%);
     }
 }
 
+
 @media screen and (min-width: 800px) and (max-width:1200px){
     .post-box {
+        border: 2px solid black;
+        border-radius: 50px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         display: flex;
         vertical-align: middle;
-        background:#efefef;
+        background:var(--salmon--);
         width: 48%;
         margin: 5 auto;
         padding: 3px;
+        transition: 0.5s ease-in-out;
+    }
+    
+    .post-box:hover {
+        cursor: pointer;
+        box-shadow: 0 0 20px 0px black;
+        transform: translateY(-0.5%);
     }
 }
 
 @media screen and (max-width:800px){
     .post-box {
+        border: 2px solid black;
+        border-radius: 50px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         display: flex;
         vertical-align: middle;
         background:#efefef;
         width: 99%;
         margin: 5 auto;
         padding: 3px;
+        transition: 0.5s ease-in-out;
+    }
+    
+    .post-box:hover {
+        cursor: pointer;
+        box-shadow: 0 0 20px 0px black;
+        transform: translateY(-0.5%);
     }
 }
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

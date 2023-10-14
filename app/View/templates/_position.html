@@ -1,4 +1,6 @@
 <table class = "posttable" style = "width:100%" valign="top">
+    
+    <!--# we can use this as the palletee for this section: https://colorhunt.co/palette/eeeeeedededeff4949c10000  -->
     <tr> 
         <td colspan="3"><div class="posttitle"> {{position.title}} </div>
         </td>
@@ -29,32 +31,33 @@
     </tr>
     
     <tr>
-        <td colspan="3" style = "text-align:center" valign="bottom">  
-            Research Fields:
-            <br>
-            {% for field in position.get_fields().all() %}
-                    <span class="tagitem">
-                        {{field}}
-                    </span>
+        <td colspan="3" class="research-field-section" valign="bottom">  
+            <p>Research Fields:</p> 
+
+            <div class="research-horizontal-tag-area">
+                {% for field in position.get_fields().all() %}
+                <span class="research-horizontal-tag-item">
+                    {{field}}
+                </span>
                 {% endfor %}
+            </div>
         </td>
-        <td colspan="3" style = "text-align:center" valign="bottom">  
-            Preferred Experience:
-            <br>
-            {% for experience in position.get_experiences().all() %}
-                    <span class="tagitem">
-                        {{experience}}
-                    </span>
-                {% endfor %}
+        <td colspan="3" class="post-experience-section"  valign="bottom">  
+            <p>Preferred Experience:</p>
+            <div class="post-experience-tag-area">
+                {% for experience in position.get_experiences().all() %}
+                        <div class="post-experience-tag-item">
+                            {{experience}}
+                        </div>
+                    {% endfor %}
+            </div>
         </td>
     </tr>
 
-    <tr>
-        <td colspan="3" style = "text-align:center" valign="bottom">  
-                Start: {{position.startDate}} End: {{position.endDate}}
-            <br>
-                Contact: {{position.facultyName}} ({{position.facultyContact}})
-
+    <tr class="post-footer-section">
+        <td colspan="3"  valign="bottom">  
+               <p id="post-text-section-1">Start: {{position.startDate}} End: <span>{{position.endDate}} </span></p>  
+                <p id="post-text-section-2">Contact: {{position.facultyName}} ({{position.facultyContact}})</p>
           </td>
         </tr>
     </tr>
