@@ -57,9 +57,10 @@ def addfield():
         return redirect(url_for('routes.index'))
     return render_template('addfield.html', form = fform)
 
-@bp_routes.route('/application', methods=['GET', 'POST'])
-def application():
+@bp_routes.route('/application/<position_id>', methods=['GET', 'POST'])
+def application(position_id):
     aform = ApplicationForm()
+    thePosition = Position.query.filter_by(id=position_id).first()
     if aform.validate_on_submit():
         newApplication = Application(statement = aform.statement.data, referenceName = aform.referenceName.data, referenceEmail = aform.referenceEmail.data)
         flash('You have applied for the research position!')
