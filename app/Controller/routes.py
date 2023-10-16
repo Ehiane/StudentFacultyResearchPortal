@@ -5,8 +5,8 @@ from flask import render_template, flash, redirect, url_for, request
 from config import Config
 
 from app import db
-from app.Model.models import Position, Experience, Field
-from app.Controller.forms import PositionForm, ExperienceForm, FieldForm
+from app.Model.models import Position, Experience, Field, Application
+from app.Controller.forms import PositionForm, ExperienceForm, FieldForm, ApplicationForm
 
 bp_routes = Blueprint('routes', __name__)
 bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
@@ -56,3 +56,12 @@ def addfield():
         flash('New research field: "' + f + '" added.')
         return redirect(url_for('routes.index'))
     return render_template('addfield.html', form = fform)
+
+@bp_routes.route('/application', methods=['GET', 'POST'])
+def application():
+    aform = ApplicationForm()
+    if aform.validate_on_submit():
+        newApplication = Application(statement = aform.statement.data, referenceName = aform.referenceName.data, referenceEmail = aform.referenceEmail.data)
+        flash('You have applied for the research position!')
+        return redirect(url_for('routes.index'))
+    return render_template('application.html', form=aform)

@@ -26,6 +26,7 @@ class Position(db.Model):
     qualifications = db.Column(db.String(300))
     facultyName = db.Column(db.String(30))
     facultyContact = db.Column(db.String(50))
+
     def get_experiences(self):
         return self.experiences
     def get_fields(self):
@@ -44,3 +45,9 @@ class Field(db.Model):
     positions = db.relationship('models.Position', secondary=positionFields, primaryjoin=(positionFields.c.field_id == id), backref=db.backref('positionField', lazy='dynamic'), lazy='dynamic')
     def __repr__(self):
        return '{}'.format(self.name)
+
+class Application(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    statement = db.Column(db.String(1500))
+    referenceName = db.Column(db.String(20))
+    referenceEmail = db.Column(db.String(50))

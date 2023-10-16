@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Apply for Research Position</h1>
+
+    {% if form %}
+
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <div>
+                {{form.statement.label}}<br>
+                {{form.statement(class="formtitle")}}<br>
+                {{form.referenceName.label}}<br>
+                {{form.referenceName(class="formtitle")}}<br>
+                {{form.referenceEmail.label}}<br>
+                {{form.referenceEmail(class="formtitle")}}<br>
+            </div>
+            {{ form.submit(class="button") }}
+        </form>
+    {% endif %}
+
+
+  {% endblock %}
