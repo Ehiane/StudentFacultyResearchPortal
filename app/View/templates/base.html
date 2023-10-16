@@ -12,17 +12,17 @@
         <div class ="nav-container">
         <table>
             <tr>
-                <td><a href="{{ url_for('routes.index') }}" class = "button">Open Positions</a></td>
-                <td><a href="{{ url_for('routes.postposition') }}" class = "button"> Post Position </a></td>
-                <td><a href="{{ url_for('routes.addexperience') }}" class = "button">Add New Experience</a></td>
-                <td><a href="{{ url_for('routes.addfield') }}" class = "button">Add New Research Field</a></td>
+                <td><a href="{{ url_for('routes.index') }}" class = "nav-link-element">Open Positions</a></td>
+                <td><a href="{{ url_for('routes.postposition') }}" class = "nav-link-element"> Post Position </a></td>
+                <td><a href="{{ url_for('routes.addexperience') }}" class = "nav-link-element">Add New Experience</a></td>
+                <td><a href="{{ url_for('routes.addfield') }}" class = "nav-link-element">Add New Research Field</a></td>
                 <!--<td><a href="" class = "button"> Login </a></td>-->
                 <!--<td><a href="" class = "button"> Logout </a></td>-->
-                <td> Current user is: <span class="useritem">________ </span> </td>  
+                <td id="current-user"> Current user is: <span>________ </span> </td>  
             </tr>
         </table>
         </div>
-        <div>
+        <div class="project-body">
             {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
