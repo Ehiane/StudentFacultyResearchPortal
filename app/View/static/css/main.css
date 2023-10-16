@@ -23,21 +23,99 @@
 /*---------------------------------------------------------------------------------------------------------------------------------------------  */
 
 body {
-    margin: 1px 1px 1px 15px;
-    padding: 1px;
+    /* margin: 1px 1px 1px 15px;
+    padding: 1px; */
+    margin-left:0;
     font-family: Tahoma;
     text-align: left;
+    width: 100%;
 }
+
+/* .project-body{
+    position: relative;
+    left: 10%;
+} */
+
+/*------------------------------------------------------[NAVBAR]---------------------------------------------------------------------------------  */
 .nav-container {
-    background:#f6f6f6;
+    margin-left: 0;
+    background: var(--anthracite--);
     font-family: Tahoma;
     font-size: 12px;
-    height: 32px;
+    height: 10vh;
     text-transform: uppercase;
+    width: 100%;
+    margin-top:-10px;
 }
+
+.nav-link-element{
+    position: relative;
+    top: 30px;
+    background: var(--light-gray--);
+    color: var(--salmon--);
+    border: 1.5px solid var(--dark-gray--);
+    border-radius: 10px;
+    padding: 0.5rem;
+    margin-right: 15px;
+    left: 5px;
+}
+
+.nav-link-element:hover{
+    border: 1.5px solid var(--deep-anthracite);
+}
+
+#current-user{
+    background: var(--light-gray--);
+    border: 1.5px solid var(--salmon--);
+    border-radius: 10px;
+    padding: 0.5rem;
+    box-shadow: 0.5px 3px 3px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 22px;
+    left: 80%;
+
+}
+
+#current-user:hover{
+    cursor: default;
+    background-color: var(--dark-gray--);
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+#current-user span{
+    color: var(--orange-red--);
+}
+
+
+
+.nav-container a{
+    color: black;
+    text-decoration: none;
+    transition: 0.5s ease-in-out;
+    box-shadow: 0.5px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+
+.nav-container a:hover{
+    background-color: var(--crimson-red--) ;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.nav-container td{
+    transition: 0.5s ease-in-out;
+}
+.nav-container td:hover{
+    transform: scale(0.95);
+}
+
+.nav-container a:hover{
+    color: white;
+}
+
 a:hover {
-	color:#2387D9;
+    color:#2387D9;
 }
+/*------------------------------------------------------[NAVBAR]---------------------------------------------------------------------------------  */
 
 .button {
     width : 80px;
@@ -53,6 +131,11 @@ a:hover {
     color: white;
     cursor:pointer;
 }
+
+
+
+
+
 
 /* ---------------------------------------------------------------------------------POST SECTION ----------------------------------------------------------*/
 .posttable {     
@@ -132,6 +215,7 @@ a:hover {
 }
 
 .research-horizontal-tag-area{
+    height: 8vh;
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -147,7 +231,7 @@ a:hover {
     flex-basis: 0;
     padding: 2px;
     width: fit-content;
-    height: 4.5vh;
+    height: 6vh;
     color: var(--deep-crimson-red--);
     
 }
