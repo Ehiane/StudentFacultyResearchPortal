@@ -141,9 +141,6 @@ a:hover {
 
 
 
-
-
-
 /* ---------------------------------------------------------------------------------POST SECTION ----------------------------------------------------------*/
 .posttable {     
     color: var(--light-gray--);
@@ -219,6 +216,7 @@ a:hover {
 
 .post-footer-section{
     text-align: center;
+    padding-bottom: 0.3rem;
 }
 
 .research-horizontal-tag-area{
@@ -242,6 +240,26 @@ a:hover {
     color: var(--deep-crimson-red--);
     
 }
+
+#apply-btn-section{
+    padding: .8rem;
+}
+
+#apply-btn{
+    position: relative;
+    left: 50%;
+    text-decoration: none;
+    color: var(--deep-crimson-red--);
+    padding: .6rem;
+    border: 1px solid var(--light-anthracite);
+    background: var(--light-gray--);
+    border-radius: 10px;
+}
+
+#apply-btn:hover{
+    box-shadow: 0 0 20px 0px black;
+}
+
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
