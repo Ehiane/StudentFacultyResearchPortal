@@ -62,7 +62,13 @@ def application(position_id):
     aform = ApplicationForm()
     thePosition = Position.query.filter_by(id=position_id).first()
     if aform.validate_on_submit():
-        newApplication = Application(statement = aform.statement.data, referenceName = aform.referenceName.data, referenceEmail = aform.referenceEmail.data)
+        newApplication = Application(position_id = thePosition.id, statement = aform.statement.data, referenceName = aform.referenceName.data, referenceEmail = aform.referenceEmail.data)
+        db.session.add(newApplication)
+        # says 'no such table: application' when I uncomment this line
+        # Operational error - documentation for database says this error
+        # is out of the programmers control, database disconnect
+        # Troubleshoot later
+        # db.session.commit()
         flash('You have applied for the research position!')
         return redirect(url_for('routes.index'))
     return render_template('application.html', form=aform)

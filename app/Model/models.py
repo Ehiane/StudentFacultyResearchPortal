@@ -12,6 +12,15 @@ positionFields = db.Table('positionFields',
     db.Column('field_id', db.Integer, db.ForeignKey('field.id'))
 )
 
+class Application(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    position_id = db.Column(db.Integer, db.ForeignKey('position.id'))
+    # student_id (milestone3)
+    # need to implement relationship between student and application (milestone 3)
+    statement = db.Column(db.String(1500))
+    referenceName = db.Column(db.String(20))
+    referenceEmail = db.Column(db.String(50))
+
 class Position(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150))
@@ -26,11 +35,15 @@ class Position(db.Model):
     qualifications = db.Column(db.String(300))
     facultyName = db.Column(db.String(30))
     facultyContact = db.Column(db.String(50))
+    # One to many relationship between position and applications
+    applications = db.relationship('Application', backref='position', lazy='dynamic')
 
     def get_experiences(self):
         return self.experiences
     def get_fields(self):
         return self.fields
+    def get_applications(self):
+        return self.applications
     
 class Experience(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -45,9 +58,3 @@ class Field(db.Model):
     positions = db.relationship('models.Position', secondary=positionFields, primaryjoin=(positionFields.c.field_id == id), backref=db.backref('positionField', lazy='dynamic'), lazy='dynamic')
     def __repr__(self):
        return '{}'.format(self.name)
-
-class Application(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    statement = db.Column(db.String(1500))
-    referenceName = db.Column(db.String(20))
-    referenceEmail = db.Column(db.String(50))
