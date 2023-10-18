@@ -50,7 +50,7 @@ body {
 
 .nav-link-element{
     position: relative;
-    top: 30px;
+    top: 10px;
     background: var(--light-gray--);
     color: var(--salmon--);
     border: 1.5px solid var(--dark-gray--);
@@ -87,7 +87,6 @@ body {
 }
 
 
-
 .nav-container a{
     color: black;
     text-decoration: none;
@@ -103,6 +102,14 @@ body {
 
 .nav-container td{
     transition: 0.5s ease-in-out;
+}
+
+/* wsu logo */
+.nav-container img{
+    position: relative;
+    top: 10px; 
+    width: 30%;
+    height: 30%;
 }
 .nav-container td:hover{
     transform: scale(0.95);
