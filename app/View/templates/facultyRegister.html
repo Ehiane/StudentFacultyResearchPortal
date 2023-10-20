@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Register</h1>
+
+    {% if form %}
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <div class="row">
+            <div>
+                {{form.firstName.label(class="forminput")}}<br>
+                {{form.firstName(class="formbox")}}
+            </div>
+            <div>
+                {{form.lastName.label(class="forminput")}}<br>
+                {{form.lastName(class="formbox")}}
+            </div>
+            <div>
+                {{form.wsuID.label(class="forminput")}}<br>
+                {{form.wsuID(class="formbox")}}
+            </div>
+            <div>
+                {{form.phone.label(class="forminput")}}<br>
+                {{form.phone(class="formbox")}}
+            </div>
+            <div>
+                {{form.department.label(class="forminput")}}<br>
+                {{form.department(class="formbox")}}
+            </div>
+            <div>
+                {{form.email.label(class="forminput")}}<br>
+                {{form.email(class="formbox")}}
+            </div>
+            <div>
+                {{form.password.label(class="forminput")}}<br>
+                {{form.password(class="formbox")}}
+            </div>
+            <div>
+                {{form.password2.label(class="forminput")}}<br>
+                {{form.password2(class="formbox")}}
+            </div>
+                {{form.submit(class="button")}}
+        </div>
+    </form>
+    {% endif %}
+{% endblock %}
