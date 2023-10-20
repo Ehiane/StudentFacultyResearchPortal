@@ -1,0 +1,66 @@
+<table class = "posttable" style = "width:100%" valign="top">
+    
+    <!--# we can use this as the palletee for this section: https://colorhunt.co/palette/eeeeeedededeff4949c10000  -->
+    <tr> 
+        <td colspan="3"><div class="posttitle"> {{position.title}} </div>
+        </td>
+    </tr>
+    <tr>
+        <td width="80%" >
+            <div class="postbody">
+              {{position.description}}    
+           </div>
+        </td> 
+
+        <td width = "5%"> 
+            <div>
+                <!-- (milestone1)  TODO: add "like" button
+                                   Define an HTML `post` form with a submit button. The form action should redirect to `routes.like` route.
+                                   Style the submit button using `likebtn` CCS class selector. -->
+                                   
+                <br>
+                <!-- (milestone1) TODO: include the likes count-->
+                
+            </div>
+            <br> 
+             <!-- (milestone3) TODO: if the post is posted by the logged in user, include the "delete" button.  
+                               Define an HTML `post` form with a submit button. The form action should redirect to `routes.deletepost` route.
+                               Style the submit button using `button` CCS class selector. -->
+
+        </td>
+    </tr>
+    
+    <tr>
+        <td colspan="3" class="research-field-section" valign="bottom">  
+            <p>Research Fields:</p> 
+
+            <div class="research-horizontal-tag-area">
+                {% for field in position.get_fields().all() %}
+                <span class="research-horizontal-tag-item">
+                    {{field}}
+                </span>
+                {% endfor %}
+            </div>
+        </td>
+        <td colspan="3" class="post-experience-section"  valign="bottom">  
+            <p>Preferred Experience:</p>
+            <div class="post-experience-tag-area">
+                {% for experience in position.get_experiences().all() %}
+                        <div class="post-experience-tag-item">
+                            {{experience}}
+                        </div>
+                    {% endfor %}
+            </div>
+        </td>
+    </tr>
+
+    <tr class="post-footer-section">
+        <td colspan="3"  valign="bottom">  
+               <p id="post-text-section-1">Start: {{position.startDate}} End: <span>{{position.endDate}} </span></p>  
+                <p id="post-text-section-2">Contact: {{position.facultyName}} ({{position.facultyContact}})</p>
+          </td>
+        </tr>
+    </tr>
+    <td id="apply-btn-section"><a href="{{ url_for('routes.application', position_id=position.id) }}" id = "apply-btn">Apply</a></td>
+
+</table>

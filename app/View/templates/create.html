@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="post-position-body">
+
+     
+            <h1>Create New Position</h1>
+
+            {% if form %}
+
+                <form action="" method="post">
+                    {{ form.hidden_tag() }}
+                    <div>
+                        {{ form.title.label}}:<br>
+                        {{ form.title(class="formtitle")}}<br>
+                    
+                        {{ form.description.label}}:<br>
+                        {{ form.description(class="formbody")}}<br>
+
+                        {{ form.startDate.label}}:<br>
+                        {{ form.startDate(class="formdate")}}<br>
+
+                        {{ form.endDate.label}}:<br>
+                        {{ form.endDate(class="formdate")}}<br>
+
+                        {{ form.timeCommitment.label}}:<br>
+                        {{ form.timeCommitment(class="formtime")}}<br>
+
+                        {{ form.field.label}}:<br>
+                        {{ form.field(class = "research-tags")}}<br>
+
+                        {{ form.experience.label}}
+                        {{ form.experience(class = "experience-tags")}}
+
+                        {{ form.qualifications.label}}:<br>
+                        {{ form.qualifications(class="formbody")}}<br>
+
+                        {{ form.facultyName.label}}:<br>
+                        {{ form.facultyName(class="formtitle")}}<br>
+
+                        {{ form.facultyContact.label}}:<br>
+                        {{ form.facultyContact(class="formtitle")}}<br>
+                    </div>
+                    {{ form.submit(class="submit-btn") }}
+                </form>
+            {% endif %}
+    </div>
+
+  {% endblock %}

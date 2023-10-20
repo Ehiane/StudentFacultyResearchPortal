@@ -1,0 +1,39 @@
+<html>
+    <head>
+       {% if title %}
+          <title>{{ title }} - Project </title>
+       {% else %}
+          <title> Welcome to Project Portal! </title>
+       {% endif %}
+       <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    </head>
+
+    <body>
+        <div class ="nav-container">
+        <table>
+            <tr>
+                <td><img src="../static/img/wsu_navbar_logo.png" alt="wsu_navbar_logo"></td>
+                <td><a href="{{ url_for('routes.index') }}" class = "nav-link-element">Open Positions</a></td>
+                <td><a href="{{ url_for('routes.postposition') }}" class = "nav-link-element"> Post Position </a></td>
+                <td><a href="{{ url_for('routes.addexperience') }}" class = "nav-link-element">Add New Experience</a></td>
+                <td><a href="{{ url_for('routes.addfield') }}" class = "nav-link-element">Add New Research Field</a></td>
+                <!--<td><a href="" class = "button"> Login </a></td>-->
+                <!--<td><a href="" class = "button"> Logout </a></td>-->
+                <td id="current-user"> Current user is: <span>________ </span> </td>  
+            </tr>
+        </table>
+        </div>
+        <div class="project-body">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div> {{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            {% block content %} {% endblock %}
+        </div>
+
+    </body>
+</html>
