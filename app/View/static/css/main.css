@@ -310,6 +310,7 @@ a:hover {
     height: 30px;
     width: 200px;
     border: 2px solid var(--deep-crimson-red--);
+    border-radius: 3px;
 }
 
 .formtime {
@@ -317,6 +318,8 @@ a:hover {
     margin: 4px 3px 4px 3px;
     height: 30px;
     width: 100px;
+    border: 2px solid var(--deep-crimson-red--);
+    border-radius: 3px;
 }
 
 .formbody {
@@ -325,11 +328,34 @@ a:hover {
     height: 30px;
     width: 800px;
     text-align: top, left;
+    border: 2px solid var(--deep-crimson-red--);
+    border-radius: 3px;
 }
 
 .formselect {
     padding: 3px;
     margin: 4px 3px 4px 3px;
+}
+
+.research-tags,.experience-tags{
+    list-style-type: none;
+    margin-left: -30px;
+}
+
+.submit-btn{
+    margin-top: 10px;
+    width: 75px;
+    padding: .4rem;
+    border: 2px solid var(--salmon--);
+    border-radius: 5px;
+    transition: 0.5s ease-in-out;
+}
+
+.submit-btn:hover{
+    cursor: pointer;
+    box-shadow: 0 0 10px 0px black;
+    transform: translateY(-0.9%);
+    padding: .42rem;
 }
 
 /* ------------------------------------------------------------------------------POST POSITION ------------------------------------------------------------------- */

@@ -28,10 +28,10 @@
                         {{ form.timeCommitment(class="formtime")}}<br>
 
                         {{ form.field.label}}:<br>
-                        {{ form.field}}<br>
+                        {{ form.field(class = "research-tags")}}<br>
 
                         {{ form.experience.label}}
-                        {{ form.experience}}
+                        {{ form.experience(class = "experience-tags")}}
 
                         {{ form.qualifications.label}}:<br>
                         {{ form.qualifications(class="formbody")}}<br>
@@ -42,7 +42,7 @@
                         {{ form.facultyContact.label}}:<br>
                         {{ form.facultyContact(class="formtitle")}}<br>
                     </div>
-                    {{ form.submit(class="button") }}
+                    {{ form.submit(class="submit-btn") }}
                 </form>
             {% endif %}
     </div>
