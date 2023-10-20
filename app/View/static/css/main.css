@@ -4,6 +4,8 @@
 /* Lora font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 
+/* PT Sans */
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
 
 /*------------------------------------------- COLOR PALLETTE --------------------------------------------------------------------------------  */
 :root{
@@ -31,10 +33,9 @@ body {
     width: 100%;
 }
 
-/* .project-body{
-    position: relative;
-    left: 10%;
-} */
+.index-body-section{
+    margin-left: 30px;
+}
 
 /*------------------------------------------------------[NAVBAR]---------------------------------------------------------------------------------  */
 .nav-container {
@@ -139,8 +140,6 @@ a:hover {
     cursor:pointer;
 }
 
-
-
 /* ---------------------------------------------------------------------------------POST SECTION ----------------------------------------------------------*/
 .posttable {     
     color: var(--light-gray--);
@@ -242,7 +241,7 @@ a:hover {
 }
 
 #apply-btn-section{
-    padding: .8rem;
+    padding: .7rem;
 }
 
 #apply-btn{
@@ -255,6 +254,7 @@ a:hover {
     background: var(--light-gray--);
     border-radius: 10px;
 }
+
 
 #apply-btn:hover{
     box-shadow: 0 0 20px 0px black;
@@ -300,6 +300,8 @@ a:hover {
     margin: 4px 3px 4px 3px;
     height: 30px;
     width: 400px;
+    border: 2px solid var(--deep-crimson-red--);
+    border-radius: 3px;
 }
 
 .formdate {
@@ -307,6 +309,7 @@ a:hover {
     margin: 4px 3px 4px 3px;
     height: 30px;
     width: 200px;
+    border: 2px solid var(--deep-crimson-red--);
 }
 
 .formtime {
@@ -329,9 +332,19 @@ a:hover {
     margin: 4px 3px 4px 3px;
 }
 
+/* ------------------------------------------------------------------------------POST POSITION ------------------------------------------------------------------- */
+.post-position-body{
+    margin-left: 30px;
+}
+
+.post-position-body h1{
+    font-family: 'PT Sans', sans-serif;
+}
+
+
+
 
 /* ------------------------------------------------------------------------------SCREEN RESOLUTIONS ------------------------------------------------------------------- */
-
 @media screen and (min-width: 1200px){
     .post-box {
         border: 2px solid black;

@@ -2,15 +2,18 @@
 
 {% block content %}
 
-    <h1>Welcome to {project name}!</h1>
+    <div class="index-body-section">
+        <h1>Welcome to {project name}!</h1>
 
-    <h2>Available Positions: </h2>
+        <h2>Available Positions: </h2>
 
-    
-    {% for position in positions %}
-        <div class="post-box">
-            {% include '_position.html' %}
-        </div>
-    {% endfor %}
+        
+        {% for position in positions %}
+            <div class="post-box">
+                {% include '_position.html' %}
+            </div>
+        {% endfor %}
+
+    </div>
     
 {% endblock %}
