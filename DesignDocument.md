@@ -78,12 +78,62 @@ In this section:
 Briefly explain the role of the model. 
 
 (***in iteration-1***) Include a list of the tables (models) in your database and explain the role of each table. Provide the attributes of the tables (including relationships). 
+
+| Model: | text |
+| -- |--|
+| Role: | text |
+| Attributes: | text |
+| Relationships: | text |
+| Notes: | text |
+
 | Model: | Position |
 | -- |--|
-| Role: | "enter your reponse here" |
-| Attributes: | "enter your reponse here" |
-| Relationships: | "enter your reponse here" |
-| Notes: | N/A |
+| Role: | Holds all relevant information pertaining to each individual position, such as title, description, timecommitment, etc. |
+| Attributes: | id, title, startDate, endDate, timeCommitment, fields*, experiences*, qualifications, facultyName, facultyContact, applications* |
+| Relationships: | fields: Many-to-Many relationship, each position can have many fields, likewise, the fields can have have many positions they are connected to. experiences: Many-to-Many relationship, each position can have many experiences, likewise, the experiences can have have many positions they are connected to. applications: One-to-Many: Each position can have many applications, but each application can only go to one position. |
+| Notes: | This model additionally has 3 functions for each of the relationships, get_experiences, get_fields, and get_applications, all return a list of all that are connected to the position. |
+
+| Model: | Application |
+| -- |--|
+| Role: | Holds information relevant to each application connected to a posted research position. |
+| Attributes: | id, position_id*, statement, referenceName, referenceEmail |
+| Relationships: | position_id: serves as Table connecting each application to a position in a Many-to-One relationship, each position can have multiple applications. |
+| Notes: | text |
+
+| Model: | Experience |
+| -- |--|
+| Role: | All experiences in the application are part of this model to allow faculty users to add more as they see fit if an experience isn't already available to include in their position post. |
+| Attributes: | id, name, positions* |
+| Relationships: | positions: serves as connection in Many-to-Many relationship with each position, allowing every experience to be part of many different position posts. |
+| Notes: | additionally includes __repr__ function for printing on form. |
+
+| Model: | Field |
+| -- |--|
+| Role: | All research fields in the application are part of this model to allow faculty users to add more as they see fit if an research field isn't already available to include in their position post. |
+| Attributes: | id, name, positions* |
+| Relationships: | positions: serves as connection in Many-to-Many relationship with each position, allowing every field to be part of many different position posts. |
+| Notes: | additionally includes __repr__ function for printing on form. |
+
+| Model: | User |
+| -- |--|
+| Role: | text |
+| Attributes: | text |
+| Relationships: | text |
+| Notes: | text |
+
+| Model: | Faculty |
+| -- |--|
+| Role: | text |
+| Attributes: | text |
+| Relationships: | text |
+| Notes: | text |
+
+| Model: | Student |
+| -- |--|
+| Role: | text |
+| Attributes: | text |
+| Relationships: | text |
+| Notes: | text |
 
 (***in iteration -2***) Revise the database model. Provide a UML diagram of your database model showing the associations and relationships among tables. Your UML diagram should also show the methods of your models.
 
@@ -101,6 +151,18 @@ For each subsystem:
 You can use the following table template to list your route specifications. 
 
 (***in iteration-1***) Brainstorm with your team members and identify all routes you need to implement for the completed application and explain each route briefly. If you included most of the major routes but you missed only a few, it maybe still acceptable. 
+
+|   | Methods           | URL Path   | Description  |
+|:--|:------------------|:-----------|:-------------|
+| 1. | Register as Faculty | auth.facultyRegistration | Allows the user to access the faculty registration page and create a new faculty account, upon creation they are redirected to the faculty login page. |
+| 2. | Sign in as Faculty | auth.facultyLogin | Allows previously registered faculty users to sign in using previously created log in credentials, system assigns current_user attributes to the created user/faculty accounts (objects). Upon sign in, they are redirected to the faculty home page. |
+| 3. | Register as Student | auth.studentRegistration | Allows the user to access the student registration page and create a new student account, upon creation they are redirected to the student login page. |
+| 4. | Sign in as Student | auth.studentLogin | Allows previously registered student users to sign in using previously created log in credentials, system assigns current_user attributes to the created user/student accounts (objects). Upon sign in, they are redirected to the student home page. |
+| 5. | Faculty Post Position | routes.postposition | Allows logged in faculty users to create a new position using the post position form. Created forms are then posted to the "View Positions" page, allowing students to apply to them. |
+| 6. | Student Apply for Position | routes.application | Allows student user to apply to post using the application form, upon submission the application is viewable to them in a "View Application" page, as well as to the faculty user who posted the position. |
+| 7. | Faculty add Experience | routes.addexperience | Allows faculty users to add an experience to the database that can be used in the creation of their positions. Helpful for positions that are unique with experiences that aren't currently part of the database. |
+| 8. | Faculty add Research Field | routes.addfield | Allows faculty users to add a research field to the database that can be used in the creation of their positions. Helpful for positions that are unique with research fields that aren't currently part of the database. |
+| 9. | text | text | text |
 
 (***in iteration-2***) Revise your route specifications, add the missing routes to your list, and update the routes you modified. Make sure to provide sufficient detail for each route. In iteration-2, you will be deducted points if you don’t include all major routes needed for implementing the required use-cases or if you haven’t described them in detail.
 
