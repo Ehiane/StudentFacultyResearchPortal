@@ -89,51 +89,51 @@ Briefly explain the role of the model.
 | Model: | Position |
 | -- |--|
 | Role: | Holds all relevant information pertaining to each individual position, such as title, description, timecommitment, etc. |
-| Attributes: | id, title, startDate, endDate, timeCommitment, fields*, experiences*, qualifications, facultyName, facultyContact, applications* |
+| Attributes: | id, title, startDate, endDate, timeCommitment, *fields*, *experiences*, qualifications, facultyName, facultyContact, *applications* |
 | Relationships: | fields: Many-to-Many relationship, each position can have many fields, likewise, the fields can have have many positions they are connected to. experiences: Many-to-Many relationship, each position can have many experiences, likewise, the experiences can have have many positions they are connected to. applications: One-to-Many: Each position can have many applications, but each application can only go to one position. |
 | Notes: | This model additionally has 3 functions for each of the relationships, get_experiences, get_fields, and get_applications, all return a list of all that are connected to the position. |
 
 | Model: | Application |
 | -- |--|
 | Role: | Holds information relevant to each application connected to a posted research position. |
-| Attributes: | id, position_id*, statement, referenceName, referenceEmail |
+| Attributes: | id, *position_id*, statement, referenceName, referenceEmail |
 | Relationships: | position_id: serves as Table connecting each application to a position in a Many-to-One relationship, each position can have multiple applications. |
 | Notes: | text |
 
 | Model: | Experience |
 | -- |--|
 | Role: | All experiences in the application are part of this model to allow faculty users to add more as they see fit if an experience isn't already available to include in their position post. |
-| Attributes: | id, name, positions* |
+| Attributes: | id, name, *positions* |
 | Relationships: | positions: serves as connection in Many-to-Many relationship with each position, allowing every experience to be part of many different position posts. |
 | Notes: | additionally includes __repr__ function for printing on form. |
 
 | Model: | Field |
 | -- |--|
 | Role: | All research fields in the application are part of this model to allow faculty users to add more as they see fit if an research field isn't already available to include in their position post. |
-| Attributes: | id, name, positions* |
+| Attributes: | id, name, *positions* |
 | Relationships: | positions: serves as connection in Many-to-Many relationship with each position, allowing every field to be part of many different position posts. |
 | Notes: | additionally includes __repr__ function for printing on form. |
 
 | Model: | User |
 | -- |--|
-| Role: | text |
-| Attributes: | text |
-| Relationships: | text |
-| Notes: | text |
+| Role: | Serves as base for both Faculty and Student models in the program. |
+| Attributes: | id, username, password_hash, firstName, lastName, wsuID, email, phone, **student**, **faculty** |
+| Relationships: | student: Serves as relationship for One-to-One connection between a User and Student. facuty: Serves as relationship for One-to-One connection between a User and Faculty. (**Note: not yet implemented, subject to change**) |
+| Notes: | Model also includes functions for getting/setting the password, as well as checking the password and printing user info. |
 
 | Model: | Faculty |
 | -- |--|
-| Role: | text |
-| Attributes: | text |
-| Relationships: | text |
-| Notes: | text |
+| Role: | Serves as model for additional faculty information built upon the user model. |
+| Attributes: | id, department, **user** |
+| Relationships: | user: relateds faculty to user base model. (**Note: not yet implemented, subject to change**) |
+| Notes: | N/A |
 
 | Model: | Student |
 | -- |--|
-| Role: | text |
-| Attributes: | text |
-| Relationships: | text |
-| Notes: | text |
+| Role: | Serves as model for additional student information built upon the user model. |
+| Attributes: | id, GPA, grad_date, **user**, *experiences*, *fields* |
+| Relationships: | user: relateds faculty to user base model. (**Note: not yet implemented, subject to change**). experiences: allows user to select from the existing list of experiences to add to their profile, helpful for faculty viewing when they apply for a position. fields: allows the user to select from the existing list of research fields to add to their profile, used for viewing related positions on "View Positions" page. |
+| Notes: | N/A |
 
 (***in iteration -2***) Revise the database model. Provide a UML diagram of your database model showing the associations and relationships among tables. Your UML diagram should also show the methods of your models.
 
@@ -162,7 +162,13 @@ You can use the following table template to list your route specifications.
 | 6. | Student Apply for Position | routes.application | Allows student user to apply to post using the application form, upon submission the application is viewable to them in a "View Application" page, as well as to the faculty user who posted the position. |
 | 7. | Faculty add Experience | routes.addexperience | Allows faculty users to add an experience to the database that can be used in the creation of their positions. Helpful for positions that are unique with experiences that aren't currently part of the database. |
 | 8. | Faculty add Research Field | routes.addfield | Allows faculty users to add a research field to the database that can be used in the creation of their positions. Helpful for positions that are unique with research fields that aren't currently part of the database. |
-| 9. | text | text | text |
+| 9. | Faculty delete Position | routes.deleteposition | Allows logged in faculty members with previously created positions to delete them at their own discretion. A fauclty member can only delete their own posts. |
+| 10. | Student can view open Positions | routes.index | Allows student users to view all open research positions and apply for them. The user can additionally filter the positions by their previously selected research interests. |
+| 11. | Student can Withdra Applications | routes.studentwithdraw/<position_id> | A student user with previously created applications can indicate they want to withdraw an application, allowing them to delete it from the positions application pool.  |
+| 12. | Faculty can view applications to a created position. | routes.positionapplications/<application_id> | A faculty user with a previously created position with applications already submitted by student users can view information about the applications submitted.|
+| 13. | Faculty can view information on Student Users that have applied to their positions | routes.viewstudent/<student_id> | A faculty user with a previously created position with applications already submitted by student users can view information about the applicants based on their student profile. |
+| 14. | Faculty member can change the status of a student application. | routes.changestatus/<application_id> | A faculty user with a previously created position with applications already submitted by student users can change the status of multiple applications to "Approved for Interview". |
+| 15. | Faculty member can indicate whether an approved student has been "Hired" or "Not Hired" | routes.hirestudent/<application_id> | A faculty user with a previously created position with applications already submitted and approved by student users can change the status of the students application to either "Hired" or "Not Hired". |
 
 (***in iteration-2***) Revise your route specifications, add the missing routes to your list, and update the routes you modified. Make sure to provide sufficient detail for each route. In iteration-2, you will be deducted points if you don’t include all major routes needed for implementing the required use-cases or if you haven’t described them in detail.
 
