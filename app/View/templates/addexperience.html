@@ -2,19 +2,21 @@
 
 {% block content %}
 
-    <h1>Add New Experience</h1>
-
-    {% if form %}
-
+    <div class="post-position-body">
+        <h1>Add New Experience</h1>
+        
+        {% if form %}
+        
         <form action="" method="post">
             {{ form.hidden_tag() }}
             <div>
                 {{form.newExperience.label}}<br>
                 {{form.newExperience(class="formtitle")}}
             </div>
-            {{ form.submit(class="button") }}
+            {{ form.submit(class="submit-btn") }}
         </form>
-    {% endif %}
+        {% endif %}
+    </div>
 
 
   {% endblock %}

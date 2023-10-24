@@ -4,6 +4,8 @@
 /* Lora font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 
+/* PT Sans */
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
 
 /*------------------------------------------- COLOR PALLETTE --------------------------------------------------------------------------------  */
 :root{
@@ -31,10 +33,9 @@ body {
     width: 100%;
 }
 
-/* .project-body{
-    position: relative;
-    left: 10%;
-} */
+.index-body-section{
+    margin-left: 30px;
+}
 
 /*------------------------------------------------------[NAVBAR]---------------------------------------------------------------------------------  */
 .nav-container {
@@ -139,11 +140,6 @@ a:hover {
     cursor:pointer;
 }
 
-
-
-
-
-
 /* ---------------------------------------------------------------------------------POST SECTION ----------------------------------------------------------*/
 .posttable {     
     color: var(--light-gray--);
@@ -219,6 +215,7 @@ a:hover {
 
 .post-footer-section{
     text-align: center;
+    padding-bottom: 0.3rem;
 }
 
 .research-horizontal-tag-area{
@@ -242,6 +239,27 @@ a:hover {
     color: var(--deep-crimson-red--);
     
 }
+
+#apply-btn-section{
+    padding: .7rem;
+}
+
+#apply-btn{
+    position: relative;
+    left: 50%;
+    text-decoration: none;
+    color: var(--deep-crimson-red--);
+    padding: .6rem;
+    border: 1px solid var(--light-anthracite);
+    background: var(--light-gray--);
+    border-radius: 10px;
+}
+
+
+#apply-btn:hover{
+    box-shadow: 0 0 20px 0px black;
+}
+
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -282,6 +300,8 @@ a:hover {
     margin: 4px 3px 4px 3px;
     height: 30px;
     width: 400px;
+    border: 2px solid var(--deep-crimson-red--);
+    border-radius: 3px;
 }
 
 .formdate {
@@ -289,6 +309,8 @@ a:hover {
     margin: 4px 3px 4px 3px;
     height: 30px;
     width: 200px;
+    border: 2px solid var(--deep-crimson-red--);
+    border-radius: 3px;
 }
 
 .formtime {
@@ -296,6 +318,8 @@ a:hover {
     margin: 4px 3px 4px 3px;
     height: 30px;
     width: 100px;
+    border: 2px solid var(--deep-crimson-red--);
+    border-radius: 3px;
 }
 
 .formbody {
@@ -304,6 +328,8 @@ a:hover {
     height: 30px;
     width: 800px;
     text-align: top, left;
+    border: 2px solid var(--deep-crimson-red--);
+    border-radius: 3px;
 }
 
 .formselect {
@@ -311,9 +337,40 @@ a:hover {
     margin: 4px 3px 4px 3px;
 }
 
+.research-tags,.experience-tags{
+    list-style-type: none;
+    margin-left: -30px;
+}
+
+.submit-btn{
+    margin-top: 10px;
+    width: 75px;
+    padding: .4rem;
+    border: 2px solid var(--salmon--);
+    border-radius: 5px;
+    transition: 0.5s ease-in-out;
+}
+
+.submit-btn:hover{
+    cursor: pointer;
+    box-shadow: 0 0 10px 0px black;
+    transform: translateY(-0.9%);
+    padding: .42rem;
+}
+
+/* ------------------------------------------------------------------------------POST POSITION ------------------------------------------------------------------- */
+.post-position-body{
+    margin-left: 30px;
+}
+
+.post-position-body h1{
+    font-family: 'PT Sans', sans-serif;
+}
+
+
+
 
 /* ------------------------------------------------------------------------------SCREEN RESOLUTIONS ------------------------------------------------------------------- */
-
 @media screen and (min-width: 1200px){
     .post-box {
         border: 2px solid black;

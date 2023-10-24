@@ -1,20 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div class="post-position-body">
 
-    <h1>Add New Research Field</h1>
-
-    {% if form %}
-
+        <h1>Add New Research Field</h1>
+        
+        {% if form %}
+        
         <form action="" method="post">
             {{ form.hidden_tag() }}
             <div>
                 {{form.newField.label}}<br>
                 {{form.newField(class="formtitle")}}
             </div>
-            {{ form.submit(class="button") }}
+            {{ form.submit(class="submit-btn") }}
         </form>
-    {% endif %}
+        {% endif %}
+    </div>
 
 
   {% endblock %}

@@ -2,46 +2,49 @@
 
 {% block content %}
 
-    <h1>Create New Position</h1>
+    <div class="post-position-body">
 
-    {% if form %}
+     
+            <h1>Create New Position</h1>
 
-        <form action="" method="post">
-            {{ form.hidden_tag() }}
-            <div>
-                {{ form.title.label}}:<br>
-                {{ form.title(class="formtitle")}}<br>
-            
-                {{ form.description.label}}:<br>
-                {{ form.description(class="formbody")}}<br>
+            {% if form %}
 
-                {{ form.startDate.label}}:<br>
-                {{ form.startDate(class="formdate")}}<br>
+                <form action="" method="post">
+                    {{ form.hidden_tag() }}
+                    <div>
+                        {{ form.title.label}}:<br>
+                        {{ form.title(class="formtitle")}}<br>
+                    
+                        {{ form.description.label}}:<br>
+                        {{ form.description(class="formbody")}}<br>
 
-                {{ form.endDate.label}}:<br>
-                {{ form.endDate(class="formdate")}}<br>
+                        {{ form.startDate.label}}:<br>
+                        {{ form.startDate(class="formdate")}}<br>
 
-                {{ form.timeCommitment.label}}:<br>
-                {{ form.timeCommitment(class="formtime")}}<br>
+                        {{ form.endDate.label}}:<br>
+                        {{ form.endDate(class="formdate")}}<br>
 
-                {{ form.field.label}}:<br>
-                {{ form.field}}<br>
+                        {{ form.timeCommitment.label}}:<br>
+                        {{ form.timeCommitment(class="formtime")}}<br>
 
-                {{ form.experience.label}}
-                {{ form.experience}}
+                        {{ form.field.label}}:<br>
+                        {{ form.field(class = "research-tags")}}<br>
 
-                {{ form.qualifications.label}}:<br>
-                {{ form.qualifications(class="formbody")}}<br>
+                        {{ form.experience.label}}
+                        {{ form.experience(class = "experience-tags")}}
 
-                {{ form.facultyName.label}}:<br>
-                {{ form.facultyName(class="formtitle")}}<br>
+                        {{ form.qualifications.label}}:<br>
+                        {{ form.qualifications(class="formbody")}}<br>
 
-                {{ form.facultyContact.label}}:<br>
-                {{ form.facultyContact(class="formtitle")}}<br>
-            </div>
-            {{ form.submit(class="button") }}
-        </form>
-    {% endif %}
+                        {{ form.facultyName.label}}:<br>
+                        {{ form.facultyName(class="formtitle")}}<br>
 
+                        {{ form.facultyContact.label}}:<br>
+                        {{ form.facultyContact(class="formtitle")}}<br>
+                    </div>
+                    {{ form.submit(class="submit-btn") }}
+                </form>
+            {% endif %}
+    </div>
 
   {% endblock %}
