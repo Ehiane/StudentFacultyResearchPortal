@@ -5,7 +5,7 @@
 Prepared by:
 
 * `Will Rae`,`Team Sioux`
-* `<author1>`,`<organization>`
+* `Ehiane Oigiagbe`,`Team Sioux`
 * `<author1>`,`<organization>`
 * `<author1>`,`<organization>`
 ---
@@ -46,15 +46,25 @@ Prepared by:
 
 # 1. Introduction
 
-Explain the purpose for providing this design document. If this is a revision of an earlier document, please make sure to summarize what changes have been made during the revision (keep this discussion brief). 
+The purpose of this design document is to serve as a comprehensive guide for the development of the "Online Faculty Research Connection Platform," ensuring alignment with project requirements, providing documentation of design decisions, and facilitating effective communication among stakeholders. If this document is a revision of an earlier version, a brief summary of the changes made during the revision will be included to track the project's evolution and maintain transparency.
 
-Then provide a brief description of your project and state your project goal.
 
-At the end of the introduction, provide an overview of the document outline.
+### Project Description:
 
-[Section II](#2-architectural-and-component-level-design) includes …
+The "Online Faculty Research Connection Platform" is a web-based solution designed to bridge the gap between faculty members and undergraduate students within an academic institution. This platform will provide a centralized online space where faculty members can post research positions and seamlessly connect with qualified undergraduate students seeking research opportunities. Students, in turn, will have the ability to submit their contact information, academic backgrounds, research interests, and prior research experience. The platform's primary objective is to facilitate efficient communication, collaboration, and research team formation within the academic community. It aims to simplify the process of matching students with research opportunities, enhancing transparency, and ultimately contributing to the advancement of academic research.
 
-[Section III](#22-subsystem-design) includes …
+### Project Goal:
+
+The primary goal of the "Online Faculty Research Connection Platform" is to create a user-friendly and efficient online interface that streamlines the connection between faculty members and undergraduate students for research collaborations. The key objectives and goals of the project include:
+
+1. **Enhancing Accessibility:** To make research opportunities easily accessible to undergraduate students, ensuring they can readily find and apply for positions that align with their academic interests and skills.
+
+2. **Efficient Matching:** To provide faculty members with tools that simplify the process of finding and selecting qualified student researchers, thus enhancing the efficiency of forming research teams.
+
+3. **Transparency:** To improve the transparency of the research matching process, allowing both students and faculty to monitor the progress of their applications and postings, thereby fostering trust and accountability.
+
+By achieving these goals, the project aims to foster a more collaborative and dynamic research environment within the academic institution.
+
 
 # 2.	Architectural and Component-level Design
 ## 2.1 System Structure
@@ -182,15 +192,50 @@ You can use the following table template to list your route specifications.
 |6. |                   |            |              |
 
 
-### 2.2.3 View and User Interface Design 
+## 2.2.3 View and User Interface Design
 
-Briefly explain the role of the view. Explain how you plan to build the user interfaces and mention the frameworks/libraries you plan to use (e.g., Bootstrap).  
+The view in our "Online Faculty Research Connection Platform" plays a critical role in presenting the information and functionality of the system to both faculty members and undergraduate students. It serves as the user's gateway to interact with the platform and facilitates efficient communication and collaboration between these user groups.
 
-Provide a list of the page templates you plan to create (or you already created). Briefly describe the information that will be displayed on those pages and the forms that will be rendered (i.e., explain the input and output for each page). Make sure to mention which use-cases in your “Requirements Specification” document will utilize these interfaces for user interaction. You can supplement your description with UI sketches or screenshots. 
+### Technology Stack:
 
-(***in iteration-1***) Brainstorm with your team members and identify the pages that you think should be created.  If you included most of the major pages, it will be acceptable. 
+- **Web Framework**: We will utilize Flask as our web framework to handle routing, request handling, and interactions between the front-end and back-end components.
 
-(***in iteration-2***) Revise your page list and descriptions and include any additional pages that you will include in your view.  In iteration-2, you will be deducted points if your view description is still superficial and doesn't list and explain all pages of your application. 
+- **Back-End Technologies**: Python will be the primary programming language for the back-end, and we will use SQLAlchemy as an Object-Relational Mapping (ORM) tool for interacting with our database.
+
+- **Front-End Technologies**: For the view, we will use HTML for page structure and content, and CSS for styling the user interfaces. Additionally, JavaScript will be employed for enhancing interactivity and user experience.
+
+- **Responsive Design**: To ensure a seamless user experience across devices, we will implement responsive and mobile-friendly design using the Bootstrap framework.
+
+Certainly, here's a more refined and structured presentation of the page templates you plan to use in your project:
+
+### Page Templates:
+
+Within our project, we have a set of HTML templates that play essential roles in shaping the user experience and facilitating various interactions:
+
+1. **`position.html`**: This template is designed to display detailed information about available research positions, providing users with comprehensive insights into the opportunities.
+
+2. **Error Files (`404error.html` and `500error.html`)**: These templates are dedicated to handling error messages, ensuring users are informed and guided in case of unexpected issues or page not found errors.
+
+3. **`addexperience.html`**: This form template empowers users to enrich their profiles by adding relevant research experience, enhancing their suitability for the positions they are applying to.
+
+4. **`base.html`**: Serving as the navigational hub, this template provides consistent navigation elements and links that are accessible across all pages, ensuring a unified and user-friendly experience.
+
+5. **`login.html`**: This page template is dedicated to existing users, offering them a sign-in gateway to access their accounts and engage with the platform.
+
+6. **`register.html`**: For new users, this template provides a user-friendly registration page, allowing them to create accounts and gain access to the platform's features.
+
+7. **`create.html`**: This form template is responsible for collecting and organizing information about research positions, facilitating the creation and management of opportunities.
+
+8. **`addfield.html`**: Designed to offer flexibility in research fields, this template empowers users to add additional research categories, enriching the diversity of opportunities.
+
+These templates collectively shape the user interface and interaction within the "Online Faculty Research Connection Platform," ensuring a seamless and intuitive experience for both students and faculty members.
+
+
+### Use-Cases Utilizing these Interfaces:
+
+[Include the use-cases from your "Requirements Specification" document that will utilize these interfaces for user interaction as previously mentioned.]
+
+By providing this additional information, you have a clear technology stack and can convey a more detailed picture of how the view and user interfaces will be built in your project. This helps project stakeholders understand the tools and frameworks you plan to use and how they will contribute to the development of the platform.
 
 
 # 3. Progress Report
