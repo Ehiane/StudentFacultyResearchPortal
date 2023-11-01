@@ -1,11 +1,11 @@
 from app import create_app, db
-from app.Model.models import Position, Experience, Field, User, Faculty
+from app.Model.models import Position, Experience, Field, User
 
 app = create_app()
 
 @app.shell_context_processor
 def make_shell_context():
-    return {'Position': Position, 'Experience': Experience, 'Field': Field, 'User': User, 'Faculty': Faculty}
+    return {'Position': Position, 'Experience': Experience, 'Field': Field, 'User': User}
 
 @app.before_request
 def initDB(*args, **kwargs):

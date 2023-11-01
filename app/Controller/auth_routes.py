@@ -16,19 +16,17 @@ def facultyRegister():
     frform = FacultyRegistrationForm()
     if frform.validate_on_submit():
         # Set Faculty Data
-        # newFaculty = Faculty(department=frform.department.data)
         newFaculty = Faculty(department=frform.department.data)
         # Set User Data
-        #user = frform.username.data
-        #user = user.removesuffix("@wsu.edu")
-        newFaculty.fUser.username = frform.email.data
-        newFaculty.fUser.firstname = frform.firstName.data
-        newFaculty.fUser.lastName = frform.lastName.data
-        newFaculty.fUser.wsuID = frform.wsuID.data
-        newFaculty.fUser.email = frform.email.data
-        newFaculty.fUser.phone = frform.phone.data
+        newFaculty.username = frform.username.data
+        newFaculty.firstname = frform.firstName.data
+        newFaculty.lastName = frform.lastName.data
+        newFaculty.wsuID = frform.wsuID.data
+        newFaculty.email = frform.email.data
+        newFaculty.phone = frform.phone.data
+        newFaculty.user_type = "Faculty"
         # Set Password
-        newFaculty.fUser.set_password(frform.password.data)
+        newFaculty.set_password(frform.password.data)
         db.session.add(newFaculty)
         db.session.commit()
         flash('Congratulations, you are now registered as a faculty user!')
