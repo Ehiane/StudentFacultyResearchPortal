@@ -1,4 +1,11 @@
-from app import db
+from app import db, login
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
+
+# Login loader
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
 
 # Table of Many-to-Many relationship for Position and Experiences model
 positionExperiences = db.Table('positionExperiences',
@@ -58,3 +65,58 @@ class Field(db.Model):
     positions = db.relationship('models.Position', secondary=positionFields, primaryjoin=(positionFields.c.field_id == id), backref=db.backref('positionField', lazy='dynamic'), lazy='dynamic')
     def __repr__(self):
        return '{}'.format(self.name)
+   
+class User(db.Model, UserMixin):
+    __tablename__ = 'user'
+    # Hidden ID
+    id = db.Column(db.Integer, primary_key=True)
+    # Account Info
+    username = db.Column(db.String(64), unique=True, index =True)
+    password_hash = db.Column(db.String(128))
+    # Contact Info
+    firstName = db.Column(db.String(64))
+    lastName = db.Column(db.String(64))
+    wsuID = db.Column(db.Integer)
+    email = db.Column(db.String(128))
+    phone = db.Column(db.String(20))
+    user_type = db.Column(db.String(50))
+    
+    # Relationship
+    __mapper_args__ = {
+        'polymorphic_identity': 'User',
+        'polymorphic_on': user_type
+        
+    }
+    
+    def __repr__(self):
+        return '<User: {} - {};>'.format(self.username,self.wsuID)
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+    def get_password(self, password):
+        return check_password_hash(self.password_hash, password)
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+    
+
+class Faculty(User):
+    __tablename__ = 'faculty'
+    # Hidden ID
+    id = db.Column(db.ForeignKey("user.id"), primary_key=True)
+    # Faculty Info
+    department = db.Column(db.String(64))
+    # Relationship
+    __mapper_args__ = {
+        'polymorphic_identity': 'Faculty'
+    }
+    
+class Student(User):
+    __tablename__ = 'student'
+    # Hidden ID
+    id = db.Column(db.ForeignKey("user.id"), primary_key=True)
+    # Student Info
+    gpa = db.Column(db.String(10))
+    grad_date = db.Column(db.String(30))
+    # Relationship
+    __mapper_args__ = {
+        'polymorphic_identity': 'Student'
+    }

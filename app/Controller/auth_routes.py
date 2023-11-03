@@ -5,9 +5,52 @@ from flask import render_template, flash, redirect, url_for
 from config import Config
 
 from app import db
+from app.Model.models import User, Faculty, Student
+from app.Controller.auth_forms import FacultyRegistrationForm, StudentRegistrationForm
 
 bp_auth = Blueprint('auth', __name__)
 bp_auth.template_folder = Config.TEMPLATE_FOLDER 
 
-# @bp_auth.route('/register', methods=['GET', 'POST'])
-# def register():
+@bp_auth.route('/facultyregister', methods=['GET', 'POST'])
+def facultyRegister():
+    frform = FacultyRegistrationForm()
+    if frform.validate_on_submit():
+        # Set Faculty Data
+        newFaculty = Faculty(department=frform.department.data)
+        # Set User Data
+        newFaculty.username = frform.username.data
+        newFaculty.firstname = frform.firstName.data
+        newFaculty.lastName = frform.lastName.data
+        newFaculty.wsuID = frform.wsuID.data
+        newFaculty.email = frform.email.data
+        newFaculty.phone = frform.phone.data
+        newFaculty.user_type = "Faculty"
+        # Set Password
+        newFaculty.set_password(frform.password.data)
+        db.session.add(newFaculty)
+        db.session.commit()
+        flash('Congratulations, you are now registered as a faculty user!')
+        return redirect(url_for('routes.index'))
+    return render_template('facultyRegister.html', form = frform)
+
+@bp_auth.route('/studentregister', methods=['GET', 'POST'])
+def studentRegister():
+    srform = StudentRegistrationForm()
+    if srform.validate_on_submit():
+        # Set Faculty Data
+        newStudent = Student(gpa=srform.gpa.data, grad_date=srform.grad_date.data)
+        # Set User Data
+        newStudent.username = srform.username.data
+        newStudent.firstname = srform.firstName.data
+        newStudent.lastName = srform.lastName.data
+        newStudent.wsuID = srform.wsuID.data
+        newStudent.email = srform.email.data
+        newStudent.phone = srform.phone.data
+        newStudent.user_type = "Student"
+        # Set Password
+        newStudent.set_password(srform.password.data)
+        db.session.add(newStudent)
+        db.session.commit()
+        flash('Congratulations, you are now registered as a student user!')
+        return redirect(url_for('routes.index'))
+    return render_template('studentRegister.html', form = srform)
