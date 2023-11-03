@@ -5,8 +5,8 @@ from flask import render_template, flash, redirect, url_for
 from config import Config
 
 from app import db
-from app.Model.models import User, Faculty
-from app.Controller.auth_forms import FacultyRegistrationForm
+from app.Model.models import User, Faculty, Student
+from app.Controller.auth_forms import FacultyRegistrationForm, StudentRegistrationForm
 
 bp_auth = Blueprint('auth', __name__)
 bp_auth.template_folder = Config.TEMPLATE_FOLDER 
@@ -32,3 +32,25 @@ def facultyRegister():
         flash('Congratulations, you are now registered as a faculty user!')
         return redirect(url_for('routes.index'))
     return render_template('facultyRegister.html', form = frform)
+
+@bp_auth.route('/studentregister', methods=['GET', 'POST'])
+def studentRegister():
+    srform = StudentRegistrationForm()
+    if srform.validate_on_submit():
+        # Set Faculty Data
+        newStudent = Student(gpa=srform.gpa.data, grad_date=srform.grad_date.data)
+        # Set User Data
+        newStudent.username = srform.username.data
+        newStudent.firstname = srform.firstName.data
+        newStudent.lastName = srform.lastName.data
+        newStudent.wsuID = srform.wsuID.data
+        newStudent.email = srform.email.data
+        newStudent.phone = srform.phone.data
+        newStudent.user_type = "Student"
+        # Set Password
+        newStudent.set_password(srform.password.data)
+        db.session.add(newStudent)
+        db.session.commit()
+        flash('Congratulations, you are now registered as a student user!')
+        return redirect(url_for('routes.index'))
+    return render_template('studentRegister.html', form = srform)

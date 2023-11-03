@@ -94,8 +94,6 @@ class User(db.Model, UserMixin):
         self.password_hash = generate_password_hash(password)
     def get_password(self, password):
         return check_password_hash(self.password_hash, password)
-    def get_user_posts(self):
-        return self.posts
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
     
@@ -115,8 +113,7 @@ class Student(User):
     __tablename__ = 'student'
     # Hidden ID
     id = db.Column(db.ForeignKey("user.id"), primary_key=True)
-    # Faculty Info
-    department = db.Column(db.String(64))
+    # Student Info
     gpa = db.Column(db.String(10))
     grad_date = db.Column(db.String(30))
     # Relationship

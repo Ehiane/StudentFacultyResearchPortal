@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Faculty Registration</h1>
+    <h1>Student Registration</h1>
 
     {% if form %}
     <form action="" method="post">
@@ -28,8 +28,12 @@
                 {{form.phone(class="formbox")}}
             </div>
             <div>
-                {{form.department.label(class="forminput")}}<br>
-                {{form.department(class="formbox")}}
+                {{form.gpa.label(class="forminput")}}<br>
+                {{form.gpa(class="formbox")}}
+            </div>
+            <div>
+                {{form.grad_date.label(class="forminput")}}<br>
+                {{form.grad_date(class="formbox")}}
             </div>
             <div>
                 {{form.email.label(class="forminput")}}<br>
