@@ -1,13 +1,13 @@
-# Software Requirements Specification
+# Design Document
 
 ## Your Project Title
 --------
 Prepared by:
 
-* `William Rae`,`Team Sioux`
+* `Will Rae`,`Team Sioux`
 * `Ehiane Oigiagbe`,`Team Sioux`
-* `Cole Logan`,`Team Sioux`
-
+* `<author1>`,`<organization>`
+* `<author1>`,`<organization>`
 ---
 
 **Course** : CptS 322 - Software Engineering Principles I
@@ -17,410 +17,242 @@ Prepared by:
 ---
 
 ## Table of Contents
-- [Software Requirements Specification](#software-requirements-specification)
+- [Design Document](#design-document)
   - [Your Project Title](#your-project-title)
   - [Table of Contents](#table-of-contents)
-  - [Document Revision History](#document-revision-history)
+    - [Document Revision History](#document-revision-history)
 - [1. Introduction](#1-introduction)
-  - [1.1 Document Purpose](#11-document-purpose)
-  - [1.2 Product Scope](#12-product-scope)
-  - [1.3 Document Overview](#13-document-overview)
-- [2. Requirements Specification](#2-requirements-specification)
-  - [2.1 Customer, Users, and Stakeholders](#21-customer-users-and-stakeholders)
-  - [2.2 Use Cases](#22-use-cases)
-  - [2.3 Non-Functional Requirements](#23-non-functional-requirements)
-- [3. User Interface](#3-user-interface)
-- [4. Product Backlog](#4-product-backlog)
+- [2.	Architectural and Component-level Design](#2architectural-and-component-level-design)
+  - [2.1 System Structure](#21-system-structure)
+  - [2.2 Subsystem Design](#22-subsystem-design)
+    - [2.2.1 Model](#221-model)
+    - [2.2.2 Controller](#222-controller)
+    - [2.2.3 View and User Interface Design](#223-view-and-user-interface-design)
+- [3. Progress Report](#3-progress-report)
+- [4. Testing Plan](#4-testing-plan)
 - [5. References](#5-references)
 - [Appendix: Grading Rubric](#appendix-grading-rubric)
 
 <a name="revision-history"> </a>
 
-## Document Revision History
+### Document Revision History
 
 | Name | Date | Changes | Version |
 | ------ | ------ | --------- | --------- |
-|Revision 1 |2023-10-05 |Initial draft | 1.0        |
+|Revision 1 |2021-10-05 |Initial draft | 1.0        |
 |      |      |         |         |
 |      |      |         |         |
 
-----
+
 # 1. Introduction
 
-This section serves as the documentation to the Software Requirement Specification (SRS) document for the "Online Faculty Research Connection Platform"
-
-## 1.1 Document Purpose
-The purpose of this SRS document is to clearly define the requirements and specifications for the development of the "Online Faculty-Student Research Connection Platform." It outlines the non-functional requirements that the software solution must meet. This document serves as a critical reference for the project's stakeholders, including the development team, quality assurance, and all relevant parties involved in the platform's creation and operation.
-## 1.2 Product Scope
-### 1.2.1 Product Description
-The "Online Faculty-Student Research Connection Platform" is designed to address the need for a centralized online platform where faculty members can post research positions and seamlessly connect with qualified undergraduate students. This platform will facilitate efficient communication between faculty and students, promoting collaborative research opportunities within the academic community.
-
-### 1.2.2 Purpose and Goals
-The main purpose of this software product is to offer an intuitive and user-friendly online interface that enables students to submit their contact information, academic coursework details, research interests, and prior research experience. Faculty members will have the ability to advertise research opportunities, receive student applications, and select candidates for interviews. 
-
-The key objectives and goals of the platform include:
-- Enhancing the accessibility of research opportunities for undergraduate students.
-- Streamlining the faculty's ability to find and select qualified student researchers.
-- Improving the overall efficiency and transparency of the research matching process.
-
-### 1.2.3 Benefits
-The "Online Faculty-Student Research Connection Platform" offers several benefits, including:
-- Facilitating collaboration and networking between faculty and students.
-- Simplifying the application and selection process for research positions.
-- Enhancing the academic and research experience for all users.
-
-## 1.3 Document Overview
-The remainder of this document is organized into the following sections:
+The purpose of this design document is to serve as a comprehensive guide for the development of the "Online Faculty Research Connection Platform," ensuring alignment with project requirements, providing documentation of design decisions, and facilitating effective communication among stakeholders. If this document is a revision of an earlier version, a brief summary of the changes made during the revision will be included to track the project's evolution and maintain transparency.
 
 
-- Section 2: Requirments Specification - Outlines design, the audience, Use cases and Non-Functional Requirements.
+### Project Description:
 
-- Section 3: User Interface (UI) Design - Details the design(with sketches included) and user interface guidelines.
+The "Online Faculty Research Connection Platform" is a web-based solution designed to bridge the gap between faculty members and undergraduate students within an academic institution. This platform will provide a centralized online space where faculty members can post research positions and seamlessly connect with qualified undergraduate students seeking research opportunities. Students, in turn, will have the ability to submit their contact information, academic backgrounds, research interests, and prior research experience. The platform's primary objective is to facilitate efficient communication, collaboration, and research team formation within the academic community. It aims to simplify the process of matching students with research opportunities, enhancing transparency, and ultimately contributing to the advancement of academic research.
 
-- Section 4: Product Backlog - Guides the Development team through out the project by listing tasks and issues to handle as the development of the project carries on.
+### Project Goal:
 
-- Section 5: References - Contains all the external references or links that were used in the creation of the requirement document. 
+The primary goal of the "Online Faculty Research Connection Platform" is to create a user-friendly and efficient online interface that streamlines the connection between faculty members and undergraduate students for research collaborations. The key objectives and goals of the project include:
 
-This document will serve as a comprehensive reference for the development team, ensuring that the "Online Faculty-Student Research Connection Platform" is successfully designed, built, and meets the needs of all stakeholders.
+1. **Enhancing Accessibility:** To make research opportunities easily accessible to undergraduate students, ensuring they can readily find and apply for positions that align with their academic interests and skills.
 
-# 2. Requirements Specification
+2. **Efficient Matching:** To provide faculty members with tools that simplify the process of finding and selecting qualified student researchers, thus enhancing the efficiency of forming research teams.
 
-This section specifies the software product's requirements. Specify all of the software requirements to a level of detail sufficient to enable designers to design a software system to satisfy those requirements, and to enable testers to test that the software system satisfies those requirements.
+3. **Transparency:** To improve the transparency of the research matching process, allowing both students and faculty to monitor the progress of their applications and postings, thereby fostering trust and accountability.
 
-## 2.1 Customer, Users, and Stakeholders
-
-Our customer will be WSU itself. We intend to make this software for WSU to use in order to advertise research positions to undergraduate students.
-
-There will be two distinct users of our software: students and faculty.
-
-Students will be any individual enrolled at WSU who is in undergrad. It is likely the student will be interested in research if they are to use our software. Students stand to benefit from our software because of the research opportunities that will be made available to them.
-
-Faculty consists of any professors or graduate students who have a potential research opportunity for any interested undergrad students. Faculty must be employed by WSU and involved with research on campus. Faculty stands to benefit from our software because of the undergraduate students who will be able to assist with their research.
-
-The stakeholders of this project will be WSU, students, faculty, and us, the programmers. Given this project is a success, WSU will have successfully funded a site that is able to connect undergraduate students with research positions that will prepare them for their future careers. Students will be able to boost their resume with their research experience and will have gained valuable skills from the experience. Faculty will recieve much needed help with their research, will connect with their undergrad students, and will be able to pass on their knowledge and skills to the students. We programmers will have created a successful site that many people will benefit from and use in the extended future, and will be able to add it to our resume.
-
-----
-## 2.2 Use Cases
-
-This section will include the specification for your project in the form of use cases. The section should start with a short description of the actors involved (e.g., regular user, administrator, etc.) and then follow with a list of the use cases.
-
-For each use case you should have the following:
-
-* Name,
-* Actors,
-* Triggers (what initiates the use case),
-* Preconditions (in what system state is this use case applicable),
-* Actions (what actions will the code take to implement the use case),
-* Alternative paths
-* Postconditions (what is the system state after the use case is done),
-* Acceptance tests (list one or more acceptance tests with concrete values for the parameters, and concrete assertions that you will make to verify the postconditions).
-
-Each use case should also have a field called "Iteration" where you specify in which iteration you plan to implement this feature.
-
-You may use the following table template for your use cases. Copy-paste this table for each use case you will include in your document.
-
-| Use case # 1      |   |
-| ------------------ |--|
-| Name              | "enter your reponse here"  |
-| Users             | "enter your reponse here"  |
-| Rationale         | "enter your reponse here"  |
-| Triggers          | "enter your reponse here"  |
-| Preconditions     | "enter your reponse here"  |
-| Actions           | "enter your reponse here"  |
-| Alternative paths | "enter your reponse here"  |
-| Postconditions    | "enter your reponse here"  |
-| Acceptance tests  | "enter your reponse here"  |
-| Iteration         | "enter your reponse here"  |
+By achieving these goals, the project aims to foster a more collaborative and dynamic research environment within the academic institution.
 
 
-Regular User:
-8. On the student page, a student user can: Create a student account and enter their profile information
-1. Set the account username and password (username should be the WSU email)
-2. Enter contact information (name, last name, WSU ID, email, phone)
-3. Enter additional information (major, cumulative GPA, expected graduation date, etc. )
-4. Select the research topics they are interested in. You can assume a predetermined list of research fields and have the student choose among those.
-5. Choose the programming languages with which they are familiar. You can assume a predetermined list of programming languages and have the instructor choose among those.
-6. Describe their prior research experience if there is any.
-| Name | Add Review |
-|--------|--------|
-| Users | Student |
-| Rationale | When a student user wants to apply to a research position, they can create an account with information about themselves. |
-| Triggers | The user intends to register as a student |
-| Preconditions | The user is not already registered as a student. |
-| Actions | 1. The user indicates to register themselves as a new student in the application. 2. The System will display the "Register Student Page" page 3. The user will then enter all the of the relevant information as requested by the form. The user then submits the form. 4. The system validates the entered entered information, checks that data is appropriate for each segment of form, (i.e., no GPA of 13.6) 5. The system will save the students login and information, acknowledging that the student is registered. 6. The system will navigate to the "View Positions" page. |
-| Postconditions | The users login and information is saved to the system and can be used on the student "login" page. |
-| Acceptance Tests | Check that the (1) users login is valid, and (2) the saved information is the same as what was submitted. |
-| Milestone | Milestone 2 |
+# 2.	Architectural and Component-level Design
+## 2.1 System Structure
 
-Regular User (Student):
-9. On the student page, a student user can: Login with username and password
-| Name | Add Review |
-|--------|--------|
-| Users | Student |
-| Rationale | When a student user wants to apply to a research position, they can login with an existing username and password. |
-| Triggers | The user intends to sign in as a previously registered student |
-| Preconditions | The user has already registered as a student. |
-| Actions | 1. The user indicates to log themselves in as a student in the application. 2. The System will display the "Student Login Page" page 3. The user will then enters their username and password as requested by the form. The user then submits the form. 4. The system validates the entered entered information (no space is left blank, or incorrect information entered). 5. The system will assign the information of the current user to the information of the account registered to that users sign in information. 6. The system will navigate to the "View Positions" page. |
-| Postconditions | The users information will be taken from the system and applied to the current user. |
-| Acceptance Tests | Check that the (1) users login is valid, (2) information is applied to current user |
-| Milestone | Milestone 2 |
+This section should describe the high-level architecture of your software:  i.e., the major subsystems and how they fit together. 
+If you adopted the application structure we used in the Smile App, your application would have the Model-View-Controller (MVC) pattern. If you adopted a different architectural pattern, mention the pattern you adopted in your software and briefly discuss the rationale for using the proposed architecture (i.e., why that pattern fits well for your system).
 
-Regular User (Student):
-10. On the student page, a student user can: View the open research positions (Milestone 1)
-For Milestone 1:
-1. Your app should list all open research positions.
-| Name | Add Review |
-|--------|--------|
-| Users | Student |
-| Rationale | When a registered and logged in student wants to view open research positions. |
-| Triggers | The user intends to view research positions, or logs in and is redirected to the home page. |
-| Preconditions | The user has already registered and signed in as a student. |
-| Actions | 1. The user indicates to view open research positions in the application. 2. The System will display the "View Positions Page" |
-| Postconditions | The system will display all currently open research positions on the "View Positions" page. |
-| Acceptance Tests | Check that the (1) user is logged in, (2) all open positions are displayed properly. |
-| Milestone | Milestone 1 |
+In this section:
+ * Provide a UML component diagram that illustrates the architecture of your software.
+ * Briefly mention the role of each subsystem in your architectural design. 
+ * Discuss the rationale for the proposed decomposition in terms of  coupling and re-use.
 
-Regular User (Student):
-11. On the student page, a student user can: View the open research positions (Milestone 3)
-For Milestone 3:
-1. In addition, it should identify the research positions that match the student’s “research interests” and list them separately under the “Recommended Research Positions”. You can implement a simple recommendation algorithm to find the matching positions. For example: If the student’s research interests include “Machine Learning”, the positions in that field should be recommended to the student. Similarly, if the position requires Python experience and if the student chose Python in their profile, the position should be recommended to the student. 
-| Name | Add Review |
-|--------|--------|
-| Users | Student |
-| Rationale | When a registered and logged in student wants to view open research positions that align with their own interests. |
-| Triggers | The user intends to view research positions that align with their interests. |
-| Preconditions | The user has already registered and signed in as a student, also has interests. |
-| Actions | 1. The user indicates to view open research positions in the application that contain a tag that they are interested in. 2. The tags are checked by the system and posts are filtered by those tags. 3. The System will display the filtered "View Positions Page" |
-| Postconditions | The system will display all currently open research positions on the "View Positions" page that contain the tags the user is interested in. |
-| Acceptance Tests | Check that the (1) user is logged in, (2) all open positions are displayed properly, (3) they have been filtered properly. |
-| Milestone | Milestone 3 |
+## 2.2 Subsystem Design 
 
-Regular User (Student):
-12. On the student page, a student user can view various displayed information:
-1. Research project title
-2. A brief description of the project goals and objectives
-3. Start date and end date
-4. Required time commitment (e.g., 10 hours per week)
-5. Research field(s) (e.g., “Machine Learning, High Performance Computing, etc.)
-6. Required programming language experience (e.g., “C++”, “Java”, “Python”, etc.)
-7. A brief description of other required qualifications
-8. Faculty’s name and contact information1. Research project title
-2. A brief description of the project goals and objectives
-3. Start date and end date
-4. Required time commitment (e.g., 10 hours per week)
-5. Research field(s) (e.g., “Machine Learning, High Performance Computing, etc.)
-6. Required programming language experience (e.g., “C++”, “Java”, “Python”, etc.)
-7. A brief description of other required qualifications
-8. Faculty’s name and contact information
-| Name | Add Review |
-|--------|--------|
-| Users | Student |
-| Rationale | When a registered and logged in student wants to view information about a specific research position. |
-| Triggers | The user intends to view research positions, or logs in and is redirected to the home page. |
-| Preconditions | The user has already registered and signed in as a student. |
-| Actions | 1. The user indicates to view open research positions in the application. 2. The System will display the "View Positions Page". 3. Each individual position will display the information listed above. |
-| Postconditions | The system will display all the information listed above for a given research positions on the "View Positions" page. |
-| Acceptance Tests | Check that the (1) user is logged in, (2) all open positions are displayed properly. |
-| Milestone | Milestone 1 |
+(**Note1**: This is just a suggested template. If you adopted a pattern other than MVC, you should revise this template and the list the major subsystems in your architectural design.)
 
-Regular User (Student):
-13. On the student page, a student user can: Apply for research positions. A student can apply for more than one research position
-For each position they apply to:
-1. They should submit a brief statement describing why they are interested in this research topic and what they hope to gain by participating in that project.
-2. They should provide the name and email of one faculty who can provide them a reference for the position. 
-| Name | Add Review |
-|--------|--------|
-| Users | Student |
-| Rationale | When a registered and logged in student wants to view open research positions and apply to any number of them. |
-| Triggers | The user intends to apply to a research position. |
-| Preconditions | The user has already registered and signed in as a student. |
-| Actions | 1. The user indicates wanting to apply to an open research position in the application. 2. The System will use a many to many relationship to assign the user the the position they applied for. 3. The position will update for the user displaying they have applied. |
-| Postconditions | The system will display that the user has applied for the position, allowing the faculty that posted it to view the students application. |
-| Acceptance Tests | Check that the position has the user as an applicant through the relationship. |
-| Milestone | Milestone 1 |
+(**Note2**: You should describe the design for the end product (completed application) - not only your iteration1 version. You will revise this document in iteration-2 and make changes  and/or add more details in iteration-2.)
 
-Regular User (Student):
-14. On the student page, a student user can: View the research positions they already applied to and check the statuses of their applications
-1. When the application is submitted, its status will appear as “Pending”.
-2. After a faculty accept this application, the status should be updated as “Approved for Interview”. Student would do the interview in person.
-3. After the interview, the faculty should update the status as either “Hired” or “Not hired”. Once updated, the changed status should be displayed on the student page.
-| Name | Add Review |
-|--------|--------|
-| Users | Student |
-| Rationale | When a registered and logged in student wants to view positions they have applied for and the status of their application. |
-| Triggers | The user intends to view research positions they've applied for, and their application status. |
-| Preconditions | The user has already registered, signed in as a student, and applied to positions. |
-| Actions | 1. The user indicates to view research positions they've applied for in the application. 2. The System will display the "My Applications" page, and the status of each application. |
-| Postconditions | The system will display all the users currently applied research positions on the "My Applications" page. |
-| Acceptance Tests | Check that the (1) user is logged in, (2) all open applications are displayed properly. |
-| Milestone | Milestone 3 |
+### 2.2.1 Model
 
-Regular User (Student):
-15. On the student page, a student user can: Withdraw their pending applications.
-If the student is no longer interested in a research position, they can withdraw their application.
-| Name | Add Review |
-|--------|--------|
-| Users | Student |
-| Rationale | When a registered and logged in student wants to view positions they have applied for and rescind their application. |
-| Triggers | The user intends to view research positions they've applied for and rescind their application. |
-| Preconditions | The user has already registered, signed in as a student, and applied to positions. |
-| Actions | 1. The user indicates to view research positions they've applied for in the application. 2. The System will display the "My Applications" page. 3. The user indicates they wish to rescind an application. 4. The relationship between the position and user will be deleted, rescinding their application. |
-| Postconditions | The system will no longer display rescinded research position on the "My Applications" page. |
-| Acceptance Tests | Check that the application the user wished to delete no longer exists. |
-| Milestone | Milestone 3 |
+Briefly explain the role of the model. 
 
-Admin (Faculty):
-16. On the faculty page, a faculty user can: Create a faculty account and enter profile information
-1. Set the account username and password (user name should be the WSU email)
-2. Enter contact information (name, last name, WSU ID, email, phone)
-| Name | Add Review |
-|--------|--------|
-| Users | Faculty |
-| Rationale | When a faculty user wants to create to a research position, they can create an account with relevant university information. |
-| Triggers | The user intends to register as faculty |
-| Preconditions | The user is not already registered as faculty. |
-| Actions | 1. The user indicates to register themselves as a new faculty member in the application. 2. The System will display the "Register Faculty Page" page 3. The user will then enter all the of the relevant information as requested by the form. The user then submits the form. 4. The system validates the entered entered information, checks that data is appropriate for each segment of form, (i.e., actual WSU ID, not 3) 5. The system will save the faculty login and information, acknowledging that the faculty member is registered. 6. The system will navigate to the faculty home page. |
-| Postconditions | The users login and information is saved to the system and can be used on the faculty "login" page. |
-| Acceptance Tests | Check that the (1) users login is valid, and (2) the saved information is the same as what was submitted. |
-| Milestone | Milestone 2 |
+(***in iteration-1***) Include a list of the tables (models) in your database and explain the role of each table. Provide the attributes of the tables (including relationships). 
 
-Admin (Faculty):
-17. On the faculty page, a faculty user can: Login with username and password
-| Name | Add Review |
-|--------|--------|
-| Users | Faculty |
-| Rationale | When a faculty user wants to create a research position, they can login with an existing username and password. |
-| Triggers | The user intends to sign in as a previously registered faculty member |
-| Preconditions | The user has already registered as faculty. |
-| Actions | 1. The user indicates to log themselves in as faculty in the application. 2. The System will display the "Faculty Login Page" page 3. The user will then enters their username and password as requested by the form. The user then submits the form. 4. The system validates the entered entered information (no space is left blank, or incorrect information entered). 5. The system will assign the information of the current user to the information of the account registered to that users sign in information. 6. The system will navigate to the "Faculty Home" page. |
-| Postconditions | The users information will be taken from the system and applied to the current user. |
-| Acceptance Tests | Check that the (1) users login is valid, (2) information is applied to current user |
-| Milestone | Milestone 2 |
+| Model: | text |
+| -- |--|
+| Role: | text |
+| Attributes: | text |
+| Relationships: | text |
+| Notes: | text |
 
-Admin (Faculty):
-18. On the faculty page, a faculty user can: Create undergraduate research positions
-Faculty should enter the details of the position and qualifications needed, i.e.,: 
-1. Research project title
-2. A brief description of the project goals and objectives
-3. Start date and end date
-4. Required time commitment (e.g., 10 hours per week)
-5. Research field(s) (e.g., “Machine Learning”, “High Performance Computing”, etc.). You can assume a predetermined list of research fields and have the instructor choose among those.
-6. Required experience with programming languages (e.g., “C++”, “Java”, “Python”, etc.) You can assume a predetermined list of programming languages and have the instructor choose among those.
-7. A brief description of other required qualifications.
-**Of course, a faculty can create more than one positions.**
-| Name | Add Review |
-|--------|--------|
-| Users | Faculty |
-| Rationale | When a faculty user wants to create to a research position. |
-| Triggers | The user intends to create a new research position. |
-| Preconditions | The user is currently registered and logged in as a faculty member. |
-| Actions | 1. The user indicates to create a new research position in the application. 2. The System will display the "Create Research Position Page" page 3. The user will then enter all the of the relevant information as requested by the form. The user then submits the form. 4. The system validates the entered entered information, checks that data is appropriate for each segment of form, (i.e., no hour commitment of "egg") 5. The system will save created research position, acknowledging that the position was created. 6. The system will navigate to the "Faculty Home" page. |
-| Postconditions | The users research position is saved and displayed for students to apply to. |
-| Acceptance Tests | Check that the (1) the position has been saved, and (2) the position can be applied for my students. |
-| Milestone | Milestone 1 |
+| Model: | Position |
+| -- |--|
+| Role: | Holds all relevant information pertaining to each individual position, such as title, description, timecommitment, etc. |
+| Attributes: | id, title, startDate, endDate, timeCommitment, *fields*, *experiences*, qualifications, facultyName, facultyContact, *applications* |
+| Relationships: | fields: Many-to-Many relationship, each position can have many fields, likewise, the fields can have have many positions they are connected to. experiences: Many-to-Many relationship, each position can have many experiences, likewise, the experiences can have have many positions they are connected to. applications: One-to-Many: Each position can have many applications, but each application can only go to one position. |
+| Notes: | This model additionally has 3 functions for each of the relationships, get_experiences, get_fields, and get_applications, all return a list of all that are connected to the position. |
 
-Admin (Faculty):
-19. On the faculty page, a faculty user can: See the list of the students who applied for their positions
-A faculty should be informed about the other offers students get. If a student was “Approved for Interview” or was “Hired” for another position, those information should also be displayed. 
-| Name | Add Review |
-|--------|--------|
-| Users | Faculty |
-| Rationale | When a registered and logged in faculty member wants to view positions they've created and students that have applied to them. |
-| Triggers | The user intends to view research positions they've created and the positions applicants. |
-| Preconditions | The user has already registered, signed in as faculty, and created positions that have been applied to. |
-| Actions | 1. The user indicates to view research positions they've created in the application. 2. The System will display the "My Positions" page, and the applicants of each position. |
-| Postconditions | The system will display all the users currently created research positions on the "My Positions" page, as well as the applicants of each position. |
-| Acceptance Tests | Check that (1) all created positions are displayed, (2) all applicants for each position is displayed. |
-| Milestone | Milestone 2 |
+| Model: | Application |
+| -- |--|
+| Role: | Holds information relevant to each application connected to a posted research position. |
+| Attributes: | id, *position_id*, statement, referenceName, referenceEmail |
+| Relationships: | position_id: serves as Table connecting each application to a position in a Many-to-One relationship, each position can have multiple applications. |
+| Notes: | text |
 
-Admin (Faculty):
-20. On the faculty page, a faculty user can: View the qualifications of each student
-1. their GPAs
-2. the technical elective courses they have taken
-3. the research topics they are interested in
-4. the programming languages they have experience with
-5. prior research experience.
-| Name | Add Review |
-|--------|--------|
-| Users | Faculty |
-| Rationale | When a registered and logged in faculty member wants to view positions they've created and the qualifications of the students that have applied to them. |
-| Triggers | The user intends to view research positions they've created and the positions applicants qualifications. |
-| Preconditions | The user has already registered, signed in as faculty, and created positions that have been applied to. |
-| Actions | 1. The user indicates to view research positions they've created in the application. 2. The System will display the "My Positions" page, and the applicants of each position. 3. The user can view information about each applicant as listed above. |
-| Postconditions | The system will display all the users currently created research positions on the "My Positions" page, as well as the applicants of each position and their qualifications.. |
-| Acceptance Tests | Check that (1) all created positions are displayed, (2) all applicants qualifications for each position is displayed. |
-| Milestone | Milestone 2 |
+| Model: | Experience |
+| -- |--|
+| Role: | All experiences in the application are part of this model to allow faculty users to add more as they see fit if an experience isn't already available to include in their position post. |
+| Attributes: | id, name, *positions* |
+| Relationships: | positions: serves as connection in Many-to-Many relationship with each position, allowing every experience to be part of many different position posts. |
+| Notes: | additionally includes __repr__ function for printing on form. |
 
-Admin (Faculty):
-21. On the faculty page, a faculty user can: Approve the application of one or more students
-The faculty can approve the application of one or more students and the status of those applications should be updated as “Approved for Interview”. 
-| Name | Add Review |
-|--------|--------|
-| Users | Faculty |
-| Rationale | When a registered and logged in faculty member wants to view positions they've created, the students that have applied to them, and approve the application of one or more of them. |
-| Triggers | The user intends to accept the application of one or more applicants. |
-| Preconditions | The user has already registered, signed in as faculty, and created positions that have been applied to. |
-| Actions | 1. The user indicates to view research positions they've created in the application. 2. The System will display the "My Positions" page, and the applicants of each position. 3. The user indicates wether they would like to approve the application of a user. 4. The user is notified of acceptance. |
-| Postconditions | The system will display that the users application has been accepted on both the faculty and student side. |
-| Acceptance Tests | Check that (1) the position has been accepted on student side, (2) the position has been accepted on faculty side. |
-| Milestone | Milestone 3 |
+| Model: | Field |
+| -- |--|
+| Role: | All research fields in the application are part of this model to allow faculty users to add more as they see fit if an research field isn't already available to include in their position post. |
+| Attributes: | id, name, *positions* |
+| Relationships: | positions: serves as connection in Many-to-Many relationship with each position, allowing every field to be part of many different position posts. |
+| Notes: | additionally includes __repr__ function for printing on form. |
 
-Admin (Faculty):
-22. On the faculty page, a faculty user can: Update the status of applications
-After interviewing with the student, the faculty can update the status of applications as either “Hired” or “Not hired”
-| Name | Add Review |
-|--------|--------|
-| Users | Faculty |
-| Rationale | When a registered and logged in faculty member wants to view positions they've created, the students that have been accepted, and indicate whether or not they've been hired. |
-| Triggers | The user intends to hire or not hire one of the applicants. |
-| Preconditions | The user has already registered, signed in as faculty, and created positions that have been applied to with accepted users. |
-| Actions | 1. The user indicates to view research positions they've created in the application. 2. The System will display the "My Positions" page, and the applicants of each position. 3. The user indicates wether they would like to hired or not hire a student who was previously been accepted. 4. The user is notified of their status as either "hired" or "not hired". |
-| Postconditions | The system will display that the users  has been either hired or not hired on both the faculty and student side. |
-| Acceptance Tests | Check that (1) the status is correct on student side, (2) the status is correct on faculty side. |
-| Milestone | Milestone 3 |
+| Model: | User |
+| -- |--|
+| Role: | Serves as base for both Faculty and Student models in the program. |
+| Attributes: | id, username, password_hash, firstName, lastName, wsuID, email, phone, **student**, **faculty** |
+| Relationships: | student: Serves as relationship for One-to-One connection between a User and Student. facuty: Serves as relationship for One-to-One connection between a User and Faculty. (**Note: not yet implemented, subject to change**) |
+| Notes: | Model also includes functions for getting/setting the password, as well as checking the password and printing user info. |
 
-Admin (Faculty):
-23. On the faculty page, a faculty user can: Delete the existing research positions
-The faculty may delete the existing research positions. Once deleted, the status of all applications should be updated as “Position is not available”. 
-| Name | Add Review |
-|--------|--------|
-| Users | Faculty |
-| Rationale | When a registered and logged in faculty member wants to view positions they have created and delete one or more of them. |
-| Triggers | The user intends to view research positions they've created and delete one or more. |
-| Preconditions | The user has already registered, signed in as a student, and created positions. |
-| Actions | 1. The user indicates to view research positions they've created in the application. 2. The System will display the "My Positions" page. 3. The user indicates they wish to delete a position. 4. The position will be deleted by the system. |
-| Postconditions | The system will no longer display the research position on the "My Positions" page. |
-| Acceptance Tests | Check that the positions the user wished to delete no longer exists. |
-| Milestone | Milestone 3 |
+| Model: | Faculty |
+| -- |--|
+| Role: | Serves as model for additional faculty information built upon the user model. |
+| Attributes: | id, department, **user** |
+| Relationships: | user: relateds faculty to user base model. (**Note: not yet implemented, subject to change**) |
+| Notes: | N/A |
 
-----
-## 2.3 Non-Functional Requirements
+| Model: | Student |
+| -- |--|
+| Role: | Serves as model for additional student information built upon the user model. |
+| Attributes: | id, GPA, grad_date, **user**, *experiences*, *fields* |
+| Relationships: | user: relateds faculty to user base model. (**Note: not yet implemented, subject to change**). experiences: allows user to select from the existing list of experiences to add to their profile, helpful for faculty viewing when they apply for a position. fields: allows the user to select from the existing list of research fields to add to their profile, used for viewing related positions on "View Positions" page. |
+| Notes: | N/A |
 
-1. Students should only be able to access student functionality: Students should not be able to access faculty member exclusive functionality. This includes creating research opportunities, reviewing students qualifications, updating application statuses, etc.
-2. Faculty should only be able to access faculty functionality: Faculty should not be able to access student exclusive functionality. This includes applying for research opportunities, updating student qualifications, etc.
-3. Users must be logged in in order to access the site: Users should not be able to see research opportunities, apply for research positions, create research positions, etc without being logged in as a student/faculty member. Users must log in as a student to see the student view, and must log in as a faculty member to see the faculty view.
-4. Our site should not take long to load different pages: When submitting a get or post request, our page should not take longer than a brief moment to load the next page. 
-5. Our site should be easily readable and understood: We must keep all text in a clean, readable font that is easy to read and understand. The language included should be clear and to the point, leaving no room for confusion at any point. 
-6. Our site should be well organized and easy to navigate: We must make sure all buttons are easy to see and that their purpose be easily understood. The layout should be clean and organized.
-7. Students should only be able to create one account: Using their WSU email/ID, students should be able to create just a single account for themselves. If they are to try to create another account with the same ID, they should be stopped and directed to use a different ID.
+(***in iteration -2***) Revise the database model. Provide a UML diagram of your database model showing the associations and relationships among tables. Your UML diagram should also show the methods of your models.
 
-----
-# 3. User Interface
+### 2.2.2 Controller
 
-### Student main page & faculty main page:
-![IMG-0171](https://github.com/WSU-CptS-322-Fall-2023/termproject-teamsioux/assets/79903725/a32ca2f8-090f-4f2a-aae2-39e6d7aaa225)
+Briefly explain the role of the controller. If your controller is decomposed into smaller subsystems (similar to the Smile App design we discussed in class), list each of those subsystems as subsections. 
+
+For each subsystem:
+ * Explain the role of the subsystem (component) and its responsibilities.
+ * 	Provide a detailed description of the subsystem interface, i.e., 
+    * which other subsystems does it interact with?  
+    * what are the interdependencies between them? 
+
+**Note:** Some of your subsystems will interact with the Web clients (browsers). Make sure to include a detailed description of the routes your application will implement. For each route specify its “methods”, “URL path”, and “a description of the operation it implements”.  
+You can use the following table template to list your route specifications. 
+
+(***in iteration-1***) Brainstorm with your team members and identify all routes you need to implement for the completed application and explain each route briefly. If you included most of the major routes but you missed only a few, it maybe still acceptable. 
+
+|   | Methods           | URL Path   | Description  |
+|:--|:------------------|:-----------|:-------------|
+| 1. | Register as Faculty | auth.facultyRegistration | Allows the user to access the faculty registration page and create a new faculty account, upon creation they are redirected to the faculty login page. |
+| 2. | Sign in as Faculty | auth.facultyLogin | Allows previously registered faculty users to sign in using previously created log in credentials, system assigns current_user attributes to the created user/faculty accounts (objects). Upon sign in, they are redirected to the faculty home page. |
+| 3. | Register as Student | auth.studentRegistration | Allows the user to access the student registration page and create a new student account, upon creation they are redirected to the student login page. |
+| 4. | Sign in as Student | auth.studentLogin | Allows previously registered student users to sign in using previously created log in credentials, system assigns current_user attributes to the created user/student accounts (objects). Upon sign in, they are redirected to the student home page. |
+| 5. | Faculty Post Position | routes.postposition | Allows logged in faculty users to create a new position using the post position form. Created forms are then posted to the "View Positions" page, allowing students to apply to them. |
+| 6. | Student Apply for Position | routes.application | Allows student user to apply to post using the application form, upon submission the application is viewable to them in a "View Application" page, as well as to the faculty user who posted the position. |
+| 7. | Faculty add Experience | routes.addexperience | Allows faculty users to add an experience to the database that can be used in the creation of their positions. Helpful for positions that are unique with experiences that aren't currently part of the database. |
+| 8. | Faculty add Research Field | routes.addfield | Allows faculty users to add a research field to the database that can be used in the creation of their positions. Helpful for positions that are unique with research fields that aren't currently part of the database. |
+| 9. | Faculty delete Position | routes.deleteposition | Allows logged in faculty members with previously created positions to delete them at their own discretion. A fauclty member can only delete their own posts. |
+| 10. | Student can view open Positions | routes.index | Allows student users to view all open research positions and apply for them. The user can additionally filter the positions by their previously selected research interests. |
+| 11. | Student can Withdra Applications | routes.studentwithdraw/<position_id> | A student user with previously created applications can indicate they want to withdraw an application, allowing them to delete it from the positions application pool.  |
+| 12. | Faculty can view applications to a created position. | routes.positionapplications/<application_id> | A faculty user with a previously created position with applications already submitted by student users can view information about the applications submitted.|
+| 13. | Faculty can view information on Student Users that have applied to their positions | routes.viewstudent/<student_id> | A faculty user with a previously created position with applications already submitted by student users can view information about the applicants based on their student profile. |
+| 14. | Faculty member can change the status of a student application. | routes.changestatus/<application_id> | A faculty user with a previously created position with applications already submitted by student users can change the status of multiple applications to "Approved for Interview". |
+| 15. | Faculty member can indicate whether an approved student has been "Hired" or "Not Hired" | routes.hirestudent/<application_id> | A faculty user with a previously created position with applications already submitted and approved by student users can change the status of the students application to either "Hired" or "Not Hired". |
+
+(***in iteration-2***) Revise your route specifications, add the missing routes to your list, and update the routes you modified. Make sure to provide sufficient detail for each route. In iteration-2, you will be deducted points if you don’t include all major routes needed for implementing the required use-cases or if you haven’t described them in detail.
+
+|   | Methods           | URL Path   | Description  |
+|:--|:------------------|:-----------|:-------------|
+|1. |                   |            |              |
+|2. |                   |            |              |
+|3. |                   |            |              |
+|4. |                   |            |              |
+|5. |                   |            |              |
+|6. |                   |            |              |
 
 
-### Login page & Registration page:
-![IMG-0172](https://github.com/WSU-CptS-322-Fall-2023/termproject-teamsioux/assets/79903725/e2d942cd-ce24-49ba-8f45-ca6a7cc24baa)
+## 2.2.3 View and User Interface Design
+
+The view in our "Online Faculty Research Connection Platform" plays a critical role in presenting the information and functionality of the system to both faculty members and undergraduate students. It serves as the user's gateway to interact with the platform and facilitates efficient communication and collaboration between these user groups.
+
+### Technology Stack:
+
+- **Web Framework**: We will utilize Flask as our web framework to handle routing, request handling, and interactions between the front-end and back-end components.
+
+- **Back-End Technologies**: Python will be the primary programming language for the back-end, and we will use SQLAlchemy as an Object-Relational Mapping (ORM) tool for interacting with our database.
+
+- **Front-End Technologies**: For the view, we will use HTML for page structure and content, and CSS for styling the user interfaces. Additionally, JavaScript will be employed for enhancing interactivity and user experience.
+
+- **Responsive Design**: To ensure a seamless user experience across devices, we will implement responsive and mobile-friendly design using the Bootstrap framework.
+
+Certainly, here's a more refined and structured presentation of the page templates you plan to use in your project:
+
+### Page Templates:
+
+Within our project, we have a set of HTML templates that play essential roles in shaping the user experience and facilitating various interactions:
+
+1. **`position.html`**: This template is designed to display detailed information about available research positions, providing users with comprehensive insights into the opportunities.
+
+2. **Error Files (`404error.html` and `500error.html`)**: These templates are dedicated to handling error messages, ensuring users are informed and guided in case of unexpected issues or page not found errors.
+
+3. **`addexperience.html`**: This form template empowers users to enrich their profiles by adding relevant research experience, enhancing their suitability for the positions they are applying to.
+
+4. **`base.html`**: Serving as the navigational hub, this template provides consistent navigation elements and links that are accessible across all pages, ensuring a unified and user-friendly experience.
+
+5. **`login.html`**: This page template is dedicated to existing users, offering them a sign-in gateway to access their accounts and engage with the platform.
+
+6. **`register.html`**: For new users, this template provides a user-friendly registration page, allowing them to create accounts and gain access to the platform's features.
+
+7. **`create.html`**: This form template is responsible for collecting and organizing information about research positions, facilitating the creation and management of opportunities.
+
+8. **`addfield.html`**: Designed to offer flexibility in research fields, this template empowers users to add additional research categories, enriching the diversity of opportunities.
+
+These templates collectively shape the user interface and interaction within the "Online Faculty Research Connection Platform," ensuring a seamless and intuitive experience for both students and faculty members.
 
 
-----
-# 4. Product Backlog
-> To view the Product Backlog/ Issues Page click [here🔗](https://github.com/WSU-CptS-322-Fall-2023/termproject-teamsioux/issues)
+### Use-Cases Utilizing these Interfaces:
+
+[Include the use-cases from your "Requirements Specification" document that will utilize these interfaces for user interaction as previously mentioned.]
+
+By providing this additional information, you have a clear technology stack and can convey a more detailed picture of how the view and user interfaces will be built in your project. This helps project stakeholders understand the tools and frameworks you plan to use and how they will contribute to the development of the platform.
 
 
-----
+# 3. Progress Report
+
+Write a short paragraph summarizing your progress in iteration1 / iteration2.
+
+# 4. Testing Plan
+
+(***in iteration 1***)
+Don't include this section.
+
+(***in iteration 2***)
+In this section , provide a brief description of how you plan to test the system. Thought should be given to  mostly how automatic testing can be carried out, so as to maximize the limited number of human hours you will have for testing your system. Consider the following kinds of testing:
+  * *Unit Testing*: Explain for what modules you plan to write unit tests, and what framework you plan to use.  (Each team should write automated tests (at least) for testing the routes)
+  * *Functional Testing*: How will you test your system to verify that the use cases are implemented correctly? 
+  * *UI Testing*: How do you plan to test the user interface?  (Manual tests are OK)
+
 # 5. References
 
 Cite your references here.
@@ -429,28 +261,30 @@ For the papers you cite give the authors, the title of the article, the journal 
 
 For the websites, give the title, author (if applicable) and the website URL.
 
-----
+
 ----
 # Appendix: Grading Rubric
 (Please remove this part in your final submission)
 
 These is the grading rubric that we will use to evaluate your document. 
 
-| Max Points  | **Content** |
-| ----------- | ------- |
-| 10          | Do the requirements clearly state the customers’ needs? |
-| 5           | Do the requirements avoid specifying a design (note: customer-specified design elements are allowed; non-functional requirements may specify some major design requirements)? |
-| | |  
-|    | **Completeness** |
-| 25 | Are use cases written in sufficient detail to allow for design and planning? |
-| 4 | Do use cases have acceptance tests? | 
-| 25 | Is your use case model complete? Are all major use cases included in the document? |
-| 10 |  Are the User Interface Requirements given with some detail? Are there some sketches, mockups?  |
-| | |  
-|   | **Clarity** |
-| 5 | Is the document carefully written, without typos and grammatical errors? |
-| 4 | Is each part of the document in agreement with all other parts? |
-|   | Are all items clear and not ambiguous? (Minor document readability issues should be handled off-line, not in the review, e.g. spelling, grammar, and organization). |
-|   |   |
-|    | **GitHub Issues** |
-| 12 | Has the team setup their GitHub Issues page? Have they  generated the list of user stories, use-cases, created milestones, assigned use-cases (issues) to milestones?   Example GitHub repo (check the issues): https://github.com/WSU-CptS322-Fall2022/TermProjectSampleRepo/issues  |
+
+|**MaxPoints**| **Design** |
+|:---------:|:-------------------------------------------------------------------------|
+|           | Are all parts of the document in agreement with the product requirements? |
+| 10        | Is the architecture of the system described well, with the major components and their interfaces?  Is the rationale for the proposed decomposition in terms of cohesion and coupling explained well? |
+| 15        | Is the document making good use of semi-formal notation (i.e., UML diagrams)? Does the document provide a clear and complete UML component diagram illustrating the architecture of the system? |
+| 15        | Is the model (i.e., “database model”) explained well with sufficient detail? | 
+| 10        | Is the controller explained in sufficient detail?  |
+| 22        | Are all major interfaces (i.e., the routes) listed? Are the routes explained in sufficient detail? |
+| 10        | Is the view and the user interfaces explained well? Did the team provide the screenshots of the interfaces they built so far.   |
+| 5         | Is there sufficient detail in the design to start Iteration 2?   |
+| 5         | Progress report  |
+|           |   |
+|           | **Clarity** |
+|           | Is the solution at a fairly consistent and appropriate level of detail? Is the solution clear enough to be turned over to an independent group for implementation and still be understood? |
+| 5         | Is the document carefully written, without typos and grammatical errors?  |
+| 3         | Is the document well formatted? (Make sure to check your document on GitHub. You will loose points if there are formatting issues in your document.  )  |
+|           |  |
+|           | **Total** |
+|           |  |
