@@ -1,10 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Sign In</h1>
-    <!-- TODO: (milestone 3) Include the template for "login form" here...  -->
+<h1>Sign In</h1>
+        {% if form %}    
+            <form action="" method="post">
+                {{form.hidden_tag() }}
+                <div>
+                    <!--& Username section  -->
+                    {{form.username.label}} <br>
+                    {{form.username (class = 'forminput')}} <br>
 
-    <!-- TODO: (milestone 3) Add the URL for user register route. --> 
-    <p>New User? <a href="">Click to Register!</a></p>
+                    {% for errors in form.username.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                    <!--& Password section  -->
+                    {{form.password.label}} <br>
+                    {{form.password (class = 'forminput')}} <br>
+
+                    {% for errors in form.password.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+
+                    <!--& remember me section  -->
+                    {{form.remember_me.label}} <br>
+                    {{form.remember_me }} <br>
+
+                    {% for errors in form.remember_me.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+
+                    <!--& submit section  -->
+                    <p>{{form.submit (class = 'post-button' )}}</p>
+
+                </div>
+            </form>
+        {% endif %}    
+    <p>New Student? <a href="{{ url_for('auth.studentRegister')}}">Click to Register!</a></p>
+    <p>New Faculty? <a href="{{ url_for('auth.facultyRegister') }}">Click to Register!</a></p>
 {% endblock %}
 

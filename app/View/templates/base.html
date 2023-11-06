@@ -6,6 +6,7 @@
           <title> Welcome to Project Portal! </title>
        {% endif %}
        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+       {{moment.include_moment() }}
     </head>
 
     <body>
@@ -19,9 +20,9 @@
                 <td><a href="{{ url_for('routes.addfield') }}" class = "nav-link-element">Add New Research Field</a></td>
                 <td><a href="{{ url_for('auth.facultyRegister') }}" class = "nav-link-element">Faculty</a></td>
                 <td><a href="{{ url_for('auth.studentRegister') }}" class = "nav-link-element">Student</a></td>
-                <!--<td><a href="" class = "button"> Login </a></td>-->
-                <!--<td><a href="" class = "button"> Logout </a></td>-->
-                <td id="current-user"> Current user is: <span>________ </span> </td>  
+                <td><a href="{{ url_for('auth.login')}}" class = "nav-link-element"> Login </a></td>
+                <td><a href="{{ url_for('auth.logout' )}}" class = "nav-link-element"> Logout </a></td>
+                <td id="current-user"> Current user is: <span>{{ current_user.username}} </span> </td>  
             </tr>
         </table>
         </div>
