@@ -7,6 +7,7 @@ from config import Config
 from app import db
 from app.Model.models import Position, Experience, Field, Application
 from app.Controller.forms import PositionForm, ExperienceForm, FieldForm, ApplicationForm
+from flask_login import current_user, login_required
 
 bp_routes = Blueprint('routes', __name__)
 bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
@@ -62,7 +63,7 @@ def application(position_id):
     aform = ApplicationForm()
     thePosition = Position.query.filter_by(id=position_id).first()
     if aform.validate_on_submit():
-        newApplication = Application(position_id = thePosition.id, statement = aform.statement.data, referenceName = aform.referenceName.data, referenceEmail = aform.referenceEmail.data)
+        newApplication = Application(position_id = thePosition.id, student_id = current_user.id, statement = aform.statement.data, referenceName = aform.referenceName.data, referenceEmail = aform.referenceEmail.data)
         db.session.add(newApplication)
         db.session.commit()
         flash('You have applied for the research position!')

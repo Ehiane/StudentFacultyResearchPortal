@@ -22,8 +22,7 @@ positionFields = db.Table('positionFields',
 class Application(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     position_id = db.Column(db.Integer, db.ForeignKey('position.id'))
-    # student_id (milestone3)
-    # need to implement relationship between student and application (milestone 3)
+    student_id = db.Column(db.Integer, db.ForeignKey('student.id'))
     statement = db.Column(db.String(1500))
     referenceName = db.Column(db.String(20))
     referenceEmail = db.Column(db.String(50))
@@ -119,3 +118,5 @@ class Student(User):
     __mapper_args__ = {
         'polymorphic_identity': 'Student'
     }
+    # relationship between application and student
+    applications = db.relationship('Application', backref='student', lazy='dynamic')
