@@ -85,7 +85,6 @@ class User(db.Model, UserMixin):
     __mapper_args__ = {
         'polymorphic_identity': 'User',
         'polymorphic_on': user_type
-        
     }
     
     def __repr__(self):

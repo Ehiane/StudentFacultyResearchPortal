@@ -15,8 +15,8 @@ bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
 @bp_routes.route('/', methods=['GET'])
 @bp_routes.route('/index', methods=['GET'])
 def index():
-    #positions = Position.query.order_by(Position.title.desc())
-    return render_template('index.html', title="Project Portal")#, positions=positions.all())
+    positions = Position.query.order_by(Position.title.desc())
+    return render_template('index.html', title="Project Portal", positions=positions.all())
 
 @bp_routes.route('/postposition', methods=['GET','POST'])
 def postposition():
