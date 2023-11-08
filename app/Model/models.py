@@ -51,6 +51,7 @@ class Position(db.Model):
     fields = db.relationship('models.Field',secondary=positionFields, primaryjoin=(positionFields.c.position_id == id), backref=db.backref('positionFields', lazy='dynamic'), lazy='dynamic')
     experiences = db.relationship('models.Experience',secondary=positionExperiences, primaryjoin=(positionExperiences.c.position_id == id), backref=db.backref('positionExperiences', lazy='dynamic'), lazy='dynamic')
     qualifications = db.Column(db.String(300))
+    faculty_id = db.Column(db.Integer, db.ForeignKey('faculty.id'))
     facultyName = db.Column(db.String(30))
     facultyContact = db.Column(db.String(50))
     # One to many relationship between position and applications
@@ -120,6 +121,9 @@ class Faculty(User):
     __mapper_args__ = {
         'polymorphic_identity': 'Faculty'
     }
+    # relationship between faculty and position
+    positions = db.relationship('Position', backref='faculty', lazy='dynamic')
+
 
 class Student(User):
     __tablename__ = 'student'
