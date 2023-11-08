@@ -38,8 +38,8 @@ Prepared by:
 
 | Name | Date | Changes | Version |
 | ------ | ------ | --------- | --------- |
-|Revision 1 |2021-10-05 |Initial draft | 1.0        |
-|      |      |         |         |
+|Revision 1 |2021-10-05 |Initial draft | 1.0 |
+|Revision 2 |2023-11-07 |First Revision| 2.0 |
 |      |      |         |         |
 
 
@@ -159,7 +159,26 @@ For each subsystem:
 **Note:** Some of your subsystems will interact with the Web clients (browsers). Make sure to include a detailed description of the routes your application will implement. For each route specify its “methods”, “URL path”, and “a description of the operation it implements”.  
 You can use the following table template to list your route specifications. 
 
-(***in iteration-1***) Brainstorm with your team members and identify all routes you need to implement for the completed application and explain each route briefly. If you included most of the major routes but you missed only a few, it maybe still acceptable. 
+(***iteration-1***)
+|   | Methods           | URL Path   | Description  |
+|:--|:------------------|:-----------|:-------------|
+| 1. | Register as Faculty | auth.facultyRegistration | Allows the user to access the faculty registration page and create a new faculty account, upon creation they are redirected to the faculty login page. |
+| 2. | Sign in as Faculty | auth.facultyLogin | Allows previously registered faculty users to sign in using previously created log in credentials, system assigns current_user attributes to the created user/faculty accounts (objects). Upon sign in, they are redirected to the faculty home page. |
+| 3. | Register as Student | auth.studentRegistration | Allows the user to access the student registration page and create a new student account, upon creation they are redirected to the student login page. |
+| 4. | Sign in as Student | auth.studentLogin | Allows previously registered student users to sign in using previously created log in credentials, system assigns current_user attributes to the created user/student accounts (objects). Upon sign in, they are redirected to the student home page. |
+| 5. | Faculty Post Position | routes.postposition | Allows logged in faculty users to create a new position using the post position form. Created forms are then posted to the "View Positions" page, allowing students to apply to them. |
+| 6. | Student Apply for Position | routes.application | Allows student user to apply to post using the application form, upon submission the application is viewable to them in a "View Application" page, as well as to the faculty user who posted the position. |
+| 7. | Faculty add Experience | routes.addexperience | Allows faculty users to add an experience to the database that can be used in the creation of their positions. Helpful for positions that are unique with experiences that aren't currently part of the database. |
+| 8. | Faculty add Research Field | routes.addfield | Allows faculty users to add a research field to the database that can be used in the creation of their positions. Helpful for positions that are unique with research fields that aren't currently part of the database. |
+| 9. | Faculty delete Position | routes.deleteposition | Allows logged in faculty members with previously created positions to delete them at their own discretion. A fauclty member can only delete their own posts. |
+| 10. | Student can view open Positions | routes.index | Allows student users to view all open research positions and apply for them. The user can additionally filter the positions by their previously selected research interests. |
+| 11. | Student can Withdraw Applications | routes.studentwithdraw/<position_id> | A student user with previously created applications can indicate they want to withdraw an application, allowing them to delete it from the positions application pool.  |
+| 12. | Faculty can view applications to a created position. | routes.positionapplications/<application_id> | A faculty user with a previously created position with applications already submitted by student users can view information about the applications submitted.|
+| 13. | Faculty can view information on Student Users that have applied to their positions | routes.viewstudent/<student_id> | A faculty user with a previously created position with applications already submitted by student users can view information about the applicants based on their student profile. |
+| 14. | Faculty member can change the status of a student application. | routes.changestatus/<application_id> | A faculty user with a previously created position with applications already submitted by student users can change the status of multiple applications to "Approved for Interview". |
+| 15. | Faculty member can indicate whether an approved student has been "Hired" or "Not Hired" | routes.hirestudent/<application_id> | A faculty user with a previously created position with applications already submitted and approved by student users can change the status of the students application to either "Hired" or "Not Hired". |
+
+(***in iteration-2***) Revision
 
 |   | Methods           | URL Path   | Description  |
 |:--|:------------------|:-----------|:-------------|
@@ -173,22 +192,11 @@ You can use the following table template to list your route specifications.
 | 8. | Faculty add Research Field | routes.addfield | Allows faculty users to add a research field to the database that can be used in the creation of their positions. Helpful for positions that are unique with research fields that aren't currently part of the database. |
 | 9. | Faculty delete Position | routes.deleteposition | Allows logged in faculty members with previously created positions to delete them at their own discretion. A fauclty member can only delete their own posts. |
 | 10. | Student can view open Positions | routes.index | Allows student users to view all open research positions and apply for them. The user can additionally filter the positions by their previously selected research interests. |
-| 11. | Student can Withdra Applications | routes.studentwithdraw/<position_id> | A student user with previously created applications can indicate they want to withdraw an application, allowing them to delete it from the positions application pool.  |
+| 11. | Student can Withdraw Applications | routes.studentwithdraw/<position_id> | A student user with previously created applications can indicate they want to withdraw an application, allowing them to delete it from the positions application pool.  |
 | 12. | Faculty can view applications to a created position. | routes.positionapplications/<application_id> | A faculty user with a previously created position with applications already submitted by student users can view information about the applications submitted.|
 | 13. | Faculty can view information on Student Users that have applied to their positions | routes.viewstudent/<student_id> | A faculty user with a previously created position with applications already submitted by student users can view information about the applicants based on their student profile. |
 | 14. | Faculty member can change the status of a student application. | routes.changestatus/<application_id> | A faculty user with a previously created position with applications already submitted by student users can change the status of multiple applications to "Approved for Interview". |
 | 15. | Faculty member can indicate whether an approved student has been "Hired" or "Not Hired" | routes.hirestudent/<application_id> | A faculty user with a previously created position with applications already submitted and approved by student users can change the status of the students application to either "Hired" or "Not Hired". |
-
-(***in iteration-2***) Revise your route specifications, add the missing routes to your list, and update the routes you modified. Make sure to provide sufficient detail for each route. In iteration-2, you will be deducted points if you don’t include all major routes needed for implementing the required use-cases or if you haven’t described them in detail.
-
-|   | Methods           | URL Path   | Description  |
-|:--|:------------------|:-----------|:-------------|
-|1. |                   |            |              |
-|2. |                   |            |              |
-|3. |                   |            |              |
-|4. |                   |            |              |
-|5. |                   |            |              |
-|6. |                   |            |              |
 
 
 ## 2.2.3 View and User Interface Design
@@ -242,10 +250,6 @@ By providing this additional information, you have a clear technology stack and 
 Write a short paragraph summarizing your progress in iteration1 / iteration2.
 
 # 4. Testing Plan
-
-(***in iteration 1***)
-Don't include this section.
-
 (***in iteration 2***)
 In this section , provide a brief description of how you plan to test the system. Thought should be given to mostly how automatic testing can be carried out, so as to maximize the limited number of human hours you will have for testing your system. Consider the following kinds of testing:
   * *Unit Testing*: Explain for what modules you plan to write unit tests, and what framework you plan to use.  (Each team should write automated tests (at least) for testing the routes)

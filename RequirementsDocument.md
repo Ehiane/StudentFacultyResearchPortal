@@ -119,20 +119,6 @@ Each use case should also have a field called "Iteration" where you specify in w
 
 You may use the following table template for your use cases. Copy-paste this table for each use case you will include in your document.
 
-| Use case # 1      |   |
-| ------------------ |--|
-| Name              | "enter your reponse here"  |
-| Users             | "enter your reponse here"  |
-| Rationale         | "enter your reponse here"  |
-| Triggers          | "enter your reponse here"  |
-| Preconditions     | "enter your reponse here"  |
-| Actions           | "enter your reponse here"  |
-| Alternative paths | "enter your reponse here"  |
-| Postconditions    | "enter your reponse here"  |
-| Acceptance tests  | "enter your reponse here"  |
-| Iteration         | "enter your reponse here"  |
-
-
 Regular User:
 8. On the student page, a student user can: Create a student account and enter their profile information
 1. Set the account username and password (username should be the WSU email)
@@ -185,7 +171,6 @@ Regular User (Student):
 For Milestone 3:
 1. In addition, it should identify the research positions that match the student’s “research interests” and list them separately under the “Recommended Research Positions”. You can implement a simple recommendation algorithm to find the matching positions. For example: If the student’s research interests include “Machine Learning”, the positions in that field should be recommended to the student. Similarly, if the position requires Python experience and if the student chose Python in their profile, the position should be recommended to the student. 
 | Name | Add Review |
-|--------|--------|
 | Users | Student |
 | Rationale | When a registered and logged in student wants to view open research positions that align with their own interests. |
 | Triggers | The user intends to view research positions that align with their interests. |
