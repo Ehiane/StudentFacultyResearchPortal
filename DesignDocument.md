@@ -247,7 +247,7 @@ By providing this additional information, you have a clear technology stack and 
 
 # 3. Progress Report
 
-Write a short paragraph summarizing your progress in iteration1 / iteration2.
+After two iterations of work on our term project we have made a lot of progress. We have successfully implemented our user models, student and faculty, that inherit from a base user class. We have implemented both log in and log out functionality for our user models as well. Users are able to create new positions for students to apply for. Users are also able to view and apply for research positions.Users are also able to create new research topics, and new experience fields to be added to the choices already available.
 
 # 4. Testing Plan
 (***in iteration 2***)
@@ -261,13 +261,6 @@ We plan on unit testing all of the routes we have implemented in routes.py and a
 We will also unit test our models in models.py. We will attempt to create both a student account and a faculty account, and check to see if they are successfully added to our database. After that, we will attempt to login using the credentials we created, and check to see if we are able to successfully log in. We will also attempt to log in using incorrect credentials to make sure we cannot log in. We will then use our faculty account to post a new position. We will test this by checking the database, making sure the number of posts increases and that the post's information is correct. Next we will have our student account apply for a position then check to see if the number of applications in the database increases and that the information is all correct. We will also check to see that the student is able to see their application, and that the faculty member is able to see the student's application. We will also test our add experience and research topic functionality, by simply creating a new experience/topic then checking the database, confirming it was added and is correct.
 
 We will use both pytest and unittest to carry out these tests. 
-
-Student applying to position
-Faculty member creating a position
-Log in
-Log out
-Adding new experience
-Adding new research fields
 
 # 5. References
 
