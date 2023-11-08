@@ -7,7 +7,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 from app import db
 from app.Model.models import User, Faculty, Student, Field, Experience
-from app.Controller.auth_forms import FacultyRegistrationForm, StudentRegistrationForm
+from app.Controller.auth_forms import FacultyRegistrationForm, StudentRegistrationForm, LoginForm
 
 bp_auth = Blueprint('auth', __name__)
 bp_auth.template_folder = Config.TEMPLATE_FOLDER 
