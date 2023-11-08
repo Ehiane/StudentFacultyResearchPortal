@@ -138,7 +138,8 @@ Briefly explain the role of the model.
 
 (***in iteration -2***) Revise the database model. Provide a UML diagram of your database model showing the associations and relationships among tables. Your UML diagram should also show the methods of your models.
 
-![alt text](Screenshot 2023-11-07 202940.png)
+![Screenshot 2023-11-07 202940](https://github.com/WSU-CptS-322-Fall-2023/termproject-teamsioux/assets/79903725/863d88f3-632f-4e19-a1a2-2a9c093b1360)
+
 
 ### 2.2.2 Controller
 
