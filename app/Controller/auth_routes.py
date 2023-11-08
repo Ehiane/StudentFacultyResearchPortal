@@ -3,6 +3,7 @@ import sys
 from flask import Blueprint
 from flask import render_template, flash, redirect, url_for
 from config import Config
+from flask_login import login_user, current_user, logout_user, login_required
 
 from app import db
 from app.Model.models import User, Faculty, Student, Field, Experience
@@ -61,3 +62,31 @@ def studentRegister():
         flash('Congratulations, you are now registered as a student user!')
         return redirect(url_for('routes.index'))
     return render_template('studentRegister.html', form = srform)
+
+# ----------------------------------------Ehiane-Login-Attempt------------------------------------------- #
+@bp_auth.route('/login',methods=['GET','POST'])
+def login():
+    #recognized user
+    if current_user.is_authenticated:
+        flash(" User is already logged in")
+        return redirect(url_for("routes.index"))
+    #unrecognized user
+    lform = LoginForm()
+    if lform.validate_on_submit():
+        user = User.query.filter_by(username = lform.username.data).first()
+        # if login fails
+        if (user is None) or (user.check_password(lform.password.data) == False):
+            flash("Invalid username or password")
+            return redirect(url_for("auth.login"))
+        # if login succeeds
+        else:
+            login_user(user, remember=lform.remember_me.data)
+            flash(f"Login Successful for {user.username}")
+            return redirect(url_for("routes.index"))
+    return render_template("login.html", title = "Sign In", form=lform)
+
+@bp_auth.route('/logout',methods=['GET','POST'])
+def logout():
+    logout_user()
+    flash(f"Successfully logged out!")
+    return redirect(url_for("auth.login"))

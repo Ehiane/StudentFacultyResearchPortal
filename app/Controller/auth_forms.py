@@ -51,3 +51,11 @@ class StudentRegistrationForm(FlaskForm):
         user1 = User.query.filter_by(email=email.data).first()
         if user1 is not None:
             raise ValidationError('The email already exists! Please use a different email address.')
+        
+
+# ----------------------------------------Ehiane-Login-Attempt------------------------------------------- #
+class LoginForm(FlaskForm): 
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    remember_me = BooleanField('Remember Me')
+    submit = SubmitField("Sign In")

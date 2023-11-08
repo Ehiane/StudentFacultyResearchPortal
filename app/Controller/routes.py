@@ -7,6 +7,7 @@ from config import Config
 from app import db
 from app.Model.models import Position, Experience, Field, Application
 from app.Controller.forms import PositionForm, ExperienceForm, FieldForm, ApplicationForm
+from flask_login import current_user, login_required
 
 bp_routes = Blueprint('routes', __name__)
 bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
@@ -15,8 +16,8 @@ bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
 @bp_routes.route('/', methods=['GET'])
 @bp_routes.route('/index', methods=['GET'])
 def index():
-    #positions = Position.query.order_by(Position.title.desc())
-    return render_template('index.html', title="Project Portal")#, positions=positions.all())
+    positions = Position.query.order_by(Position.title.desc())
+    return render_template('index.html', title="Project Portal", positions=positions.all())
 
 @bp_routes.route('/postposition', methods=['GET','POST'])
 def postposition():
@@ -62,7 +63,7 @@ def application(position_id):
     aform = ApplicationForm()
     thePosition = Position.query.filter_by(id=position_id).first()
     if aform.validate_on_submit():
-        newApplication = Application(position_id = thePosition.id, statement = aform.statement.data, referenceName = aform.referenceName.data, referenceEmail = aform.referenceEmail.data)
+        newApplication = Application(position_id = thePosition.id, student_id = current_user.id, statement = aform.statement.data, referenceName = aform.referenceName.data, referenceEmail = aform.referenceEmail.data)
         db.session.add(newApplication)
         db.session.commit()
         flash('You have applied for the research position!')
