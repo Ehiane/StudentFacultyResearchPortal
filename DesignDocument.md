@@ -86,15 +86,7 @@ In this section:
 
 Briefly explain the role of the model. 
 
-(***in iteration-1***) Include a list of the tables (models) in your database and explain the role of each table. Provide the attributes of the tables (including relationships). 
-
-| Model: | text |
-| -- |--|
-| Role: | text |
-| Attributes: | text |
-| Relationships: | text |
-| Notes: | text |
-
+(***iteration-1***) 
 | Model: | Position |
 | -- |--|
 | Role: | Holds all relevant information pertaining to each individual position, such as title, description, timecommitment, etc. |
@@ -156,8 +148,6 @@ For each subsystem:
     * which other subsystems does it interact with?  
     * what are the interdependencies between them? 
 
-**Note:** Some of your subsystems will interact with the Web clients (browsers). Make sure to include a detailed description of the routes your application will implement. For each route specify its “methods”, “URL path”, and “a description of the operation it implements”.  
-You can use the following table template to list your route specifications. 
 
 (***iteration-1***)
 |   | Methods           | URL Path   | Description  |
@@ -234,6 +224,16 @@ Within our project, we have a set of HTML templates that play essential roles in
 7. **`create.html`**: This form template is responsible for collecting and organizing information about research positions, facilitating the creation and management of opportunities.
 
 8. **`addfield.html`**: Designed to offer flexibility in research fields, this template empowers users to add additional research categories, enriching the diversity of opportunities.
+
+9. **`application.html`**: This page template is designed for prospective applicants interested in research positions.
+
+10. **`facultyInfo.html`**: This page template displays the contact information of faculty incharge of a position. 
+
+11. **`facultyRegister.html`**: This page template is dedicated to faculty members who wish to register with the organization. It provides a user-friendly form for faculty to enter their registration details, including personal information, contact details, and login credentials, facilitating their registration process within the institution.
+
+12. **`index.html`**: This page template serves as the welcoming interface for users of the website. It prominently displays a welcoming message and a list of available positions within the project.
+
+13. **`studentRegister.html`**: This page template is designed for students who want to register inorder to apply for positions. 
 
 These templates collectively shape the user interface and interaction within the "Online Faculty Research Connection Platform," ensuring a seamless and intuitive experience for both students and faculty members.
 
