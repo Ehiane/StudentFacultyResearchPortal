@@ -141,6 +141,55 @@ Briefly explain the role of the model.
 ![Screenshot 2023-11-07 202940](https://github.com/WSU-CptS-322-Fall-2023/termproject-teamsioux/assets/79903725/863d88f3-632f-4e19-a1a2-2a9c093b1360)
 
 
+| Model: | Position |
+| -- |--|
+| Role: | Holds all relevant information pertaining to each individual position, such as title, description, timecommitment, etc. |
+| Attributes: | id, title, startDate, endDate, timeCommitment, *fields*, *experiences*, qualifications, facultyName, facultyContact, *applications* |
+| Relationships: | fields: Many-to-Many relationship, each position can have many fields, likewise, the fields can have have many positions they are connected to. experiences: Many-to-Many relationship, each position can have many experiences, likewise, the experiences can have have many positions they are connected to. applications: One-to-Many: Each position can have many applications, but each application can only go to one position. |
+| Notes: | This model additionally has 3 functions for each of the relationships, get_experiences, get_fields, and get_applications, all return a list of all that are connected to the position. |
+
+| Model: | Application |
+| -- |--|
+| Role: | Holds information relevant to each application connected to a posted research position. |
+| Attributes: | id, *position_id*, *student_id*, statement, referenceName, referenceEmail |
+| Relationships: | position_id: serves as Table connecting each application to a position in a Many-to-One relationship, each position can have multiple applications. student_id: serves as Table connecting each application to a student in a One-to-One relationship, each position can have a single student connection. |
+| Notes: | text |
+
+| Model: | Experience |
+| -- |--|
+| Role: | All experiences in the application are part of this model to allow faculty users to add more as they see fit if an experience isn't already available to include in their position post. |
+| Attributes: | id, name, *positions*, *students* |
+| Relationships: | positions: serves as connection in Many-to-Many relationship with each position, allowing every experience to be part of many different position posts. students: serves as connection in Many-to-Many relationship with each student, allowing every experience to be part of many different student profiles. |
+| Notes: | additionally includes __repr__ function for printing on form. |
+
+| Model: | Field |
+| -- |--|
+| Role: | All research fields in the application are part of this model to allow faculty users to add more as they see fit if an research field isn't already available to include in their position post. |
+| Attributes: | id, name, *positions*, *students* |
+| Relationships: | positions: serves as connection in Many-to-Many relationship with each position, allowing every field to be part of many different position posts. students: serves as connection in Many-to-Many relationship with each student, allowing every field to be part of many different student profiles. |
+| Notes: | additionally includes __repr__ function for printing on form. |
+
+| Model: | User |
+| -- |--|
+| Role: | Serves as base for both Faculty and Student models in the program. |
+| Attributes: | __table_name__, id, username, password_hash, firstName, lastName, wsuID, email, phone, __mapper_args__ |
+| Relationships: | __table_name__: name of the part of table (User), acts as base model. __mapper_args__: identity relationship connecting student/faculty to the base model. |
+| Notes: | Model also includes functions for getting/setting the password, as well as checking the password and printing user info. |
+
+| Model: | Faculty |
+| -- |--|
+| Role: | Serves as model for additional faculty information built upon the user model. |
+| Attributes: | __table_name__, id, department, __mapper_args__, *positions* |
+| Relationships: | __table_name__: name of the part of table (Faculty), that relates it to the base user model. __mapper_args__: identity relationship connecting faculty to user base model. positions: one to many relationship between a faculty and their positions, one faculty can create and be connected to many positions. |
+| Notes: | N/A |
+
+| Model: | Student |
+| -- |--|
+| Role: | Serves as model for additional student information built upon the user model. |
+| Attributes: | __table_name__, id, GPA, grad_date, *experiences*, *fields*, __mapper_args__, *applications* |
+| Relationships: | __table_name__: name of the part of table (Student), that relates it to the base user model. experiences: allows user to select from the existing list of experiences to add to their profile, helpful for faculty viewing when they apply for a position. fields: allows the user to select from the existing list of research fields to add to their profile, used for viewing related positions on "View Positions" page. __mapper_args__: identity relationship connecting student to user base model. applications: one to many relationship between a student and their applications, one student can create and be connected to many applications. |
+| Notes: | N/A |
+
 ### 2.2.2 Controller
 
 Briefly explain the role of the controller. If your controller is decomposed into smaller subsystems (similar to the Smile App design we discussed in class), list each of those subsystems as subsections. 
