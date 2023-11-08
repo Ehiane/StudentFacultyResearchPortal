@@ -247,7 +247,7 @@ By providing this additional information, you have a clear technology stack and 
 
 # 3. Progress Report
 
-Write a short paragraph summarizing your progress in iteration1 / iteration2.
+After two iterations of work on our term project we have made a lot of progress. We have successfully implemented our user models, student and faculty, that inherit from a base user class. We have implemented both log in and log out functionality for our user models as well. Users are able to create new positions for students to apply for. Users are also able to view and apply for research positions.Users are also able to create new research topics, and new experience fields to be added to the choices already available.
 
 # 4. Testing Plan
 (***in iteration 2***)
@@ -261,13 +261,14 @@ In our development plan, we aim to conduct unit testing for all the routes imple
 Additionally, we will extend our unit testing to cover the models defined in 'models.py.' Our tests will involve creating both student and faculty accounts and verifying their successful insertion into our database. We will also test the login process, ensuring that valid credentials grant access while incorrect ones are rejected. Further tests will include posting new positions using a faculty account, tracking changes in the database, and confirming the accuracy of the post's information. We will also test the application process, confirming that the number of applications in the database increases as expected, that application details are correct, and that both students and faculty members can access and view relevant application information. Finally, we will validate the functionality related to adding experiences and research topics by creating new entries and confirming their accurate addition to the database.
 
 
-We will use both pytest and unittest to carry out these tests:
-* Student applying to position
-* Faculty member creating a position
-* Log in
-* Log out
-* Adding new experience
-* Adding new research fields
+We will use both pytest and unittest to carry out these tests. 
+
+Student applying to position
+Faculty member creating a position
+Log in
+Log out
+Adding new experience
+Adding new research fields
 
 # 5. References
 
