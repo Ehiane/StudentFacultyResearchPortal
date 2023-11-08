@@ -4,15 +4,34 @@
 
     <div class="index-body-section">
         <h1>Welcome to {project name}!</h1>
-
-        <h2>Available Positions: </h2>
-
-        
-        {% for position in positions %}
-            <div class="post-box">
-                {% include '_position.html' %}
-            </div>
-        {% endfor %}
+        {% if current_user.is_authenticated %}
+            <h2>Available Positions: </h2>
+            {% for position in positions %}
+                <div class="post-box">
+                    {% include '_position.html' %}
+                </div>
+            {% endfor %}
+        {% else %}
+        <h2>Please register or sign in to view/create open positions. </h2>
+        {% endif %}
+        <!-- Will ad later{% if current_user.user_type == 'Student' %}
+            <h2>Available Positions: </h2>
+            {% for position in positions %}
+                <div class="post-box">
+                    {% include '_position.html' %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <h2>Available Positions: </h2>
+            {% for position in positions %}
+                {% if position.faculty_id == current_user.id %}
+                    <div class="post-box">
+                        {% include '_position.html' %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        -->
 
     </div>
     

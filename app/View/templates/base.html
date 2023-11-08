@@ -13,30 +13,35 @@
         <div class ="nav-container">
         <table>
             <tr>
-                <td><img src="../static/img/wsu_navbar_logo.png" alt="wsu_navbar_logo"></td>
-                <td><a href="{{ url_for('routes.index') }}" class = "nav-link-element">Open Positions</a></td>
-                <td><a href="{{ url_for('routes.postposition') }}" class = "nav-link-element"> Post Position </a></td>
-                <td><a href="{{ url_for('routes.addexperience') }}" class = "nav-link-element">Add New Experience</a></td>
-                <td><a href="{{ url_for('routes.addfield') }}" class = "nav-link-element">Add New Research Field</a></td>
-                <td><a href="{{ url_for('auth.facultyRegister') }}" class = "nav-link-element">Faculty</a></td>
-                <td><a href="{{ url_for('auth.studentRegister') }}" class = "nav-link-element">Student</a></td>
-                <td><a href="{{ url_for('auth.login')}}" class = "nav-link-element"> Login </a></td>
-                <td><a href="{{ url_for('auth.logout' )}}" class = "nav-link-element"> Logout </a></td>
-                <td id="current-user"> Current user is: <span>{{ current_user.username}} </span> </td>  
+                <td><a href="{{ url_for('routes.index') }}"><img src="../static/img/wsu_navbar_logo.png" alt="wsu_navbar_logo"></a></td>
+                {% if current_user.is_anonymous %}
+                    <td><a href="{{ url_for('auth.facultyRegister') }}" class = "nav-link-element">Faculty Register</a></td>
+                    <td><a href="{{ url_for('auth.studentRegister') }}" class = "nav-link-element">Student Register</a></td>
+                    <td><a href="{{ url_for('auth.login')}}" class = "nav-link-element"> Login </a></td>
+                {% else %}
+                    {% if current_user.user_type == 'Student' %}
+                        <td><a href="{{ url_for('routes.index') }}" class = "nav-link-element">Open Positions</a></td>
+                    {% else %}
+                        <td><a href="{{ url_for('routes.postposition') }}" class = "nav-link-element"> Post Position </a></td>
+                        <td><a href="{{ url_for('routes.addexperience') }}" class = "nav-link-element">Add New Experience</a></td>
+                        <td><a href="{{ url_for('routes.addfield') }}" class = "nav-link-element">Add New Research Field</a></td>
+                    {% endif %}
+                    <td><a href="{{ url_for('auth.logout' )}}" class = "nav-link-element"> Logout </a></td>
+                    <td id="current-user"> Current user is: <span>{{ current_user.username}} </span> </td>  
+                {% endif %}  
             </tr>
         </table>
         </div>
         <div class="project-body">
             {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                <div> {{ message }}</div>
-                {% endfor %}
-            {% endif %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div> {{ message }}</div>
+                    {% endfor %}
+                {% endif %}
             {% endwith %}
 
             {% block content %} {% endblock %}
         </div>
-
     </body>
 </html>
