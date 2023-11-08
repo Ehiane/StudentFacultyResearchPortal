@@ -138,6 +138,8 @@ Briefly explain the role of the model.
 
 (***in iteration -2***) Revise the database model. Provide a UML diagram of your database model showing the associations and relationships among tables. Your UML diagram should also show the methods of your models.
 
+![alt text](Screenshot 2023-11-07 202940.png)
+
 ### 2.2.2 Controller
 
 Briefly explain the role of the controller. If your controller is decomposed into smaller subsystems (similar to the Smile App design we discussed in class), list each of those subsystems as subsections. 
