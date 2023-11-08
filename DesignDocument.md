@@ -6,8 +6,7 @@ Prepared by:
 
 * `Will Rae`,`Team Sioux`
 * `Ehiane Oigiagbe`,`Team Sioux`
-* `<author1>`,`<organization>`
-* `<author1>`,`<organization>`
+* `Cole Logan`,`Team Sioux`
 ---
 
 **Course** : CptS 322 - Software Engineering Principles I
@@ -252,10 +251,23 @@ Write a short paragraph summarizing your progress in iteration1 / iteration2.
 
 # 4. Testing Plan
 (***in iteration 2***)
-In this section , provide a brief description of how you plan to test the system. Thought should be given to  mostly how automatic testing can be carried out, so as to maximize the limited number of human hours you will have for testing your system. Consider the following kinds of testing:
+In this section , provide a brief description of how you plan to test the system. Thought should be given to mostly how automatic testing can be carried out, so as to maximize the limited number of human hours you will have for testing your system. Consider the following kinds of testing:
   * *Unit Testing*: Explain for what modules you plan to write unit tests, and what framework you plan to use.  (Each team should write automated tests (at least) for testing the routes)
   * *Functional Testing*: How will you test your system to verify that the use cases are implemented correctly? 
   * *UI Testing*: How do you plan to test the user interface?  (Manual tests are OK)
+
+We plan on unit testing all of the routes we have implemented in routes.py and auth_routes.py. We will be doing this similarly to the route testing in the smile app project. In these tests we will travel down each route, then check the response status code to make sure it is the correct value. We will shoot for all of the routes sending a 200 code, signalling success.
+
+We will also unit test our models in models.py. We will attempt to create both a student account and a faculty account, and check to see if they are successfully added to our database. After that, we will attempt to login using the credentials we created, and check to see if we are able to successfully log in. We will also attempt to log in using incorrect credentials to make sure we cannot log in. We will then use our faculty account to post a new position. We will test this by checking the database, making sure the number of posts increases and that the post's information is correct. Next we will have our student account apply for a position then check to see if the number of applications in the database increases and that the information is all correct. We will also check to see that the student is able to see their application, and that the faculty member is able to see the student's application. We will also test our add experience and research topic functionality, by simply creating a new experience/topic then checking the database, confirming it was added and is correct.
+
+We will use both pytest and unittest to carry out these tests. 
+
+Student applying to position
+Faculty member creating a position
+Log in
+Log out
+Adding new experience
+Adding new research fields
 
 # 5. References
 
