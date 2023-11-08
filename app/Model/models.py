@@ -19,6 +19,18 @@ positionFields = db.Table('positionFields',
     db.Column('field_id', db.Integer, db.ForeignKey('field.id'))
 )
 
+# Table of Many-to-Many relationship for Student and Experiences model
+studentExperiences = db.Table('studentExperiences',
+    db.Column('student_id', db.Integer, db.ForeignKey('student.id')),
+    db.Column('experience_id', db.Integer, db.ForeignKey('experience.id'))
+)
+
+# Table of Many-to-Many relationship for Student and Research Fields model
+studentFields = db.Table('studentFields',
+    db.Column('student_id', db.Integer, db.ForeignKey('student.id')),
+    db.Column('field_id', db.Integer, db.ForeignKey('field.id'))
+)
+
 class Application(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     position_id = db.Column(db.Integer, db.ForeignKey('position.id'))
@@ -56,6 +68,7 @@ class Experience(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20))
     positions = db.relationship('models.Position', secondary=positionExperiences, primaryjoin=(positionExperiences.c.experience_id == id), backref=db.backref('positionExperiences', lazy='dynamic'), lazy='dynamic')
+    students = db.relationship('models.Student', secondary=studentExperiences, primaryjoin=(studentExperiences.c.experience_id == id), backref=db.backref('studentExperiences', lazy='dynamic'), lazy='dynamic')
     def __repr__(self):
        return '{}'.format(self.name)
    
@@ -63,6 +76,7 @@ class Field(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20))
     positions = db.relationship('models.Position', secondary=positionFields, primaryjoin=(positionFields.c.field_id == id), backref=db.backref('positionField', lazy='dynamic'), lazy='dynamic')
+    students = db.relationship('models.Student', secondary=studentFields, primaryjoin=(studentFields.c.field_id == id), backref=db.backref('studentField', lazy='dynamic'), lazy='dynamic')
     def __repr__(self):
        return '{}'.format(self.name)
    
@@ -108,7 +122,7 @@ class Faculty(User):
     __mapper_args__ = {
         'polymorphic_identity': 'Faculty'
     }
-    
+
 class Student(User):
     __tablename__ = 'student'
     # Hidden ID
@@ -116,6 +130,9 @@ class Student(User):
     # Student Info
     gpa = db.Column(db.String(10))
     grad_date = db.Column(db.String(30))
+    # Further Info
+    fields = db.relationship('models.Field',secondary=studentFields, primaryjoin=(studentFields.c.student_id == id), backref=db.backref('studentFields', lazy='dynamic'), lazy='dynamic')
+    experiences = db.relationship('models.Experience',secondary=studentExperiences, primaryjoin=(studentExperiences.c.student_id == id), backref=db.backref('studentExperiences', lazy='dynamic'), lazy='dynamic')
     # Relationship
     __mapper_args__ = {
         'polymorphic_identity': 'Student'

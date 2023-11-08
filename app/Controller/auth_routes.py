@@ -5,7 +5,7 @@ from flask import render_template, flash, redirect, url_for
 from config import Config
 
 from app import db
-from app.Model.models import User, Faculty, Student
+from app.Model.models import User, Faculty, Student, Field, Experience
 from app.Controller.auth_forms import FacultyRegistrationForm, StudentRegistrationForm
 
 bp_auth = Blueprint('auth', __name__)
@@ -49,6 +49,13 @@ def studentRegister():
         newStudent.user_type = "Student"
         # Set Password
         newStudent.set_password(srform.password.data)
+        # Set Relation Stuff
+        for x in srform.experience.data:
+            e = Experience.query.filter_by(name=x.name).first()
+            newStudent.experiences.append(e)
+        for y in srform.field.data:
+            f = Field.query.filter_by(name=y.name).first()
+            newStudent.fields.append(f)
         db.session.add(newStudent)
         db.session.commit()
         flash('Congratulations, you are now registered as a student user!')
