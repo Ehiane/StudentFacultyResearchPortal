@@ -256,11 +256,19 @@ In this section , provide a brief description of how you plan to test the system
   * *Functional Testing*: How will you test your system to verify that the use cases are implemented correctly? 
   * *UI Testing*: How do you plan to test the user interface?  (Manual tests are OK)
 
-We plan on unit testing all of the routes we have implemented in routes.py and auth_routes.py. We will be doing this similarly to the route testing in the smile app project. In these tests we will travel down each route, then check the response status code to make sure it is the correct value. We will shoot for all of the routes sending a 200 code, signalling success.
+In our development plan, we aim to conduct unit testing for all the routes implemented in 'routes.py' and 'auth_routes.py.' This testing approach will be similar to the one employed in the 'smile app' project. For each route, we will simulate requests, navigate through the route, and then validate the response's status code to ensure it returns the expected 200 status code, indicating success. By thoroughly testing our routes, we can ensure that the core functionality of our web application is functioning as intended.
 
-We will also unit test our models in models.py. We will attempt to create both a student account and a faculty account, and check to see if they are successfully added to our database. After that, we will attempt to login using the credentials we created, and check to see if we are able to successfully log in. We will also attempt to log in using incorrect credentials to make sure we cannot log in. We will then use our faculty account to post a new position. We will test this by checking the database, making sure the number of posts increases and that the post's information is correct. Next we will have our student account apply for a position then check to see if the number of applications in the database increases and that the information is all correct. We will also check to see that the student is able to see their application, and that the faculty member is able to see the student's application. We will also test our add experience and research topic functionality, by simply creating a new experience/topic then checking the database, confirming it was added and is correct.
+Additionally, we will extend our unit testing to cover the models defined in 'models.py.' Our tests will involve creating both student and faculty accounts and verifying their successful insertion into our database. We will also test the login process, ensuring that valid credentials grant access while incorrect ones are rejected. Further tests will include posting new positions using a faculty account, tracking changes in the database, and confirming the accuracy of the post's information. We will also test the application process, confirming that the number of applications in the database increases as expected, that application details are correct, and that both students and faculty members can access and view relevant application information. Finally, we will validate the functionality related to adding experiences and research topics by creating new entries and confirming their accurate addition to the database.
+
 
 We will use both pytest and unittest to carry out these tests. 
+
+Student applying to position
+Faculty member creating a position
+Log in
+Log out
+Adding new experience
+Adding new research fields
 
 # 5. References
 
