@@ -1,4 +1,8 @@
 /* Google Fonts Imports */
+
+/* QUICKSAND FONT - for flash message */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
 /* roboto slab font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 /* Lora font */
@@ -139,6 +143,22 @@ a:hover {
     color: white;
     cursor:pointer;
 }
+
+
+.flash-container{
+    
+    background-color: rgb(251, 251, 76);
+    height: fit-content;
+    width: fit-content;
+    font-family: 'Quicksand', sans-serif;
+    border: transparent 2px solid;
+    border-radius: 10px;
+    padding: 0.5rem;
+    margin: auto;
+    position: relative;
+    top: 10px;
+}
+
 
 /* ---------------------------------------------------------------------------------POST SECTION ----------------------------------------------------------*/
 .posttable {     
