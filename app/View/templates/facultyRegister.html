@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<div class="faculty-register-section">
     <h1>Faculty Registration</h1>
 
     {% if form %}
@@ -43,8 +45,9 @@
                 {{form.password2.label(class="forminput")}}<br>
                 {{form.password2(class="formbox")}}
             </div>
-                {{form.submit(class="button")}}
+            {{form.submit(class="button")}}
         </div>
     </form>
-    {% endif %}
+</div>
+{% endif %}
 {% endblock %}
