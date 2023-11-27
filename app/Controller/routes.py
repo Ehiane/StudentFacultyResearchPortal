@@ -19,11 +19,32 @@ def index():
     positions = Position.query.order_by(Position.title.desc())
     return render_template('index.html', title="Project Portal", positions=positions.all())
 
+@bp_routes.route('/myapplications', methods=['GET'])
+@login_required
+def myapplications():
+    applications = Application.query.filter_by(student_id=current_user.id)
+    positions = Position.query.order_by(Position.title.desc())
+    return render_template('myapplications.html', applications=applications.all(), positions=positions.all())
+
+@bp_routes.route('/mypositions', methods=['GET'])
+@login_required
+def mypositions():
+    positions = Position.query.filter_by(faculty_id=current_user.id)
+    return render_template('mypositions.html', positions=positions.all())
+
+@bp_routes.route('/myapplicants/<position_id>', methods=['GET', 'POST'])
+@login_required
+def myapplicants(position_id):
+    applications = Application.query.filter_by(position_id=position_id)
+    position = Position.query.filter_by(id=position_id).first()
+    return render_template('myapplicants.html', applications=applications.all(), position=position)
+
 @bp_routes.route('/postposition', methods=['GET','POST'])
+@login_required
 def postposition():
     pform = PositionForm()
     if pform.validate_on_submit():
-        newPosition = Position(title = pform.title.data, description = pform.description.data, startDate = pform.startDate.data, endDate = pform.endDate.data, timeCommitment = pform.timeCommitment.data, qualifications = pform.qualifications.data, facultyName = pform.facultyName.data, facultyContact = pform.facultyContact.data)
+        newPosition = Position(title = pform.title.data, description = pform.description.data, startDate = pform.startDate.data, endDate = pform.endDate.data, timeCommitment = pform.timeCommitment.data, qualifications = pform.qualifications.data, facultyName = pform.facultyName.data, facultyContact = pform.facultyContact.data, faculty_id = current_user.id)
         for x in pform.experience.data:
             e = Experience.query.filter_by(name=x.name).first()
             newPosition.experiences.append(e)
@@ -37,6 +58,7 @@ def postposition():
     return render_template('create.html', form = pform)
 
 @bp_routes.route('/addexperience', methods=['GET','POST'])
+@login_required
 def addexperience():
     eform = ExperienceForm()
     if eform.validate_on_submit():
@@ -48,6 +70,7 @@ def addexperience():
     return render_template('addexperience.html', form = eform)
 
 @bp_routes.route('/addfield', methods=['GET','POST'])
+@login_required
 def addfield():
     fform = FieldForm()
     if fform.validate_on_submit():
@@ -59,6 +82,7 @@ def addfield():
     return render_template('addfield.html', form = fform)
 
 @bp_routes.route('/application/<position_id>', methods=['GET', 'POST'])
+@login_required
 def application(position_id):
     aform = ApplicationForm()
     thePosition = Position.query.filter_by(id=position_id).first()

@@ -1,0 +1,27 @@
+<table class = "posttable" style = "width:100%" valign="top">
+    <tr> 
+        <td colspan="3"><div class="posttitle"> {{position.title}} </div>
+        </td>
+    </tr>
+    <tr>
+        <td width="80%" >
+            <div class="postbody">
+              {{application.statement}}    
+           </div>
+        </td> 
+
+        <td width = "5%"> 
+            <div>
+                <br>
+            </div>
+            <br> 
+        </td>
+    </tr>
+    <tr class="post-footer-section">
+        <td colspan="3"  valign="bottom">  
+               <p id="post-text-section-1">Faculty Reference: {{application.referenceName}} ({{application.referenceEmail}})</p>  
+                <p id="post-text-section-2">Student_ID: {{current_user.wsuID}}</p>
+          </td>
+        </tr>
+    </tr>
+</table>
