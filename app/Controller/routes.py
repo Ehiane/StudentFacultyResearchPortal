@@ -57,7 +57,7 @@ def postposition():
         return redirect(url_for('routes.index'))
     return render_template('create.html', form = pform)
 
-@bp_routes.route('/delete/<position_id>', methods=['GET','POST'])
+@bp_routes.route('/deleteposition/<position_id>', methods=['GET','POST'])
 @login_required
 def deleteposition(position_id):
     theposition = Position.query.filter_by(id=position_id).first()
@@ -73,6 +73,18 @@ def deleteposition(position_id):
         flash('Research Position: "' + positionname + '" deleted.')
     else:
         flash('Research Position: "' + positionname + '" cannot be deleted.')
+    return redirect(url_for('routes.index'))
+
+@bp_routes.route('/deleteapplication/<application_id>', methods=['GET','POST'])
+@login_required
+def deleteapplication(application_id):
+    theapp = Application.query.filter_by(id=application_id).first()
+    if theapp.student_id == current_user.id:
+        db.session.delete(theapp)
+        db.session.commit()
+        flash('Application deleted.')
+    else:
+        flash('Application cannot be deleted.')
     return redirect(url_for('routes.index'))
 
 @bp_routes.route('/addexperience', methods=['GET','POST'])
