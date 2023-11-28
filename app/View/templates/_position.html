@@ -65,6 +65,7 @@
         <td id="apply-btn-section"><a href="{{ url_for('routes.application', position_id=position.id) }}" id = "apply-btn">Apply</a></td>
     {% else %}
         <td id="apply-btn-section"><a href="{{ url_for('routes.myapplicants', position_id=position.id) }}" id = "apply-btn">Applicants</a></td>
+        <td id="apply-btn-section"><a href="{{ url_for('routes.deleteposition', position_id=position.id) }}" id = "apply-btn">Delete</a></td>
     {% endif %}
 
 </table>

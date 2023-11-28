@@ -57,6 +57,24 @@ def postposition():
         return redirect(url_for('routes.index'))
     return render_template('create.html', form = pform)
 
+@bp_routes.route('/delete/<position_id>', methods=['GET','POST'])
+@login_required
+def deleteposition(position_id):
+    theposition = Position.query.filter_by(id=position_id).first()
+    positionname = theposition.title
+    if theposition.faculty_id == current_user.id:
+        for f in theposition.fields:
+            theposition.fields.remove(f)
+        for e in theposition.experiences:
+            theposition.experiences.remove(e)
+        db.session.commit()
+        db.session.delete(theposition)
+        db.session.commit()
+        flash('Research Position: "' + positionname + '" deleted.')
+    else:
+        flash('Research Position: "' + positionname + '" cannot be deleted.')
+    return redirect(url_for('routes.index'))
+
 @bp_routes.route('/addexperience', methods=['GET','POST'])
 @login_required
 def addexperience():
