@@ -36,3 +36,7 @@ class ApplicationForm(FlaskForm):
 class FilterForm(FlaskForm):
     checkbox = BooleanField('Display recommened positions based on my interests:')
     submit = SubmitField('Search')
+    
+class StatusForm(FlaskForm):
+    status = SelectField('Application Status:',choices = [(4, 'Hired'), (3, 'Not Hired'), (2,' Approved for Interview'), (1,'Under Review')])
+    submit = SubmitField('Submit')

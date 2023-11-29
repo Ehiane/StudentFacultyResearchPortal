@@ -6,7 +6,7 @@ from config import Config
 
 from app import db
 from app.Model.models import Position, Experience, Field, Application
-from app.Controller.forms import PositionForm, ExperienceForm, FieldForm, ApplicationForm, FilterForm
+from app.Controller.forms import PositionForm, ExperienceForm, FieldForm, ApplicationForm, FilterForm, StatusForm
 from flask_login import current_user, login_required
 
 bp_routes = Blueprint('routes', __name__)
@@ -101,6 +101,19 @@ def deleteapplication(application_id):
     else:
         flash('Application cannot be deleted.')
     return redirect(url_for('routes.index'))
+
+@bp_routes.route('/status/<application_id>', methods=['GET','POST'])
+@login_required
+def status(application_id):
+    sform = StatusForm()
+    theapp = Application.query.filter_by(id=application_id).first()
+    if current_user.user_type == 'Faculty':
+        if sform.validate_on_submit():
+            theapp.status = sform.status.data
+            db.session.commit()
+            flash('Application status changed.')
+            return redirect(url_for('routes.index'))
+    return render_template('status.html', form = sform)
 
 @bp_routes.route('/addexperience', methods=['GET','POST'])
 @login_required
