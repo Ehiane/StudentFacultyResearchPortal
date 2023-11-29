@@ -6,7 +6,7 @@ from config import Config
 
 from app import db
 from app.Model.models import Position, Experience, Field, Application
-from app.Controller.forms import PositionForm, ExperienceForm, FieldForm, ApplicationForm
+from app.Controller.forms import PositionForm, ExperienceForm, FieldForm, ApplicationForm, FilterForm
 from flask_login import current_user, login_required
 
 bp_routes = Blueprint('routes', __name__)
@@ -14,10 +14,25 @@ bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
 
 
 @bp_routes.route('/', methods=['GET'])
-@bp_routes.route('/index', methods=['GET'])
+@bp_routes.route('/index', methods=['GET','POST'])
 def index():
-    positions = Position.query.order_by(Position.title.desc())
-    return render_template('index.html', title="Project Portal", positions=positions.all())
+    positions = Position.query.all()
+    #newpositions = Position.query
+    fform = FilterForm()
+    if fform.is_submitted(): # and current_user.user_type == 'Student':
+        if fform.checkbox.data is True:
+            i = 0
+            for p in positions:
+                num = 0
+                for pfield in p.fields:
+                    for ufield in current_user.fields:
+                        if ufield.name == pfield.name:
+                            num += 1
+                if num < 1:
+                    positions.pop(i)
+                i += 1
+            flash("Box checked")
+    return render_template('index.html', title="Project Portal", positions=positions, form=fform)
 
 @bp_routes.route('/myapplications', methods=['GET'])
 @login_required
