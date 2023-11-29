@@ -5,7 +5,7 @@ from flask import render_template, flash, redirect, url_for, request
 from config import Config
 
 from app import db
-from app.Model.models import Position, Experience, Field, Application
+from app.Model.models import Position, Experience, Field, Application, Student, Faculty
 from app.Controller.forms import PositionForm, ExperienceForm, FieldForm, ApplicationForm, FilterForm, StatusForm
 from flask_login import current_user, login_required
 
@@ -33,6 +33,18 @@ def index():
                 i += 1
             flash("Box checked")
     return render_template('index.html', title="Project Portal", positions=positions, form=fform)
+
+@bp_routes.route('/studentinfo/<student_id>', methods=['GET'])
+@login_required
+def studentinfo(student_id):
+    thestudent = Student.query.filter_by(id=student_id).first()
+    return render_template('studentinfo.html', student=thestudent)
+
+@bp_routes.route('/facultyinfo/<faculty_id>', methods=['GET'])
+@login_required
+def facultyinfo(faculty_id):
+    thefaculty = Faculty.query.filter_by(id=faculty_id).first()
+    return render_template('facultyinfo.html', faculty=thefaculty)
 
 @bp_routes.route('/myapplications', methods=['GET'])
 @login_required

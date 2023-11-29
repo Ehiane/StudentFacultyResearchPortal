@@ -29,7 +29,11 @@
                         <td><a href="{{ url_for('routes.addfield') }}" class = "nav-link-element">Add New Research Field</a></td>
                     {% endif %}
                     <td><a href="{{ url_for('auth.logout' )}}" class = "nav-link-element"> Logout </a></td>
-                    <td id="current-user"> Current user is: <span>{{ current_user.username}} </span> </td>  
+                    {% if current_user.user_type == 'Student' %}
+                        <a href="{{ url_for('routes.studentinfo', student_id=current_user.id) }}" id="current-user"> Current user is: <span>{{ current_user.username}} </span></a>
+                    {% else %}
+                    <a href="{{ url_for('routes.facultyinfo', faculty_id=current_user.id) }}" id="current-user"> Current user is: <span>{{ current_user.username}} </span></a>
+                    {% endif %}
                 {% endif %}  
             </tr>
         </table>

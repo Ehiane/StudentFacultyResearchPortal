@@ -63,6 +63,7 @@
     </tr>
     {% if current_user.user_type == 'Student' %}
         <td id="apply-btn-section"><a href="{{ url_for('routes.application', position_id=position.id) }}" id = "apply-btn">Apply</a></td>
+        <td id="apply-btn-section"><a href="{{ url_for('routes.facultyinfo', faculty_id=position.faculty_id) }}" id = "apply-btn">Info</a></td>
     {% else %}
         <td id="apply-btn-section"><a href="{{ url_for('routes.myapplicants', position_id=position.id) }}" id = "apply-btn">Applicants</a></td>
         <td id="apply-btn-section"><a href="{{ url_for('routes.deleteposition', position_id=position.id) }}" id = "apply-btn">Delete</a></td>
