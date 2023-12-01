@@ -38,6 +38,7 @@ class Application(db.Model):
     statement = db.Column(db.String(1500))
     referenceName = db.Column(db.String(20))
     referenceEmail = db.Column(db.String(50))
+    status = db.Column(db.Integer, default=1)
 
 class Position(db.Model):
     id = db.Column(db.Integer, primary_key=True)

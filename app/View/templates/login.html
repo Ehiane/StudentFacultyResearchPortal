@@ -1,45 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h1>Sign In</h1>
+        {% if form %}    
+            <form action="" method="post">
+                {{form.hidden_tag() }}
+                <div>
+                    <!--& Username section  -->
+                    {{form.username.label}} <br>
+                    {{form.username (class = 'forminput')}} <br>
 
-<div class="login-section">
+                    {% for errors in form.username.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                    <!--& Password section  -->
+                    {{form.password.label}} <br>
+                    {{form.password (class = 'forminput')}} <br>
 
-    <h1>Sign In</h1>
-    {% if form %}
-    <form action="" method="post">
-        {{form.hidden_tag() }}
-        <div>
-            <!--& Username section  -->
-            {{form.username.label}} <br>
-            {{form.username (class = 'formtitle')}} <br>
+                    {% for errors in form.password.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
 
-            {% for errors in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-            <!--& Password section  -->
-            {{form.password.label}} <br>
-            {{form.password (class = 'formtitle')}} <br>
+                    <!--& remember me section  -->
+                    {{form.remember_me.label}} <br>
+                    {{form.remember_me }} <br>
 
-            {% for errors in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-            
-            <!--& submit section  -->
-            <p>{{form.submit (class = 'login-btn' )}}</p>
+                    {% for errors in form.remember_me.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
 
-            <!--& remember me section  -->
-            {{form.remember_me.label}} <br>
-            {{form.remember_me }} <br>
+                    <!--& submit section  -->
+                    <p>{{form.submit (class = 'post-button' )}}</p>
 
-            {% for errors in form.remember_me.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-
-
-        </div>
-    </form>
-    {% endif %}
-    <h3>New Student? <a class="login-link" href="{{ url_for('auth.studentRegister')}}">Click to Register!</a></h3>
-    <h3>New Faculty? <a class="login-link" href="{{ url_for('auth.facultyRegister') }}">Click to Register!</a></h3>
-</div>
+                </div>
+            </form>
+        {% endif %}    
+    <p>New Student? <a href="{{ url_for('auth.studentRegister')}}">Click to Register!</a></p>
+    <p>New Faculty? <a href="{{ url_for('auth.facultyRegister') }}">Click to Register!</a></p>
 {% endblock %}
+

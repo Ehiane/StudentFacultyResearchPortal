@@ -1,0 +1,46 @@
+<table class = "posttable" style = "width:100%" valign="top">
+    <tr> 
+        <td colspan="3"><div class="posttitle"> {{position.title}} </div>
+        </td>
+    </tr>
+    <tr>
+        <td width="80%" >
+            <div class="postbody">
+              {{application.statement}}    
+           </div>
+        </td> 
+
+        <td width = "5%"> 
+            <div>
+                <br>
+            </div>
+            <br>
+            <td colspan="3" class="post-experience-section"  valign="bottom">  
+                <p>Application Status:</p>
+                <div class="post-experience-tag-area"> <!-- [(4, 'Hired'), (3, 'Not Hired'), (2,' Approved for Interview'), (1,'Under Review')] -->
+                    {% if application.status == 4%}
+                        Hired
+                    {% elif application.status == 3%}
+                        Not Hired
+                    {% elif application.status == 2%}
+                        Approved for Interview
+                    {% else %}
+                        Under Review
+                    {% endif %}
+                </div>
+        </td>
+    </tr>
+    <tr class="post-footer-section">
+        <td colspan="3"  valign="bottom">  
+                <p id="post-text-section-1">Faculty Reference: {{application.referenceName}} ({{application.referenceEmail}})</p>  
+                <p id="post-text-section-2">Student_ID: {{current_user.wsuID}}</p>
+          </td>
+        </tr>
+    </tr>
+    {% if current_user.user_type == 'Student' %}
+        <td id="apply-btn-section"><a href="{{ url_for('routes.deleteapplication', application_id=application.id) }}" id = "apply-btn">Delete</a></td>
+    {% else %}
+        <td id="apply-btn-section"><a href="{{ url_for('routes.status', application_id=application.id) }}" id = "apply-btn">Change Status</a></td>
+        <td id="apply-btn-section"><a href="{{ url_for('routes.studentinfo', student_id=application.student_id) }}" id = "apply-btn">Info</a></td>
+    {% endif %}
+</table>

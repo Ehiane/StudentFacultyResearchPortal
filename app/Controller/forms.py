@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, IntegerField, SelectField, TextAreaField
+from wtforms import StringField, SubmitField, IntegerField, SelectField, TextAreaField, BooleanField
 from wtforms_sqlalchemy.fields import QuerySelectMultipleField
 from wtforms.validators import  DataRequired, Length, Email
 from wtforms.widgets import ListWidget, CheckboxInput
@@ -32,3 +32,11 @@ class ApplicationForm(FlaskForm):
     referenceName = StringField('Reference Name', validators=[DataRequired()])
     referenceEmail = StringField('Reference Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Apply')
+    
+class FilterForm(FlaskForm):
+    checkbox = BooleanField('Display recommened positions based on my interests:')
+    submit = SubmitField('Search')
+    
+class StatusForm(FlaskForm):
+    status = SelectField('Application Status:',choices = [(4, 'Hired'), (3, 'Not Hired'), (2,' Approved for Interview'), (1,'Under Review')])
+    submit = SubmitField('Submit')
