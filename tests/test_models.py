@@ -9,6 +9,8 @@ from app import create_app, db
 from app.Model.models import User, Student, Faculty, Position, Field, Application
 from config import Config
 
+# NOTE - how to run a function in the terminal: 
+# 'python -m unittest tests.test_models.TestModels.<name_of_function>'
 
 class TestConfig(Config):
     TESTING = True
@@ -70,7 +72,7 @@ class TestModels(unittest.TestCase):
         # checking the grad_dates match
         suspected_grad_date = Student.query.filter_by(id=s1.id).first().grad_date
         self.assertEqual(suspected_grad_date, '2023-05-01')
-        
+
         # checking if the database has increased by 1
         self.assertEqual(updated_student_count,initial_student_count+1) 
 
