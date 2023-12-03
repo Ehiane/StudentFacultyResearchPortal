@@ -240,6 +240,27 @@ For each subsystem:
 | 14. | Faculty member can change the status of a student application. | routes.changestatus/<application_id> | A faculty user with a previously created position with applications already submitted by student users can change the status of multiple applications to "Approved for Interview". |
 | 15. | Faculty member can indicate whether an approved student has been "Hired" or "Not Hired" | routes.hirestudent/<application_id> | A faculty user with a previously created position with applications already submitted and approved by student users can change the status of the students application to either "Hired" or "Not Hired". |
 
+(***in iteration-3***) Revision
+
+|   | Methods           | URL Path   | Description  |
+|:--|:------------------|:-----------|:-------------|
+| 1. | Register as Faculty | auth.facultyregister | Allows the user to access the faculty registration page and create a new faculty account, upon creation they are redirected to the faculty login page. |
+| 2. | Register as Student | auth.studentregister | Allows the user to access the student registration page and create a new student account, upon creation they are redirected to the student login page. |
+| 3. | Login as User | auth.login | Allows the user to access the login page and sign in to either a student or faculty account, upon creation they are redirected to the index page. |
+| 4. | Logout as User | auth.logout | Allows the user to access the logout page and log out of either a student or faculty account, upon successful logout they are redirected to the login page. |
+| 5. | Student can view open Positions | routes.index | Allows student users to view all open research positions and apply for them. The user can additionally filter the positions by their previously selected research interests. |
+| 6. | User can view Student Information | routes.studentinfo/<student_id> | Allows users to view the information of the student that is passed into the route. |
+| 7. | User can view Faculty Information | routes.facultyinfo/<faculty_id> | Allows users to view the information of the faculty that is passed into the route. |
+| 8. | Student can view active applications | routes.myapplications | Allows students to view all of the positions to which they have applied to as well as the status of the applications. |
+| 9. | Faculty can view active positions | routes.mypositions | Allows faculty to view all of the positions they have posted as well as the status of the positions. |
+| 10. | Faculty can view those who applied to their position | routes.myapplicants/<position_id> | Allows faculty to view all of the students who have applied to their positions. |
+| 11. | Faculty Post Position | routes.postposition | Allows logged in faculty users to create a new position using the post position form. Created forms are then posted to the "View Positions" page, allowing students to apply to them. |
+| 12. | Faculty delete Position | routes.deleteposition/<position_id> | Allows logged in faculty members with previously created positions to delete them at their own discretion. A faculty member can only delete their own posts. |
+| 13. | Student can Withdraw Applications | routes.deleteapplication/<application_id> | A student user with previously created applications can indicate they want to withdraw an application, allowing them to delete it from the positions application pool.  |
+| 14. | Faculty can change Application Status | routes.status/<application_id> | A faculty user with a position that has been applied for can view the application status and change as they please..  |
+| 15. | Faculty add Experience | routes.addexperience | Allows faculty users to add an experience to the database that can be used in the creation of their positions. Helpful for positions that are unique with experiences that aren't currently part of the database. |
+| 16. | Faculty add Research Field | routes.addfield | Allows faculty users to add a research field to the database that can be used in the creation of their positions. Helpful for positions that are unique with research fields that aren't currently part of the database. |
+| 17. | Student Apply for Position | routes.application | Allows student user to apply to post using the application form, upon submission the application is viewable to them in a "View Application" page, as well as to the faculty user who posted the position. |
 
 ## 2.2.3 View and User Interface Design
 
@@ -287,6 +308,17 @@ Within our project, we have a set of HTML templates that play essential roles in
 
 13. **`studentRegister.html`**: This page template is designed for students who want to register inorder to apply for positions. 
 
+14. **`status.html`**: This page template is designed for faculty who want to change the status of an application on one of their positions.
+
+15. **`myapplicants.html`**: This page template is designed for faculty who want to view all of the students who have applied for one of their positions.
+
+16. **`myapplications.html`**: This page template is designed for students who want to view the positions they have applied for and their application status.
+
+17. **`mypositions.html`**: This page template is designed for faculty who want to view all of the active positions they have posted.
+
+18. **`studentInfo.html`**: This page template displays the contact information of a student who has applied for a position.
+
+
 These templates collectively shape the user interface and interaction within the "Online Faculty Research Connection Platform," ensuring a seamless and intuitive experience for both students and faculty members.
 
 
@@ -299,7 +331,7 @@ By providing this additional information, you have a clear technology stack and 
 
 # 3. Progress Report
 
-After two iterations of work on our term project we have made a lot of progress. We have successfully implemented our user models, student and faculty, that inherit from a base user class. We have implemented both log in and log out functionality for our user models as well. Users are able to create new positions for students to apply for. Users are also able to view and apply for research positions.Users are also able to create new research topics, and new experience fields to be added to the choices already available.
+After three iterations of work on our term project we have completed what we have set out to do. In the third iteration, we made the finishing touches on the general looks of the site. We have made it possible for a student to filter through positions, to view the information of both faculty and students, for a student to view their applications, for faculty to view their applicants, and for faculty to change the status of a student's applications. This completes all of the functionality we have set out to implement. Also, in the third iteration we created our tests. We created automated tests with selenium to test login/logout, creating both a student and faculty user, creating/deleting a position, and creating/deleting an experience. We also implemented our plan set in iteration two, seen below.
 
 # 4. Testing Plan
 (***in iteration 2***)
