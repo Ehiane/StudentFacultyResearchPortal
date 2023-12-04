@@ -61,6 +61,8 @@ def studentRegister():
         db.session.commit()
         flash('Congratulations, you are now registered as a student user!')
         return redirect(url_for('routes.index'))
+    else:
+        print(srform.errors)  # Print form validation errors
     return render_template('studentRegister.html', form = srform)
 
 # ----------------------------------------Ehiane-Login-Attempt------------------------------------------- #

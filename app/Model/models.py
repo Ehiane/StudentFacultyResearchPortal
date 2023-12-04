@@ -32,6 +32,7 @@ studentFields = db.Table('studentFields',
 )
 
 class Application(db.Model):
+    __tablename__ = 'application'
     id = db.Column(db.Integer, primary_key=True)
     position_id = db.Column(db.Integer, db.ForeignKey('position.id'))
     student_id = db.Column(db.Integer, db.ForeignKey('student.id'))
@@ -41,6 +42,7 @@ class Application(db.Model):
     status = db.Column(db.Integer, default=1)
 
 class Position(db.Model):
+    __tablename__ = 'position'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150))
     description = db.Column(db.String(1000))
@@ -49,7 +51,7 @@ class Position(db.Model):
     timeCommitment = db.Column(db.Integer())
     # By defining the research fields and experiences as models in the database,
     # users are able to add additional fields and experiences later if there isn't one already present they need.
-    fields = db.relationship('models.Field',secondary=positionFields, primaryjoin=(positionFields.c.position_id == id), backref=db.backref('positionFields', lazy='dynamic'), lazy='dynamic')
+    fields = db.relationship('models.Field',secondary=positionFields, primaryjoin=(positionFields.c.position_id == id), backref=db.backref('positionFields', lazy='dynamic'), lazy='dynamic',overlaps="fields,positionFields")
     experiences = db.relationship('models.Experience',secondary=positionExperiences, primaryjoin=(positionExperiences.c.position_id == id), backref=db.backref('positionExperiences', lazy='dynamic'), lazy='dynamic')
     qualifications = db.Column(db.String(300))
     faculty_id = db.Column(db.Integer, db.ForeignKey('faculty.id'))
@@ -65,22 +67,8 @@ class Position(db.Model):
     def get_applications(self):
         return self.applications
     
-class Experience(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(20))
-    positions = db.relationship('models.Position', secondary=positionExperiences, primaryjoin=(positionExperiences.c.experience_id == id), backref=db.backref('positionExperiences', lazy='dynamic'), lazy='dynamic')
-    students = db.relationship('models.Student', secondary=studentExperiences, primaryjoin=(studentExperiences.c.experience_id == id), backref=db.backref('studentExperiences', lazy='dynamic'), lazy='dynamic')
-    def __repr__(self):
-       return '{}'.format(self.name)
-   
-class Field(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(20))
-    positions = db.relationship('models.Position', secondary=positionFields, primaryjoin=(positionFields.c.field_id == id), backref=db.backref('positionField', lazy='dynamic'), lazy='dynamic')
-    students = db.relationship('models.Student', secondary=studentFields, primaryjoin=(studentFields.c.field_id == id), backref=db.backref('studentField', lazy='dynamic'), lazy='dynamic')
-    def __repr__(self):
-       return '{}'.format(self.name)
-   
+
+
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
     # Hidden ID
@@ -112,6 +100,25 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password_hash, password)
     
 
+
+class Student(User):
+    __tablename__ = 'student'
+    # Hidden ID
+    id = db.Column(db.ForeignKey("user.id"), primary_key=True)
+    # Student Info
+    gpa = db.Column(db.String(10))
+    grad_date = db.Column(db.String(30))
+    # Further Info
+    fields = db.relationship('models.Field',secondary=studentFields, primaryjoin=(studentFields.c.student_id == id), backref=db.backref('studentFields', lazy='dynamic'), lazy='dynamic')
+    experiences = db.relationship('models.Experience',secondary=studentExperiences, primaryjoin=(studentExperiences.c.student_id == id), backref=db.backref('studentExperiences', lazy='dynamic'), lazy='dynamic',overlaps="studentExperiences,students")
+    # Relationship
+    __mapper_args__ = {
+        'polymorphic_identity': 'Student'
+    }
+    # relationship between application and student
+    applications = db.relationship('Application', backref='student', lazy='dynamic')
+
+
 class Faculty(User):
     __tablename__ = 'faculty'
     # Hidden ID
@@ -126,19 +133,24 @@ class Faculty(User):
     positions = db.relationship('Position', backref='faculty', lazy='dynamic')
 
 
-class Student(User):
-    __tablename__ = 'student'
-    # Hidden ID
-    id = db.Column(db.ForeignKey("user.id"), primary_key=True)
-    # Student Info
-    gpa = db.Column(db.String(10))
-    grad_date = db.Column(db.String(30))
-    # Further Info
-    fields = db.relationship('models.Field',secondary=studentFields, primaryjoin=(studentFields.c.student_id == id), backref=db.backref('studentFields', lazy='dynamic'), lazy='dynamic')
-    experiences = db.relationship('models.Experience',secondary=studentExperiences, primaryjoin=(studentExperiences.c.student_id == id), backref=db.backref('studentExperiences', lazy='dynamic'), lazy='dynamic')
-    # Relationship
-    __mapper_args__ = {
-        'polymorphic_identity': 'Student'
-    }
-    # relationship between application and student
-    applications = db.relationship('Application', backref='student', lazy='dynamic')
+
+class Field(db.Model):
+    __tablename__ = 'field'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20))
+    positions = db.relationship('models.Position', secondary=positionFields, primaryjoin=(positionFields.c.field_id == id), backref=db.backref('positionField', lazy='dynamic'), lazy='dynamic')
+    students = db.relationship('models.Student', secondary=studentFields, primaryjoin=(studentFields.c.field_id == id), backref=db.backref('studentField', lazy='dynamic'), lazy='dynamic')
+    def __repr__(self):
+       return '{}'.format(self.name)
+   
+
+
+class Experience(db.Model):
+    __tablename__ = 'experience'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20))
+    positions = db.relationship('models.Position', secondary=positionExperiences, primaryjoin=(positionExperiences.c.experience_id == id), backref=db.backref('positionExperiences', lazy='dynamic'), lazy='dynamic')
+    students = db.relationship('models.Student', secondary=studentExperiences, primaryjoin=(studentExperiences.c.experience_id == id), backref=db.backref('studentExperiences', lazy='dynamic'), lazy='dynamic',overlaps="studentExperiences,students")
+    def __repr__(self):
+       return '{}'.format(self.name)
+   

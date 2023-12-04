@@ -136,7 +136,6 @@ class TestModels(unittest.TestCase):
         self.assertEqual(application.status, 1)
 
 
-
     def test_faculty(self):
         # creating a user:
         u1 = User(username='john', email='john.yates@wsu.edu')
