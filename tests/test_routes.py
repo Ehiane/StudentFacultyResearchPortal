@@ -181,7 +181,7 @@ def test_postPosition(test_client, init_database):
     # Login
     response = test_client.post(
         '/login',
-        data=dict(username='w.rae', password='1234', remember_false=False),
+        data=dict(username='w.rae', password='1234', user_type='Faculty', remember_false=False),
         follow_redirects=True
     )
     assert response.status_code == 200

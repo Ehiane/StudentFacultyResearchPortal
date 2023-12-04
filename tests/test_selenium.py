@@ -11,12 +11,12 @@ from time import sleep
 
 # User fixure - 1
 @pytest.fixture
-def user1(): 
+def student1(): 
     return  {'username':'arslanay', 'email':'arslanay@wsu.edu', 'password':'strongpassword'}
 
 # User fixure - 2
 @pytest.fixture
-def user2():
+def faculty1():
     return  {'username':'john', 'email':'john@wsu.edu', 'password':'alsostrongpassword'}
 
  # Post fixure - 1
@@ -75,18 +75,34 @@ def browser():
     driver.quit()
 
 
-def test_register_form(browser,user2):
+def test_student_register_form(browser,user2):
 
-    browser.get('http://localhost:5000/register')
+    browser.get('http://localhost:5000/studentregister')
     # Enable this to maximize the window
     # browser.maximize_window()
+    browser.find_element(By.NAME, "firstName").send_keys(user2['firstName'])
+    sleep(2)
+    browser.find_element(By.NAME, "lastName").send_keys(user2['lastName'])
+    sleep(2)
+    browser.find_element(By.NAME, "wsuID").send_keys(user2['wsuID'])
+    sleep(2)
     browser.find_element(By.NAME, "username").send_keys(user2['username'])
+    sleep(2)
+    browser.find_element(By.NAME, "phone").send_keys(user2['phone'])
+    sleep(2)
+    browser.find_element(By.NAME, "gpa").send_keys(user2['gpa'])
+    sleep(2)
+    browser.find_element(By.NAME, "grad_date").send_keys(user2['grad_date'])
     sleep(2)
     browser.find_element(By.NAME, "email").send_keys(user2['email'])
     sleep(2)
     browser.find_element(By.NAME, "password").send_keys(user2['password'])
     sleep(2)
     browser.find_element(By.NAME, "password2").send_keys(user2['password'])    
+    sleep(2)
+    browser.find_element(By.NAME, "field").send_keys(user2['field'])
+    sleep(2)
+    browser.find_element(By.NAME, "experience").send_keys(user2['experience'])
     sleep(2)
     browser.find_element(By.NAME, "submit").click()
     sleep(5)
