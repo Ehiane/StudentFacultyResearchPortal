@@ -6,7 +6,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 from datetime import datetime, timedelta
 import unittest
 from app import create_app, db
-from app.Model.models import User, Student, Faculty, Position, Field, Application
+from app.Model.models import User, Student, Faculty, Position, Field, Application, Experience
 from config import Config
 
 # NOTE - how to run a function in the terminal: 
@@ -35,26 +35,8 @@ class TestModels(unittest.TestCase):
         self.assertFalse(u.get_password('flu'))
         self.assertTrue(u.get_password('covid'))
 
-    def test_post_1(self):
-        # u1 = User(username='john', email='john.yates@wsu.com')
-        # db.session.add(u1)
-        # db.session.commit()
-        # self.assertEqual(u1.get_user_posts().all(), [])
-        # p1 = Post(title='My post', body='This is my test post.', happiness_level=1, user_id=u1.id)
-        # db.session.add(p1)
-        # db.session.commit()
-        # self.assertEqual(u1.get_user_posts().count(), 1)
-        # self.assertEqual(u1.get_user_posts().first().title, 'My post')
-        # self.assertEqual(u1.get_user_posts().first().body, 'This is my test post.')
-        # self.assertEqual(u1.get_user_posts().first().happiness_level, 1)
-        pass
 
     def test_student(self):
-        # creating a user:
-        u1 = User(username='jhon', email='jhon.yates@wsu.edu')
-        db.session.add(u1)
-        db.session.commit()
-
         # observing the student db
         initial_student_count = Student.query.count()
         
@@ -77,37 +59,47 @@ class TestModels(unittest.TestCase):
         self.assertEqual(updated_student_count,initial_student_count+1) 
 
     
+    def test_student_relationships(self):
+        # Create a Student
+        s1 = Student(username='john', email='john.yates@wsu.com',gpa='4.0', grad_date='2023-05-01')
+        db.session.add(s1)
+        db.session.commit()
+
+        # Add some fields and experiences to the student
+        field1 = Field(name='Computer Science')
+        experience1 = Experience(name='Internship')
+
+        s1.fields.append(field1)
+        s1.experiences.append(experience1)
+        db.session.commit()
+
+        # Test relationships with fields and experiences
+        self.assertIn(field1, s1.fields.all())
+        self.assertIn(experience1, s1.experiences.all())
+
+    
+    def test_faculty_relationships(self):
+        # Create a Faculty
+        f1 = Faculty(username='prof_smith', email='prof.smith@wsu.edu', department='Computer Science')
+        db.session.add(f1)
+        db.session.commit()
+
+        # Add some positions to the faculty
+        position1 = Position(title='Professor')
+        position2 = Position(title='Associate Professor')
+
+        f1.positions.append(position1)
+        f1.positions.append(position2)
+        db.session.commit()
+
+        # Test relationships with positions
+        self.assertIn(position1, f1.positions.all())
+        self.assertIn(position2, f1.positions.all())
+        
 
 
 
 
-    def test_post_2(self):
-        # u1 = User(username='john', email='john.yates@wsu.com')
-        # u2 = User(username='amit', email='amit.khan@wsu.com')
-        # db.session.add(u1)
-        # db.session.add(u2)
-        # db.session.commit()
-        # self.assertEqual(u1.get_user_posts().all(), [])
-        # self.assertEqual(u2.get_user_posts().all(), [])
-        # p1 = Post(title='My post 1', body='This is my first test post.', happiness_level=1, user_id=u1.id)
-        # db.session.add(p1)
-        # p2 = Post(title='My post 2', body='This is my second test post.', happiness_level=3, user_id=u1.id)
-        # db.session.add(p2)
-        # db.session.commit()
-        # p3 = Post(title='Another post', body='This is a post by somebody else.', happiness_level=2, user_id=u2.id)
-        # db.session.add(p3)
-        # db.session.commit()
-        # # test the posts by the first user
-        # self.assertEqual(u1.get_user_posts().count(), 2)
-        # self.assertEqual(u1.get_user_posts().all()[1].title, 'My post 2')
-        # self.assertEqual(u1.get_user_posts().all()[1].body, 'This is my second test post.')
-        # self.assertEqual(u1.get_user_posts().all()[1].happiness_level, 3)
-        # # test the posts by the second user
-        # self.assertEqual(u2.get_user_posts().count(), 1)
-        # self.assertEqual(u2.get_user_posts().all()[0].title, 'Another post')
-        # self.assertEqual(u2.get_user_posts().all()[0].body, 'This is a post by somebody else.')
-        # self.assertEqual(u2.get_user_posts().all()[0].happiness_level, 2)
-        pass
 
 
 if __name__ == '__main__':
