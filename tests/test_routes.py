@@ -268,9 +268,45 @@ def test_postPosition(test_client, init_database):
     # Assert that at least one position is created
     assert len(positions) == 1
 
+def test_Experience(test_client, init_database):
+    # Login as a faculty user
+    faculty_user = Faculty(
+        username="w.rae",
+        email="w.rae@wsu.edu",
+        department="Computer Science",
+    )
+    faculty_user.set_password("1234")
+    db.session.add(faculty_user)
+    db.session.commit()
 
+    response = test_client.post(
+        "/login",
+        data=dict(username="w.rae", password="1234", remember_me=True),
+        follow_redirects=True
+    )
+    
+    assert response.status_code == 200
+    
+    response = test_client.post(
+        "/addexperience",
+        data=dict(newExperience="CAD"),
+        follow_redirects=True,
+    )
+    
+    experience = db.session.query(Experience).filter(Experience.name == "CAD").all()
+    
+    # Check the experience in the database
+    print("Experience in the database:", experience)
 
+<<<<<<< Updated upstream
 
+=======
+    # Assert that at least one experience is created
+    assert len(experience) == 1
+    
+    assert response.status_code == 200
+    assert b"Welcome to WSU Research Portal!" in response.data
+>>>>>>> Stashed changes
 
 if __name__ == "__main__":
     t_db = init_database()
