@@ -53,14 +53,28 @@ def new_user(uname, uemail, passwd):
     return user
 
 
+# def init_tags():
+#     # initialize the tags
+#     if Tag.query.count() == 0:
+#         tags = ['funny','inspiring', 'true-story', 'heartwarming', 'friendship']
+#         for t in tags:
+#             db.session.add(Tag(name=t))
+#         db.session.commit()
+#         print(tags)
+#     return None
+
 @pytest.fixture
 def init_database():
     # Create the database and the database table
     db.create_all()
-    # add a user
-    user1 = new_user(uname="sakire", uemail="sakire@wsu.edu", passwd="1234")
+    # initialize the tags
+    # init_tags()
+    #add faculty and student 
+    f1 = Faculty(username='professor', email='professor@wsu.edu', department='Computer Science')
+    s1 = Student(username='student', email='student@wsu.edu', gpa='3.0', grad_date='2023-05-01')
     # Insert user data
-    db.session.add(user1)
+    db.session.add(f1)
+    db.session.add(s1)
     # Commit the changes for the users
     db.session.commit()
 

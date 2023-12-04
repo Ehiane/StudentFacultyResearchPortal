@@ -135,6 +135,37 @@ class TestModels(unittest.TestCase):
         self.assertEqual(application.referenceEmail, 'john.doe@example.com')
         self.assertEqual(application.status, 1)
 
+    def test_application_relationship(self):
+        """
+        This class tests the application model and its relationship with a Position
+        """
+        # Create a Position
+        position = Position(title='Assistant Professor')
+        db.session.add(position)
+        db.session.commit()
+
+        # Create 2 Students
+        student = Student(username='jhon', email='jhon.yates@wsu.edu', gpa='4.0', grad_date='2023-05-01')
+        db.session.add(student)
+        db.session.commit()
+        student2 = Student(username='john', email='john.yates@wsu.edu', gpa='3.9', grad_date='2022-05-01')
+        db.session.add(student2)
+        db.session.commit()
+
+        # Create 2 Applications
+        application = Application(position=position, student=student, statement='This is my application statement.', referenceName='Jhon Doe', referenceEmail='jhon.doe@example.com', status=1)
+        db.session.add(application)
+        application2 = Application(position=position, student=student2, statement='This is my application statement.', referenceName='John Doe', referenceEmail='john.doe@example.com', status=1)
+        db.session.add(application2)
+        db.session.commit()
+
+        # Checking if the database has increased by 1
+        self.assertEqual(Application.query.count(), 2)
+
+        # Check the properties of the application
+        self.assertIn(application, position.applications.all())
+        self.assertIn(application2, position.applications.all())
+
 
     def test_faculty(self):
         # creating a user:
