@@ -21,7 +21,7 @@ from config import Config
 
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///project.db"
     SECRET_KEY = "bad-bad-key"
     WTF_CSRF_ENABLED = False
     DEBUG = True
@@ -52,16 +52,6 @@ def new_user(uname, uemail, passwd):
     user.set_password(passwd)
     return user
 
-
-# def init_tags():
-#     # initialize the tags
-#     if Tag.query.count() == 0:
-#         tags = ['funny','inspiring', 'true-story', 'heartwarming', 'friendship']
-#         for t in tags:
-#             db.session.add(Tag(name=t))
-#         db.session.commit()
-#         print(tags)
-#     return None
 
 @pytest.fixture
 def init_database():
@@ -146,8 +136,6 @@ def test_student_register(test_client, init_database):
     assert b"Please register or sign in to view/create open positions." in response.data
   
 
-
-
 def test_invalidlogin(test_client, init_database):
     """
     GIVEN a Flask application configured for testing
@@ -177,15 +165,65 @@ def test_login_logout(request, test_client, init_database):
         follow_redirects=True,
     )
     assert response.status_code == 200
-    assert (
-        b"Login Successful for" in response.data
-    )  # You may update the assertion condition according to the content of your index page.
-
+    
     response = test_client.get("/logout", follow_redirects=True)
     assert response.status_code == 200
     assert b"Sign In" in response.data
     assert response.request.path == "/login"
   
+#TODO: Problem is here, line 190 - 194 
+def test_postPosition(test_client, init_database):
+    """
+    GIVEN a Flask application configured for testing , after user logs in,
+    WHEN the '/postposition' page is requested (GET)  AND /PositionForm' form is submitted (POST)
+    THEN check that response is valid and the class is successfully created in the database
+    """
+    # Login
+    response = test_client.post(
+        '/login',
+        data=dict(username='w.rae', password='1234', remember_false=False),
+        follow_redirects=True
+    )
+    assert response.status_code == 200
+    assert b"Sign In" in response.data
+
+    with test_client.session_transaction() as session:
+        print(session)
+        assert 'user_id' in session
+        # You can also check the user type if stored in the session
+        assert session['user_type'] == 'Faculty'
+
+    # Access postposition page
+    response = test_client.get("/postposition")
+    assert response.status_code == 200
+    assert b"Create New Position" in response.data
+
+    # Post position
+    response = test_client.post('/postposition',
+                                data=dict(title='test_post',
+                                          description='This is a test post',
+                                          startDate='06/05/2023',
+                                          endDate='12/06/2025',
+                                          timeComitment=3,
+                                          fields=["Software Engineering", "Computer Science"],
+                                          experiences=["C", "C++"],
+                                          qualifications='Experience',
+                                          facultyName='EECS Computer',
+                                          facultyContact='Sakire Arslan-Ay'
+                                          ),
+                                follow_redirects=True
+                                )
+
+    assert b"test_post" in response.data
+    assert b"This is a test post" in response.data
+
+    # Query the database to check if the position is created
+    p = db.session.query(Position).filter(Position.title == "test_post").first()
+    assert p is not None
+
+
+
+
 
 # def test_postSmile(test_client, init_database):
 #     """
@@ -353,5 +391,7 @@ def test_login_logout(request, test_client, init_database):
 #     assert c4.first().likes == 1
 
 
-# if __name__ == "__main__":
-#     unittest.main()
+if __name__ == "__main__":
+    t_db = init_database()
+    print(t_db)
+

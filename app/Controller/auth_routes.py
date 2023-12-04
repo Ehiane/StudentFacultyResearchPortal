@@ -71,6 +71,8 @@ def login():
     #recognized user
     if current_user.is_authenticated:
         flash(" User is already logged in")
+        # After login_user line
+        print(current_user.is_authenticated)
         return redirect(url_for("routes.index"))
     #unrecognized user
     lform = LoginForm()
