@@ -77,34 +77,44 @@ def init_database():
 def test_student_register_page(test_client):
     """
     GIVEN a Flask application configured for testing
-    WHEN the '/studentRegister' page is requested (GET)
+    WHEN the '/studentregister' page is requested (GET)
     THEN check that the response is valid
     """
     # Create a test client using the Flask application configured for testing
-    response = test_client.get('/studentRegister')
+    response = test_client.get('/studentregister')
     assert response.status_code == 200
     assert b"Register" in response.data
 
 def test_faculty_register_page(test_client):
     """
     GIVEN a Flask application configured for testing
-    WHEN the '/facultyRegister' page is requested (GET)
+    WHEN the '/facultyregister' page is requested (GET)
     THEN check that the response is valid
     """
     # Create a test client using the Flask application configured for testing
-    response = test_client.get('/facultyRegister')
+    response = test_client.get('/facultyregister')
     assert response.status_code == 200
     assert b"Register" in response.data
 
-def test_register(test_client,init_database):
+def test_index_page(test_client):
+    """
+    GIVEN a Flask application configured for testing
+    WHEN the '/facultyregister' page is requested (GET)
+    THEN check that the response is valid
+    """
+    # Create a test client using the Flask application configured for testing
+    response = test_client.get('/index')
+    assert response.status_code == 200
+
+def test_student_register(test_client,init_database):
     """
     GIVEN a Flask application configured for testing
     WHEN the '/register' form is submitted (POST)
     THEN check that the response is valid and the database is updated correctly
     """
     # Create a test client using the Flask application configured for testing
-    response = test_client.post('/register', 
-                          data=dict(username='john', email='john@wsu.edu',password="bad-bad-password",password2="bad-bad-password"),
+    response = test_client.post('/studentregister', 
+                          data=dict(username='john', email='john@wsu.edu',password="bad-bad-password",),
                           follow_redirects = True)
     assert response.status_code == 200
 
