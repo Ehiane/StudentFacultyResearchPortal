@@ -77,7 +77,7 @@ def init_database():
 def test_student_register_page(test_client):
     """
     GIVEN a Flask application configured for testing
-    WHEN the '/register' page is requested (GET)
+    WHEN the '/studentRegister' page is requested (GET)
     THEN check that the response is valid
     """
     # Create a test client using the Flask application configured for testing
@@ -88,7 +88,7 @@ def test_student_register_page(test_client):
 def test_faculty_register_page(test_client):
     """
     GIVEN a Flask application configured for testing
-    WHEN the '/register' page is requested (GET)
+    WHEN the '/facultyRegister' page is requested (GET)
     THEN check that the response is valid
     """
     # Create a test client using the Flask application configured for testing
