@@ -7,7 +7,7 @@ Resources:
 """
 import os
 import pytest
-from app import create_app, db
+from app import create_app, db 
 from app.Model.models import User, Post, Tag
 from config import Config
 

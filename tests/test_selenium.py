@@ -11,7 +11,7 @@ from time import sleep
 
 # User fixure - 1
 @pytest.fixture
-def user1():
+def user1(): 
     return  {'username':'arslanay', 'email':'arslanay@wsu.edu', 'password':'strongpassword'}
 
 # User fixure - 2

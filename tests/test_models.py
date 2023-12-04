@@ -2,7 +2,7 @@ import warnings
 warnings.filterwarnings("ignore")
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
-
+ 
 from datetime import datetime, timedelta
 import unittest
 from app import create_app, db
@@ -76,8 +76,34 @@ class TestModels(unittest.TestCase):
         # checking if the database has increased by 1
         self.assertEqual(updated_student_count,initial_student_count+1) 
 
-    
 
+
+    def test_faculty(self):
+        # creating a user:
+        u1 = User(username='john', email='john.yates@wsu.edu')
+        db.session.add(u1)
+        db.session.commit()
+
+        # observing the faculty db
+        initial_faculty_count = Faculty.query.count()
+        
+        # creating a student
+        f1 = Faculty(department='CptS')
+        db.session.add(f1)
+        db.session.commit()
+
+        # observing the faculty db
+        updated_faculty_count = Faculty.query.count()
+
+        # checking if the object in the database is Faculty
+        self.assertEqual(f1.user_type,'Faculty')
+
+        # checking the departments match
+        suspected_department = Faculty.query.filter_by(id=f1.id).first().department
+        self.assertEqual(suspected_department, 'CptS')
+
+        # checking if the database has increased by 1
+        self.assertEqual(updated_faculty_count,initial_faculty_count+1)
 
 
 
