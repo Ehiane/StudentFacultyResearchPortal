@@ -37,6 +37,9 @@ class TestModels(unittest.TestCase):
 
 
     def test_student(self):
+        """
+        This class solely tests the Student Model.
+        """
         # observing the student db
         initial_student_count = Student.query.count()
         
@@ -60,6 +63,9 @@ class TestModels(unittest.TestCase):
 
     
     def test_student_relationships(self):
+        """
+        This class tests Fields and Experience model while using the Student class as the relationship connector
+        """
         # Create a Student
         s1 = Student(username='john', email='john.yates@wsu.com',gpa='4.0', grad_date='2023-05-01')
         db.session.add(s1)
@@ -79,6 +85,9 @@ class TestModels(unittest.TestCase):
 
     
     def test_faculty_relationships(self):
+        """
+        This class tests Positions model while using the Student class as the relationship connector
+        """
         # Create a Faculty
         f1 = Faculty(username='prof_smith', email='prof.smith@wsu.edu', department='Computer Science')
         db.session.add(f1)
@@ -95,7 +104,37 @@ class TestModels(unittest.TestCase):
         # Test relationships with positions
         self.assertIn(position1, f1.positions.all())
         self.assertIn(position2, f1.positions.all())
-        
+
+    def test_application(self):
+        """
+        This class mainly tests the Application Model and it's relationship with a Student
+        """
+        # Create a Position
+        position = Position(title='Assistant Professor')
+        db.session.add(position)
+        db.session.commit()
+
+        # Create a Student
+        student = Student(username='jhon', email='jhon.yates@wsu.edu', gpa='4.0', grad_date='2023-05-01')
+        db.session.add(student)
+        db.session.commit()
+
+        # Create an Application
+        application = Application(position=position, student=student, statement='This is my application statement.', referenceName='John Doe', referenceEmail='john.doe@example.com', status=1)
+        db.session.add(application)
+        db.session.commit()
+
+        # Checking if the database has increased by 1
+        self.assertEqual(Application.query.count(), 1)
+
+        # Check the properties of the application
+        self.assertEqual(application.position, position)
+        self.assertEqual(application.student, student)
+        self.assertEqual(application.statement, 'This is my application statement.')
+        self.assertEqual(application.referenceName, 'John Doe')
+        self.assertEqual(application.referenceEmail, 'john.doe@example.com')
+        self.assertEqual(application.status, 1)
+
 
 
     def test_faculty(self):

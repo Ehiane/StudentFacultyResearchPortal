@@ -134,8 +134,6 @@ class Student(User):
     gpa = db.Column(db.String(10))
     grad_date = db.Column(db.String(30))
     # Further Info
-
-    
     fields = db.relationship('models.Field',secondary=studentFields, primaryjoin=(studentFields.c.student_id == id), backref=db.backref('studentFields', lazy='dynamic'), lazy='dynamic')
     experiences = db.relationship('models.Experience',secondary=studentExperiences, primaryjoin=(studentExperiences.c.student_id == id), backref=db.backref('studentExperiences', lazy='dynamic'), lazy='dynamic')
     # Relationship
