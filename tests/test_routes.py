@@ -100,7 +100,7 @@ def test_faculty_register_page(test_client):
 def test_student_register(test_client, init_database):
     """
     GIVEN a Flask application configured for testing
-    WHEN the '/register' form is submitted (POST)
+    WHEN the '/studentregister' form is submitted (POST)
     THEN check that the response is valid and the database is updated correctly
     """
     # Create a test client using the Flask application configured for testing
@@ -135,6 +135,39 @@ def test_student_register(test_client, init_database):
     assert response.request.path == "/index"
     assert b"Please register or sign in to view/create open positions." in response.data
   
+
+def test_faculty_register(test_client, init_database):
+    """
+    GIVEN a Flask application configured for testing
+    WHEN the '/facultyregister' form is submitted (POST)
+    THEN check that the response is valid and the database is updated correctly
+    """
+    # Create a test client using the Flask application configured for testing
+    response = test_client.post(
+        "/facultyregister",
+        data=dict(firstName="jane", 
+                lastName="doe", 
+                wsuID=11921230,
+                phone=1234567890,
+                department='CptS',
+                username="jane",
+                email="jane@wsu.edu",
+                password="bad-bad-password",
+                password2="bad-bad-password"),
+        follow_redirects=True
+    )
+    assert response.status_code == 200
+
+
+    s = db.session.query(User).filter(User.username == "jane")
+    print(s.first())  # Add this line to inspect the user in the console
+
+
+    assert s.first().email == "jane@wsu.edu"
+    assert s.count() == 1
+    # verifiying that you have been redirected to the index page
+    assert response.request.path == "/index"
+    assert b"Please register or sign in to view/create open positions." in response.data
 
 def test_invalidlogin(test_client, init_database):
     """
@@ -236,173 +269,6 @@ def test_postPosition(test_client, init_database):
 
     # Assert that at least one position is created
     assert len(positions) == 1
-
-
-
-# def test_postSmile(test_client, init_database):
-#     """
-#     GIVEN a Flask application configured for testing , after user logs in,
-#     WHEN the '/postsmile' page is requested (GET)  AND /PostForm' form is submitted (POST)
-#     THEN check that response is valid and the class is successfully created in the database
-#     """
-#     # login
-#     response = test_client.post(
-#         "/login",
-#         data=dict(username="sakire", password="1234", remember_me=False),
-#         follow_redirects=True,
-#     )
-#     assert response.status_code == 200
-#     assert (
-#         b"Welcome to Smile Portal!" in response.data
-#     )  # You may update the assertion condition according to the content of your  page.
-
-#     # test the "PostSmile" form
-#     response = test_client.get("/postsmile")
-#     assert response.status_code == 200
-#     assert (
-#         b"Post New Smile" in response.data
-#     )  # You may update the assertion condition according to the content of your  page.
-
-#     # test posting a smile story
-#     tags1 = list(
-#         map(lambda t: t.id, Tag.query.all()[:3])
-#     )  # should only pass 'id's of the tags. See https://stackoverflow.com/questions/62157168/how-to-send-queryselectfield-form-data-to-a-flask-view-in-a-unittest
-#     print("TESTING********************: ", tags1)
-#     response = test_client.post(
-#         "/postsmile",
-#         data=dict(
-#             title="My test post",
-#             body="This is my first test post.",
-#             happiness_level=2,
-#             tag=tags1,
-#         ),
-#         follow_redirects=True,
-#     )
-#     assert response.status_code == 200
-#     assert (
-#         b"Welcome to Smile Portal!" in response.data
-#     )  # You may update the assertion condition according to the content of your  page.
-#     assert b"My test post" in response.data
-#     assert b"This is my first test post." in response.data
-
-#     c = db.session.query(Post).filter(Post.title == "My test post")
-#     assert c.first().get_tags().count() == 3  # should have 3 tags
-#     assert (
-#         c.count() >= 1
-#     )  # There should be at least one post with body "Here is another post."
-
-#     tags2 = list(
-#         map(lambda t: t.id, Tag.query.all()[1:3])
-#     )  # should only pass 'id's of the tags. See https://stackoverflow.com/questions/62157168/how-to-send-queryselectfield-form-data-to-a-flask-view-in-a-unittest
-#     print("TESTING********************: ", tags2)
-#     response = test_client.post(
-#         "/postsmile",
-#         data=dict(
-#             title="Second post",
-#             body="Here is another post.",
-#             happiness_level=1,
-#             tag=tags2,
-#         ),
-#         follow_redirects=True,
-#     )
-#     assert response.status_code == 200
-#     assert (
-#         b"Welcome to Smile Portal!" in response.data
-#     )  # You may update the assertion condition according to the content of your  page.
-#     assert b"Second post" in response.data
-#     assert b"Here is another post." in response.data
-
-#     c = db.session.query(Post).filter(Post.body == "Here is another post.")
-#     assert c.first().get_tags().count() == 2  # Should have 2 tags
-#     assert (
-#         c.count() >= 1
-#     )  # There should be at least one post with body "Here is another post."
-
-#     assert db.session.query(Post).count() == 2
-
-#     # finally logout
-#     response = test_client.get("/logout", follow_redirects=True)
-#     assert response.status_code == 200
-#     assert b"Sign In" in response.data
-#     assert (
-#         b"Please log in to access this page." in response.data
-#     )  # You may update the assertion condition according to the content of your  page.
-
-
-# def test_likeSmile(test_client, init_database):
-#     """
-#     GIVEN a Flask application configured for testing , after user logs-in,
-#      /like form is submitted (POST)
-#     THEN check that response is valid and the like count is updated in the database
-#     """
-#     # login
-#     response = test_client.post(
-#         "/login",
-#         data=dict(username="sakire", password="1234", remember_me=False),
-#         follow_redirects=True,
-#     )
-#     assert response.status_code == 200
-#     assert (
-#         b"Welcome to Smile Portal!" in response.data
-#     )  # You may update the assertion condition according to the content of your  page.
-
-#     # first post two smile stories
-#     response = test_client.get("/postsmile")
-#     assert response.status_code == 200
-#     tags1 = list(
-#         map(lambda t: t.id, Tag.query.all()[:3])
-#     )  # should only pass 'id's of the tags. See https://stackoverflow.com/questions/62157168/how-to-send-queryselectfield-form-data-to-a-flask-view-in-a-unittest
-#     response = test_client.post(
-#         "/postsmile",
-#         data=dict(
-#             title="My test post",
-#             body="This is my first test post.",
-#             happiness_level=2,
-#             tag=tags1,
-#         ),
-#         follow_redirects=True,
-#     )
-#     assert response.status_code == 200
-#     c1 = db.session.query(Post).filter(Post.title == "My test post")
-#     assert (
-#         c1.count() >= 1
-#     )  # There should be at least one post with body "Here is another post."
-
-#     tags2 = list(
-#         map(lambda t: t.id, Tag.query.all()[1:3])
-#     )  # should only pass 'id's of the tags. See https://stackoverflow.com/questions/62157168/how-to-send-queryselectfield-form-data-to-a-flask-view-in-a-unittest
-#     response = test_client.post(
-#         "/postsmile",
-#         data=dict(
-#             title="Second post",
-#             body="Here is another post.",
-#             happiness_level=1,
-#             tag=tags2,
-#         ),
-#         follow_redirects=True,
-#     )
-#     assert response.status_code == 200
-#     c2 = db.session.query(Post).filter(Post.body == "Here is another post.")
-#     assert (
-#         c2.count() >= 1
-#     )  # There should be at least one post with body "Here is another post."
-#     assert c2.first().likes == 0
-#     assert db.session.query(Post).count() == 2
-
-#     # like the second post
-#     response = test_client.post(
-#         "/like/" + str(c2.first().id), data={}, follow_redirects=True
-#     )
-#     assert response.status_code == 200
-#     # The page should be redirected to the main page
-#     assert (
-#         b"Welcome to Smile Portal!" in response.data
-#     )  # You may update the assertion condition according to the content of your  page.
-#     # check whether the likecount was updated successfully
-#     c3 = db.session.query(Post).filter(Post.id == c1.first().id)
-#     assert c3.first().likes == 0
-#     c4 = db.session.query(Post).filter(Post.id == c2.first().id)
-#     assert c4.first().likes == 1
 
 
 if __name__ == "__main__":
