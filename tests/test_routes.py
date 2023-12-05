@@ -203,7 +203,8 @@ def test_login_logout(request, test_client, init_database):
     assert response.status_code == 200
     assert b"Sign In" in response.data
     assert response.request.path == "/login"
-  
+
+
 def test_postPosition(test_client, init_database):
     # Create sample Field and Experience instances
     field_instance1 = Field(name="Software Engineering")
