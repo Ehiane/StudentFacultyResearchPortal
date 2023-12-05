@@ -299,15 +299,11 @@ def test_Experience(test_client, init_database):
     # Check the experience in the database
     print("Experience in the database:", experience)
 
-<<<<<<< Updated upstream
-
-=======
     # Assert that at least one experience is created
     assert len(experience) == 1
     
     assert response.status_code == 200
     assert b"Welcome to WSU Research Portal!" in response.data
->>>>>>> Stashed changes
 
 if __name__ == "__main__":
     t_db = init_database()
