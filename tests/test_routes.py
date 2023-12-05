@@ -62,7 +62,6 @@ def init_database():
     #add faculty and student 
     f1 = Faculty(username='professor', email='professor@wsu.edu', department='Computer Science')
     s1 = Student(username='student', email='student@wsu.edu', gpa='3.0', grad_date='2023-05-01')
-    faculty_user = Faculty(username="w.rae",email="w.rae@wsu.edu",department="Computer Science")
     # Insert user data
     db.session.add(f1)
     db.session.add(s1)
@@ -101,7 +100,7 @@ def test_faculty_register_page(test_client):
 def test_student_register(test_client, init_database):
     """
     GIVEN a Flask application configured for testing
-    WHEN the '/studentregister' form is submitted (POST)
+    WHEN the '/register' form is submitted (POST)
     THEN check that the response is valid and the database is updated correctly
     """
     # Create a test client using the Flask application configured for testing
@@ -136,39 +135,6 @@ def test_student_register(test_client, init_database):
     assert response.request.path == "/index"
     assert b"Please register or sign in to view/create open positions." in response.data
   
-
-def test_faculty_register(test_client, init_database):
-    """
-    GIVEN a Flask application configured for testing
-    WHEN the '/facultyregister' form is submitted (POST)
-    THEN check that the response is valid and the database is updated correctly
-    """
-    # Create a test client using the Flask application configured for testing
-    response = test_client.post(
-        "/facultyregister",
-        data=dict(firstName="jane", 
-                lastName="doe", 
-                wsuID=11921230,
-                phone=1234567890,
-                department='CptS',
-                username="jane",
-                email="jane@wsu.edu",
-                password="bad-bad-password",
-                password2="bad-bad-password"),
-        follow_redirects=True
-    )
-    assert response.status_code == 200
-
-
-    s = db.session.query(User).filter(User.username == "jane")
-    print(s.first())  # Add this line to inspect the user in the console
-
-
-    assert s.first().email == "jane@wsu.edu"
-    assert s.count() == 1
-    # verifiying that you have been redirected to the index page
-    assert response.request.path == "/index"
-    assert b"Please register or sign in to view/create open positions." in response.data
 
 def test_invalidlogin(test_client, init_database):
     """
@@ -218,6 +184,7 @@ def test_postPosition(test_client, init_database):
     db.session.add_all([field_instance1, field_instance2, experience_instance1, experience_instance2])
     db.session.commit()
 
+    # Login as a faculty user
     faculty_user = Faculty(
         username="w.rae",
         email="w.rae@wsu.edu",
@@ -227,12 +194,12 @@ def test_postPosition(test_client, init_database):
     db.session.add(faculty_user)
     db.session.commit()
 
-    # Login as a faculty user
     response = test_client.post(
-        '/login',
-        data=dict(username='w.rae', password='1234', remember_false=False),
+        "/login",
+        data=dict(username="w.rae", password="1234", remember_me=True),
         follow_redirects=True
     )
+
     assert response.status_code == 200
 
     # Access postposition page
@@ -255,6 +222,8 @@ def test_postPosition(test_client, init_database):
                                           ),
                                 follow_redirects=True
                                 )
+
+
 
     assert response.status_code == 200
     assert b"test_post" in response.data
