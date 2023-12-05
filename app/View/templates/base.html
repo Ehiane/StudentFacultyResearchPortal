@@ -6,33 +6,48 @@
           <title> Welcome to Project Portal! </title>
        {% endif %}
        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-       <!--TODO: (milestone 3)  Include `moment` library -->
+       {{moment.include_moment() }}
     </head>
 
     <body>
         <div class ="nav-container">
         <table>
             <tr>
-                <td><a href="{{ url_for('routes.index') }}" class = "button">Open Positions</a></td>
-                <!-- TODO: (milestone 1) add the URL for the "Post Smile". --> 
-                <td><a href="{{ url_for('routes.postposition') }}" class = "button"> Post Position </a></td>
-                <!--<td><a href="" class = "button"> Login </a></td>-->
-                <!--<td><a href="" class = "button"> Logout </a></td>-->
-                <td> Current user is: <span class="useritem">________ </span> </td>  
+                <td><a href="{{ url_for('routes.index') }}"><img src="../static/img/wsu_navbar_logo.png" alt="wsu_navbar_logo"></a></td>
+                {% if current_user.is_anonymous %}
+                    <td><a href="{{ url_for('auth.facultyRegister') }}" class = "nav-link-element">Faculty Register</a></td>
+                    <td><a href="{{ url_for('auth.studentRegister') }}" class = "nav-link-element">Student Register</a></td>
+                    <td><a href="{{ url_for('auth.login')}}" class = "nav-link-element"> Login </a></td>
+                {% else %}
+                    {% if current_user.user_type == 'Student' %}
+                        <td><a href="{{ url_for('routes.index') }}" class = "nav-link-element">Open Positions</a></td>
+                        <td><a href="{{ url_for('routes.myapplications', id=current_user.id) }}" class = "nav-link-element">My Applications</a></td>
+                    {% else %}
+                        <td><a href="{{ url_for('routes.mypositions') }}" class = "nav-link-element">My Positions</a></td>
+                        <td><a href="{{ url_for('routes.postposition') }}" class = "nav-link-element"> Post Position </a></td>
+                        <td><a href="{{ url_for('routes.addexperience') }}" class = "nav-link-element">Add New Experience</a></td>
+                        <td><a href="{{ url_for('routes.addfield') }}" class = "nav-link-element">Add New Research Field</a></td>
+                    {% endif %}
+                    <td><a href="{{ url_for('auth.logout' )}}" class = "nav-link-element"> Logout </a></td>
+                    {% if current_user.user_type == 'Student' %}
+                        <a href="{{ url_for('routes.studentinfo', student_id=current_user.id) }}" id="current-user"> Current user is: <span>{{ current_user.username}} </span></a>
+                    {% else %}
+                    <a href="{{ url_for('routes.facultyinfo', faculty_id=current_user.id) }}" id="current-user"> Current user is: <span>{{ current_user.username}} </span></a>
+                    {% endif %}
+                {% endif %}  
             </tr>
         </table>
         </div>
         <div>
             {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                <div> {{ message }}</div>
-                {% endfor %}
-            {% endif %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="flash-container"> {{ message }}</div>
+                    {% endfor %}
+                {% endif %}
             {% endwith %}
 
             {% block content %} {% endblock %}
         </div>
-
     </body>
 </html>

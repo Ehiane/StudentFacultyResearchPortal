@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Student Information</h1>
+
+    <div>
+        <strong>Student Username:</strong> {{student.username}}<br>
+        <strong>Student ID:</strong> {{student.wsuID}}<br>
+        <strong>GPA:</strong> {{student.gpa}}<br>
+        <strong>Expected Graduation:</strong> {{student.grad_date}}<br>
+        <strong>Contact Info:</strong> {{student.email}} ({{student.phone}})
+        <br><strong>Interests:</strong><br>
+        {% for field in student.fields %}
+             - {{field.name}}<br> 
+        {% endfor %}
+        <strong>Experience:</strong><br>
+        {% for experience in student.experiences %}
+             - {{experience.name}}<br>
+        {% endfor %}
+
+    </div>
+
+  {% endblock %}

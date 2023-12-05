@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Faculty Information</h1>
+
+    <div>
+        <strong>Faculty Username:</strong> {{faculty.username}}<br>
+        <strong>University ID:</strong> {{faculty.wsuID}}<br>
+        <strong>Department:</strong> {{faculty.department}}<br>
+        <strong>Contact Info:</strong> {{faculty.email}} ({{faculty.phone}})
+    </div>
+
+  {% endblock %}

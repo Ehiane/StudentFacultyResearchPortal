@@ -1,20 +1,134 @@
+/* Google Fonts Imports */
+
+/* QUICKSAND FONT - for flash message */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
+/* roboto slab font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+/* Lora font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+/* PT Sans */
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+/*------------------------------------------- COLOR PALLETTE --------------------------------------------------------------------------------  */
+:root{
+    /* Project color pallete */
+    --light-gray-- : #EEEEEE;
+    --dark-gray-- : #DEDEDE;
+    --mild-red-- : #FF4949;
+    --crimson-red--: #C10000;
+    --anthracite--: #414141;
+    --light-anthracite: #525252;
+    --deep-anthracite: #313131;
+    --salmon--: #BD4B4B;
+    --dull-pink--: #EFB7B7;
+    --orange-red--: #FF0000;
+    --deep-crimson-red--: #AF0404;
+}
+/*---------------------------------------------------------------------------------------------------------------------------------------------  */
+
 body {
-    margin: 1px 1px 1px 15px;
-    padding: 1px;
+    /* margin: 1px 1px 1px 15px;
+    padding: 1px; */
+    margin-left:0;
     font-family: Tahoma;
     text-align: left;
-  
+    width: 100%;
 }
+
+.index-body-section,.student-register-section,.faculty-register-section,.login-section{
+    margin-left: 30px;
+}
+
+
+/*------------------------------------------------------[NAVBAR]---------------------------------------------------------------------------------  */
 .nav-container {
-    background:#f6f6f6;
+    margin-left: 0;
+    background: var(--anthracite--);
     font-family: Tahoma;
     font-size: 12px;
-    height: 32px;
+    height: 10vh;
     text-transform: uppercase;
+    width: 100%;
+    margin-top:-10px;
 }
+
+.nav-link-element{
+    position: relative;
+    top: 10px;
+    background: var(--light-gray--);
+    color: var(--salmon--);
+    border: 1.5px solid var(--dark-gray--);
+    border-radius: 10px;
+    padding: 0.5rem;
+    margin-right: 15px;
+    left: 5px;
+}
+
+.nav-link-element:hover{
+    border: 1.5px solid var(--deep-anthracite);
+}
+
+#current-user{
+    background: var(--light-gray--);
+    border: 1.5px solid var(--salmon--);
+    border-radius: 10px;
+    padding: 0.5rem;
+    box-shadow: 0.5px 3px 3px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 22px;
+    left: 80%;
+
+}
+
+#current-user:hover{
+    cursor: default;
+    background-color: var(--dark-gray--);
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+#current-user span{
+    color: var(--orange-red--);
+}
+
+
+.nav-container a{
+    color: black;
+    text-decoration: none;
+    transition: 0.5s ease-in-out;
+    box-shadow: 0.5px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+
+.nav-container a:hover{
+    background-color: var(--crimson-red--) ;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.nav-container td{
+    transition: 0.5s ease-in-out;
+}
+
+/* wsu logo */
+.nav-container img{
+    position: relative;
+    top: 10px; 
+    width: 30%;
+    height: 30%;
+}
+.nav-container td:hover{
+    transform: scale(0.95);
+}
+
+.nav-container a:hover{
+    color: white;
+}
+
 a:hover {
-	color:#2387D9;
+    color:#2387D9;
 }
+/*------------------------------------------------------[NAVBAR]---------------------------------------------------------------------------------  */
 
 .button {
     width : 80px;
@@ -31,19 +145,153 @@ a:hover {
     cursor:pointer;
 }
 
-.posttable { 
+
+.flash-container{    
+    background-color: rgb(251, 251, 76);
+    height: fit-content;
+    width: fit-content;
+    font-family: 'Quicksand', sans-serif;
+    border: transparent 2px solid;
+    border-radius: 10px;
+    padding: 0.5rem;
+    margin: auto;
+    position: relative;
+    top: 10px;
+    transition: 0.35s ease-in-out;
+}
+
+
+.flash-container:hover{
+    transform: scale(0.95);
+    box-shadow: 0 0 20px 0px black;
+    cursor: pointer;
+}
+
+
+
+
+/* ---------------------------------------------------------------------------------POST SECTION ----------------------------------------------------------*/
+.posttable {     
+    color: var(--light-gray--);
     width : 100%;
     margin: 0px;
 }
 
+
 .posttitle {
+    font-family: 'Roboto Slab', serif;
     text-align: center;
     font-weight: bold;
 }
 
 .postbody {
+    font-family: 'Roboto Slab', serif;
+    margin-left: 10%;
+    padding: 0.2rem;
     text-align: left;
+    min-height: fit-content;
+    max-height: 12vh;
 }
+
+
+#post-text-section-1,#post-text-section-2{
+    padding: 0.05rem;
+}
+#post-text-section-1 span{
+    color: black;
+}
+
+.tagarea{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.post-experience-section{
+    text-align: center;
+}
+
+.post-experience-section p{
+    font-weight: bold;
+}
+
+.post-experience-tag-area{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.post-experience-tag-item {
+    flex: 1;
+    flex-basis: 0;
+    margin-left:5px;
+    /* flex-basis: 35%; */
+    text-align: center;
+    background-color: var(--light-anthracite);
+    border: 2px solid black;
+    border-radius: 2px;
+    margin: 4px;
+    padding: 5px;
+    color: var(--dull-pink--);
+}
+
+.research-field-section{
+    height: 5vh;
+}
+
+.research-field-section p{
+    text-align: center;
+    font-weight: bold;
+}
+
+.post-footer-section{
+    text-align: center;
+    padding-bottom: 0.3rem;
+}
+
+.research-horizontal-tag-area{
+    height: 8vh;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+
+.research-horizontal-tag-item{
+    border: 2px solid black;
+    border-radius: 2px;
+    background-color: var(--dull-pink--);
+    text-align:center;
+    flex: 1;
+    flex-basis: 0;
+    padding: 2px;
+    width: fit-content;
+    height: 6vh;
+    color: var(--deep-crimson-red--);
+    
+}
+
+#apply-btn-section{
+    padding: .7rem;
+}
+
+#apply-btn{
+    position: relative;
+    left: 50%;
+    text-decoration: none;
+    color: var(--deep-crimson-red--);
+    padding: .6rem;
+    border: 1px solid var(--light-anthracite);
+    background: var(--light-gray--);
+    border-radius: 10px;
+}
+
+
+#apply-btn:hover{
+    box-shadow: 0 0 20px 0px black;
+}
+
+
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 .useritem{
     text-align: center;
@@ -51,6 +299,12 @@ a:hover {
     margin: 4px 3px 4px 3px;
     color: crimson; 
     text-transform: uppercase;
+}
+
+
+.research-field-title{
+    top: 10px;
+    padding: .1rem;
 }
 
 .likebtn {
@@ -76,6 +330,8 @@ a:hover {
     margin: 4px 3px 4px 3px;
     height: 30px;
     width: 400px;
+    border: 2px solid var(--deep-crimson-red--);
+    border-radius: 3px;
 }
 
 .formdate {
@@ -83,6 +339,8 @@ a:hover {
     margin: 4px 3px 4px 3px;
     height: 30px;
     width: 200px;
+    border: 2px solid var(--deep-crimson-red--);
+    border-radius: 3px;
 }
 
 .formtime {
@@ -90,6 +348,8 @@ a:hover {
     margin: 4px 3px 4px 3px;
     height: 30px;
     width: 100px;
+    border: 2px solid var(--deep-crimson-red--);
+    border-radius: 3px;
 }
 
 .formbody {
@@ -98,6 +358,8 @@ a:hover {
     height: 30px;
     width: 800px;
     text-align: top, left;
+    border: 2px solid var(--deep-crimson-red--);
+    border-radius: 3px;
 }
 
 .formselect {
@@ -105,43 +367,129 @@ a:hover {
     margin: 4px 3px 4px 3px;
 }
 
-.tagitem {
-    text-align: center;
-    background-color: #ffffff;
-    outline: solid;
-    margin: 4px;
-    padding: 1px;
+.research-tags,.experience-tags{
+    list-style-type: none;
+    margin-left: -30px;
 }
 
+.submit-btn{
+    margin-top: 10px;
+    width: 75px;
+    padding: .4rem;
+    border: 2px solid var(--salmon--);
+    border-radius: 5px;
+    transition: 0.5s ease-in-out;
+}
+
+.submit-btn:hover{
+    cursor: pointer;
+    box-shadow: 0 0 10px 0px black;
+    transform: translateY(-0.9%);
+    padding: .42rem;
+}
+
+.login-btn{
+    margin-top: 10px;
+    width: 400px;
+    padding: .4rem;
+    border: 2px solid var(--salmon--);
+    border-radius: 5px;
+    transition: 0.9s ease-in-out;
+    text-align: center;
+}
+
+.login-btn:hover{
+    cursor: pointer;
+    background-color: var(--salmon--);
+    color: var(--light-gray--);
+    box-shadow: 0 0 10px 0px black;
+    transform: translateY(-0.11%);
+    padding: .42rem;
+}
+
+.login-link{
+    color: #313131;
+    transition: 0.25s ease-in-out;
+}
+
+.login-link:hover{
+    color: var(--crimson-red--);
+}
+
+/* ------------------------------------------------------------------------------POST POSITION ------------------------------------------------------------------- */
+.post-position-body{
+    margin-left: 30px;
+}
+
+.post-position-body h1{
+    font-family: 'PT Sans', sans-serif;
+}
+
+
+
+
+/* ------------------------------------------------------------------------------SCREEN RESOLUTIONS ------------------------------------------------------------------- */
 @media screen and (min-width: 1200px){
     .post-box {
+        border: 2px solid black;
+        border-radius: 10px;
         display: flex;
         vertical-align: middle;
         background:#efefef;
         width: 32%;
         margin: 5 auto;
         padding: 3px;
+        transition: 0.5s ease-in-out;
+        background:var(--salmon--);
+    }
+    
+    .post-box:hover {
+        cursor: pointer;
+        box-shadow: 0 0 20px 0px black;
+        transform: translateY(-0.5%);
     }
 }
 
+
 @media screen and (min-width: 800px) and (max-width:1200px){
     .post-box {
+        border: 2px solid black;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         display: flex;
         vertical-align: middle;
-        background:#efefef;
+        background:var(--salmon--);
         width: 48%;
         margin: 5 auto;
         padding: 3px;
+        transition: 0.5s ease-in-out;
+    }
+    
+    .post-box:hover {
+        cursor: pointer;
+        box-shadow: 0 0 20px 0px black;
+        transform: translateY(-0.5%);
     }
 }
 
 @media screen and (max-width:800px){
     .post-box {
+        border: 2px solid black;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         display: flex;
         vertical-align: middle;
         background:#efefef;
         width: 99%;
         margin: 5 auto;
         padding: 3px;
+        transition: 0.5s ease-in-out;
+    }
+    
+    .post-box:hover {
+        cursor: pointer;
+        box-shadow: 0 0 20px 0px black;
+        transform: translateY(-0.5%);
     }
 }
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="index-body-section">
+        <h1>My Research Positions</h1>
+            {% for position in positions %}
+                <div class="post-box">
+                    {% include '_position.html' %}
+                </div>
+            {% endfor %}
+    </div>  
+{% endblock %}
