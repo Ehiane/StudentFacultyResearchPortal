@@ -6,7 +6,7 @@
 * Cole Logan
 * Ehiane Oigiagbe
 
-to run this application:
+`To run this application:` 
 * open the terminal 
 * run the following command(s):
 ```
@@ -18,15 +18,29 @@ python project.py
 ```
 
 
+#  User Interface
+### Student main page & faculty main page:
+<div style="display: flex;">
+  <img width="960" alt="Screenshot 2024-01-02 173807" src="https://github.com/Ehiane/StudentFacultyResearchPortal/assets/79903725/2fad09de-15c9-4868-a988-f05829763ffb" style="width: 48%;">
+  <img width="958" alt="Screenshot 2024-01-02 173746" src="https://github.com/Ehiane/StudentFacultyResearchPortal/assets/79903725/afde1836-9c2d-4d7b-896d-23e69bfd707f" style="width: 48%;">
+</div>
+
+### Login page & Registration page:
+<div style="display; flex;">
+  <img width="959" alt="Screenshot 2024-01-02 174336" src="https://github.com/Ehiane/StudentFacultyResearchPortal/assets/79903725/b22ece37-0033-4e2e-ba7f-f1c60ec6b851" style="width: 48%;">
+  <img width="960" alt="Screenshot 2024-01-02 174306" src="https://github.com/Ehiane/StudentFacultyResearchPortal/assets/79903725/0e9a8bda-2b45-4e74-b97e-31a92cf8fdaf" style="width: 48%;">
+</div>
+
+
 
 # Software Requirements Specification
 
 ### "WSU Research Portal"
 --------
 Prepared by:
-* `William Rae`,`Team Sioux`
-* `Ehiane Oigiagbe`,`Team Sioux`
-* `Cole Logan`,`Team Sioux`
+* ![William Rae](https://github.com/WillRInternship) 
+* ![Ehiane Oigiagbe](https://github.com/Ehiane)
+* ![Cole Logan](https://github.com/clogan1227)
 
 ---
 
@@ -37,7 +51,6 @@ Prepared by:
 
 ## Table of Contents
 - [Software Requirements Specification](#software-requirements-specification)
-  - [Your Project Title](#your-project-title)
   - [Table of Contents](#table-of-contents)
   - [Document Revision History](#document-revision-history)
 - [1. Introduction](#1-introduction)
@@ -48,10 +61,7 @@ Prepared by:
   - [2.1 Customer, Users, and Stakeholders](#21-customer-users-and-stakeholders)
   - [2.2 Use Cases](#22-use-cases)
   - [2.3 Non-Functional Requirements](#23-non-functional-requirements)
-- [3. User Interface](#3-user-interface)
-- [4. Product Backlog](#4-product-backlog)
-- [5. References](#5-references)
-- [Appendix: Grading Rubric](#appendix-grading-rubric)
+- [3. Product Backlog](#4-product-backlog)
 
 <a name="revision-history"> </a>
 
@@ -421,18 +431,7 @@ The faculty may delete the existing research positions. Once deleted, the status
 7. Students should only be able to create one account: Using their WSU email/ID, students should be able to create just a single account for themselves. If they are to try to create another account with the same ID, they should be stopped and directed to use a different ID.
 
 ----
-# 3. User Interface
-
-### Student main page & faculty main page:
-![IMG-0171](https://github.com/WSU-CptS-322-Fall-2023/termproject-teamsioux/assets/79903725/a32ca2f8-090f-4f2a-aae2-39e6d7aaa225)
-
-
-### Login page & Registration page:
-![IMG-0172](https://github.com/WSU-CptS-322-Fall-2023/termproject-teamsioux/assets/79903725/e2d942cd-ce24-49ba-8f45-ca6a7cc24baa)
-
-
-----
-# 4. Product Backlog
+# 3. Product Backlog
 > To view the Product Backlog/ Issues Page click [here🔗](https://github.com/WSU-CptS-322-Fall-2023/termproject-teamsioux/issues)
 
 
