@@ -451,6 +451,16 @@ The faculty may delete the existing research positions. Once deleted, the status
 
 ----
 # 3. Product Backlog
-> To view the Product Backlog/ Issues Page click [here🔗](https://github.com/WSU-CptS-322-Fall-2023/termproject-teamsioux/issues)
+<div style="display; flex;">
+  <img width="607" alt="Screenshot 2024-01-02 182044" src="https://github.com/Ehiane/StudentFacultyResearchPortal/assets/79903725/a74c3ca1-da37-4012-84aa-21860c2322c4" style="width: 48%;">
+  <img width="607" alt="Screenshot 2024-01-02 182025" src="https://github.com/Ehiane/StudentFacultyResearchPortal/assets/79903725/e88cd2ff-0121-4ce8-ae10-160c36e6a09f" style="width: 48%;">
+  <img width="604" alt="Screenshot 2024-01-02 182120" src="https://github.com/Ehiane/StudentFacultyResearchPortal/assets/79903725/dfe04654-b712-4f51-900e-0044c6cac08d" style="width: 48%;">
+  <img width="601" alt="Screenshot 2024-01-02 182057" src="https://github.com/Ehiane/StudentFacultyResearchPortal/assets/79903725/8a81c8b7-9000-4c44-b7df-b2994af1b96b" style="width: 48%;">
+  
+</div>
+
+
+
+
 
 
