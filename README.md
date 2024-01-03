@@ -17,6 +17,11 @@ or
 python project.py
 ```
 
+# Demo
+![Untitled design (4)](https://github.com/Ehiane/StudentFacultyResearchPortal/assets/79903725/1f176977-dab4-4650-8a2a-5dcc56d3e8ae)
+> Video Link🔗: https://youtu.be/6KkSGxuj5pA?si=iYGLJqyFUy84UxWi
+
+
 
 #  User Interface
 ### Student main page & faculty main page:
