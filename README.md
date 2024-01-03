@@ -157,6 +157,7 @@ Regular User:
 4. Select the research topics they are interested in. You can assume a predetermined list of research fields and have the student choose among those.
 5. Choose the programming languages with which they are familiar. You can assume a predetermined list of programming languages and have the instructor choose among those.
 6. Describe their prior research experience if there is any.
+
 | Name | Add Review |
 |--------|--------|
 | Users | Student |
