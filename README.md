@@ -31,6 +31,24 @@ python project.py
   <img width="960" alt="Screenshot 2024-01-02 174306" src="https://github.com/Ehiane/StudentFacultyResearchPortal/assets/79903725/0e9a8bda-2b45-4e74-b97e-31a92cf8fdaf" style="width: 48%;">
 </div>
 
+## Features
+
+- **Effortless Application Process**: Faculty members can effortlessly post research opportunities, including details on required experiences and additional research fields.
+
+- **Intuitive Student Interface**: Students can explore a variety of research opportunities, select the projects that resonate with them, and submit applications seamlessly through an intuitive user interface.
+
+- **Dynamic Application Status Updates**: Faculty members have the ability to update the status of applicants based on their qualities displayed in the application. This feature ensures transparency and keeps both parties informed throughout the selection process.
+
+- **Adaptable Research Fields**: Faculty members can dynamically add new research fields to ensure the portal stays up-to-date with the evolving landscape of research.
+
+## Technological Stack
+
+| Section          | Technology             | Description                                               |
+|------------------|------------------------|-----------------------------------------------------------|
+| Backend          | Python, Flask           | Developed using Python and Flask for a robust and scalable server-side architecture. |
+| Database         | SQL Alchemy            | Employed for efficient database management, ensuring data integrity and reliability. |
+| Frontend Design  | HTML, CSS               | Utilized to create a clean and user-friendly frontend interface, enhancing the overall user experience. |
+| Testing          | Unittest by Python      | Thoroughly tested using Python's unittest framework to ensure code quality and reliability. |
 
 
 # Software Requirements Specification
